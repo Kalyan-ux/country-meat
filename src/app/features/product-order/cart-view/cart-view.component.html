@@ -1,0 +1,262 @@
+<!-- Shopping Cart Page -->
+<div class="cart-page">
+  <div class="container">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="breadcrumb-nav">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a routerLink="/">
+                <i class="fa fa-home"></i>
+                Home
+              </a>
+            </li>
+            <li class="breadcrumb-item active">Shopping Cart</li>
+          </ol>
+        </nav>
+      </div>
+      <h1 class="page-title">
+        <i class="fa fa-shopping-cart"></i>
+        Shopping Cart
+      </h1>
+    </div>
+
+    <!-- Cart Content -->
+    <div class="cart-content" *ngIf="cartItems.length > 0; else emptyCart">
+      <div class="row">
+        <!-- Cart Items Section -->
+        <div class="col-lg-8">
+          <div class="cart-items-section">
+            <div class="section-header">
+              <h3>Cart Items ({{ cartItems.length }})</h3>
+              <button class="clear-cart-btn" (click)="clearCart()">
+                <i class="fa fa-trash-alt"></i>
+                Clear Cart
+              </button>
+            </div>
+
+            <!-- Cart Items List -->
+            <div class="cart-items-list">
+              <div class="cart-item" *ngFor="let item of cartItems; trackBy: trackByItemId">
+                <div class="item-image">
+                  <img [src]="item.image" [alt]="item.name" class="product-image">
+                  <div class="item-badge" *ngIf="item.discount && item.discount > 0">
+                    -{{ item.discount }}%
+                  </div>
+                </div>
+
+                <div class="item-details">
+                  <h4 class="item-name">{{ item.name }}</h4>
+                  <p class="item-description">{{ item.description }}</p>
+                  <div class="item-attributes">
+                    <span class="attribute" *ngIf="item.weight">
+                      <i class="fa fa-weight"></i>
+                      {{ item.weight }}
+                    </span>
+                    <span class="attribute" *ngIf="item.category">
+                      <i class="fa fa-tag"></i>
+                      {{ item.category }}
+                    </span>
+                    <span class="attribute freshness-indicator">
+                      <i class="fa fa-leaf"></i>
+                      Fresh
+                    </span>
+                  </div>
+                </div>
+
+                <div class="item-controls">
+                  <!-- Quantity Controls -->
+                  <div class="quantity-control">
+                    <label class="quantity-label">Quantity:</label>
+                    <div class="quantity-input-group">
+                      <button 
+                        class="quantity-btn minus" 
+                        (click)="decreaseQuantity(item)"
+                        [disabled]="item.quantity <= 1">
+                        <i class="fa fa-minus"></i>
+                      </button>
+                      <input 
+                        type="number" 
+                        class="quantity-input" 
+                        [(ngModel)]="item.quantity"
+                        (ngModelChange)="updateQuantity(item, $event)"
+                        [min]="1"
+                        [max]="item.maxQuantity || 99">
+                      <button 
+                        class="quantity-btn plus" 
+                        (click)="increaseQuantity(item)"
+                        [disabled]="item.quantity >= (item.maxQuantity || 99)">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Price Section -->
+                  <div class="item-pricing">
+                    <div class="price-breakdown">
+                      <span class="original-price" *ngIf="item.originalPrice && item.originalPrice !== item.price">
+                        ₹{{ item.originalPrice }}
+                      </span>
+                      <span class="current-price">₹{{ item.price }}</span>
+                      <span class="price-per-unit">per {{ item.unit || 'kg' }}</span>
+                    </div>
+                    <div class="total-price">
+                      <strong>₹{{ getItemTotal(item) }}</strong>
+                    </div>
+                  </div>
+
+                  <!-- Action Buttons -->
+                  <div class="item-actions">
+                    <button 
+                      class="action-btn save-later" 
+                      (click)="saveForLater(item)"
+                      title="Save for Later">
+                      <i class="fa fa-heart"></i>
+                    </button>
+                    <button 
+                      class="action-btn remove-item" 
+                      (click)="removeItem(item)"
+                      title="Remove Item">
+                      <i class="fa fa-trash-alt"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Continue Shopping -->
+            <div class="continue-shopping">
+              <a routerLink="/products" class="continue-btn">
+                <i class="fa fa-arrow-left"></i>
+                Continue Shopping
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cart Summary Section -->
+        <div class="col-lg-4">
+          <div class="cart-summary">
+            <h3 class="summary-title">Order Summary</h3>
+
+            <!-- Coupon Code Section -->
+            <div class="coupon-section">
+              <h4>Apply Coupon</h4>
+              <div class="coupon-input-group">
+                <input 
+                  type="text" 
+                  class="coupon-input" 
+                  placeholder="Enter coupon code"
+                  [(ngModel)]="couponCode"
+                  #couponInput>
+                <button 
+                  class="apply-coupon-btn" 
+                  (click)="applyCoupon()"
+                  [disabled]="!couponCode.trim()">
+                  Apply
+                </button>
+              </div>
+              <div class="applied-coupon" *ngIf="appliedCoupon">
+                <div class="coupon-info">
+                  <span class="coupon-name">{{ appliedCoupon.name }}</span>
+                  <span class="coupon-discount">-₹{{ appliedCoupon.discount }}</span>
+                  <button class="remove-coupon" (click)="removeCoupon()">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="coupon-suggestions">
+                <p class="suggestions-title">Available Offers:</p>
+                <div class="suggestion" *ngFor="let offer of availableOffers">
+                  <span class="offer-code">{{ offer.code }}</span>
+                  <span class="offer-desc">{{ offer.description }}</span>
+                  <button class="apply-offer" (click)="applyOffer(offer)">Apply</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Price Calculation -->
+            <div class="price-calculation">
+              <div class="calculation-row">
+                <span class="label">Subtotal ({{ getTotalItems() }} items)</span>
+                <span class="value">₹{{ getSubtotal() }}</span>
+              </div>
+              <div class="calculation-row" *ngIf="appliedCoupon">
+                <span class="label discount">Coupon Discount</span>
+                <span class="value discount">-₹{{ appliedCoupon.discount }}</span>
+              </div>
+              <div class="calculation-row">
+                <span class="label">Delivery Charges</span>
+                <span class="value" [class.free]="deliveryCharges === 0">
+                  {{ deliveryCharges === 0 ? 'FREE' : '₹' + deliveryCharges }}
+                </span>
+              </div>
+              <div class="calculation-row tax-row">
+                <span class="label">Taxes & Fees</span>
+                <span class="value">₹{{ getTaxAmount() }}</span>
+              </div>
+              <hr class="divider">
+              <div class="calculation-row total-row">
+                <span class="label">Total Amount</span>
+                <span class="value">₹{{ getTotalAmount() }}</span>
+              </div>
+              <div class="savings-info" *ngIf="getTotalSavings() > 0">
+                <i class="fa fa-tag"></i>
+                You save ₹{{ getTotalSavings() }} on this order!
+              </div>
+            </div>
+
+            <!-- Delivery Information -->
+            <div class="delivery-info">
+              <h4>Delivery Information</h4>
+              <div class="delivery-option">
+                <i class="fa fa-shipping-fast"></i>
+                <div class="delivery-details">
+                  <span class="delivery-type">Standard Delivery</span>
+                  <span class="delivery-time">Delivered in 2-3 hours</span>
+                </div>
+              </div>
+              <div class="delivery-address">
+                <i class="fa fa-map-marker-alt"></i>
+                <span>Deliver to: {{ deliveryAddress || 'Select Address' }}</span>
+                <a href="#" class="change-address">Change</a>
+              </div>
+            </div>
+
+            <!-- Proceed to Checkout -->
+            <div class="checkout-section">
+              <button 
+                class="checkout-btn" 
+                (click)="proceedToCheckout()"
+                [disabled]="cartItems.length === 0">
+                <i class="fa fa-lock"></i>
+                Proceed to Checkout
+                <span class="checkout-amount">₹{{ getTotalAmount() }}</span>
+              </button>
+              <div class="secure-checkout">
+                <i class="fa fa-shield-alt"></i>
+                100% Secure Checkout
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty Cart State -->
+    <ng-template #emptyCart>
+      <div class="empty-cart">
+        <div class="empty-cart-icon">
+          <i class="fa fa-shopping-cart"></i>
+        </div>
+        <h2>Your cart is empty</h2>
+        <p>Looks like you haven't made your choice yet. Browse our fresh collection and add items to cart.</p>
+        <a routerLink="/products" class="shop-now-btn">
+          <i class="fa fa-store"></i>
+          Start Shopping
+        </a>
+      </div>
+    </ng-template>
+  </div>
+</div>

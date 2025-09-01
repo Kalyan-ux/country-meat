@@ -1,0 +1,74 @@
+.product-detail-container {
+  padding: 3rem 1rem;
+
+  .image-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fafafa;
+    padding: 1rem;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  .product-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .rating {
+    font-size: 1rem;
+    color: #ffb400;
+  }
+
+  .price {
+    .current-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #28a745;
+    }
+
+    .original-price {
+      text-decoration: line-through;
+      color: #888;
+    }
+
+    .unit {
+      font-size: 0.9rem;
+      color: #555;
+    }
+  }
+
+  .description {
+    margin: 1rem 0;
+    font-size: 1rem;
+    color: #444;
+  }
+
+  .features {
+    .badge {
+      font-size: 0.85rem;
+      padding: 0.5rem 0.75rem;
+    }
+  }
+
+  .actions {
+    margin-top: 1.5rem;
+
+    .btn-premium {
+      background-color: #28a745;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .btn-outline-premium {
+      border: 2px solid #28a745;
+      color: #28a745;
+      font-weight: 600;
+    }
+  }
+}

@@ -1,0 +1,156 @@
+<!-- BEGIN sections : product-listing -->
+<div id="section-product-listing" class="countrymeat-section">
+  <section class="product-listing-section pt-40 pb-40">
+    <div class="container">
+      
+      <!-- Page Header -->
+      <div class="row mb-40">
+        <div class="col-12">
+          <div class="section-title text-center">
+            <h2 class="tp-section-title">{{ getCategoryName() }}</h2>
+            <p class="tp-section-subtitle">Choose from our fresh selection of premium quality products</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filters & Search -->
+      <div class="row mb-30">
+        <div class="col-lg-3 col-md-4 mb-20">
+          <div class="product-filters">
+            <div class="filter-group mb-20">
+              <label class="filter-label">Search Products</label>
+              <div class="search-input">
+                <input 
+                  type="text" 
+                  [(ngModel)]="searchTerm" 
+                  (ngModelChange)="onSearchChange()"
+                  placeholder="Search products..." 
+                  class="form-control">
+                <i class="fa fa-search search-icon"></i>
+              </div>
+            </div>
+
+            <div class="filter-group mb-20">
+              <label class="filter-label">Sort By</label>
+              <select [(ngModel)]="sortBy" (ngModelChange)="onSortChange()" class="form-control">
+                <option value="name">Name (A-Z)</option>
+                <option value="price-low">Price (Low to High)</option>
+                <option value="price-high">Price (High to Low)</option>
+                <option value="rating">Rating</option>
+              </select>
+            </div>
+
+            <div class="filter-group mb-20">
+              <label class="filter-label">Price Range</label>
+              <div class="price-range">
+                <input 
+                  type="range" 
+                  [(ngModel)]="priceRange.min" 
+                  (ngModelChange)="onPriceRangeChange()"
+                  min="0" 
+                  max="1000" 
+                  class="price-slider">
+                <div class="price-values">
+                  <span>₹{{ priceRange.min }}</span> - <span>₹{{ priceRange.max }}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="filter-group">
+              <label class="filter-label">Categories</label>
+              <div class="category-list">
+                <a [routerLink]="['/products']" 
+                   [class.active]="!currentCategory" 
+                   class="category-item">
+                  All Products
+                </a>
+                <a *ngFor="let category of categories" 
+                   [routerLink]="['/products', category.id]"
+                   [class.active]="currentCategory === category.id" 
+                   class="category-item">
+                  {{ category.name }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="col-lg-9 col-md-8">
+          <div class="products-header mb-20">
+            <span class="products-count">{{ filteredProducts.length }} products found</span>
+          </div>
+
+          <div *ngIf="isLoading" class="text-center py-5">
+            <i class="fa fa-spinner fa-spin fa-2x"></i>
+            <p class="mt-2">Loading products...</p>
+          </div>
+
+          <div *ngIf="!isLoading && filteredProducts.length === 0" class="text-center py-5">
+            <i class="fa fa-search fa-3x text-muted mb-3"></i>
+            <h4>No products found</h4>
+            <p class="text-muted">Try adjusting your search or filters</p>
+          </div>
+
+          <div class="row" *ngIf="!isLoading && filteredProducts.length > 0">
+            <div class="col-lg-4 col-md-6 col-sm-6 mb-30" *ngFor="let product of filteredProducts">
+              <div class="product-card">
+                <div class="product-thumb">
+                  <img [src]="product.image" [alt]="product.name" class="product-image">
+                  <div class="product-badge" *ngIf="product.discount">
+                    <span class="discount-badge">-{{ product.discount }}%</span>
+                  </div>
+                  <div class="product-actions">
+                    <button class="btn-action" (click)="viewProduct(product.id)" title="View Details">
+                      <i class="fa fa-eye"></i>
+                    </button>
+                    <button class="btn-action" (click)="addToCart(product)" title="Add to Cart">
+                      <i class="fa fa-shopping-cart"></i>
+                    </button>
+                  </div>
+                </div>
+                
+                <div class="product-content">
+                  <div class="product-rating">
+                    <div class="stars">
+                      <i *ngFor="let star of getStarRating(product.rating)" 
+                         class="fa {{ star }}" 
+                         [class.filled]="star === 'fa-star'">
+                      </i>
+                    </div>
+                    <span class="rating-count">({{ product.rating }})</span>
+                  </div>
+                  
+                  <h4 class="product-title">
+                    <a (click)="viewProduct(product.id)">{{ product.name }}</a>
+                  </h4>
+                  
+                  <p class="product-description">{{ product.description }}</p>
+                  
+                  <div class="product-price">
+                    <span class="current-price">₹{{ product.price }}</span>
+                    <span class="original-price" *ngIf="product.originalPrice">₹{{ product.originalPrice }}</span>
+                  </div>
+                  
+                  <div class="product-stock" [class.out-of-stock]="!product.inStock">
+                    <i class="fa" [class.fa-check-circle]="product.inStock" [class.fa-times-circle]="!product.inStock"></i>
+                    <span>{{ product.inStock ? 'In Stock' : 'Out of Stock' }}</span>
+                  </div>
+                  
+                  <button 
+                    class="btn btn-primary btn-add-cart" 
+                    (click)="addToCart(product)"
+                    [disabled]="!product.inStock">
+                    <i class="fa fa-shopping-cart"></i>
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

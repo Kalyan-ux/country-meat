@@ -1,0 +1,79 @@
+<!-- BEGIN sections : home-newsletter-group -->
+<div id="section-home-newsletter" class="countrymeat-section">
+  <section class="home-newsletter-section">
+
+    <div class="news-letter modern-newsletter">
+      <div class="newsletter-overlay"></div>
+      
+      <div class="container">
+        <div class="newsletter-block">
+          <div class="section-title">
+            <h2>Get the Latest Deals</h2>
+            <p>Join our newsletter and receive 20% off coupon for your first order</p>
+          </div>
+          
+          <div class="subscribe-content">
+            <form (ngSubmit)="onSubscribe()" #newsletterForm="ngForm" class="contact-form">
+              <div class="subscribe-block">
+                <div class="input-wrapper">
+                  <input 
+                    type="email" 
+                    [(ngModel)]="email"
+                    name="email"
+                    class="email form-control mail text-medium" 
+                    id="newsletter-email"
+                    placeholder="Enter your email address" 
+                    autocapitalize="off" 
+                    required
+                    [disabled]="isSubmitting">
+                  <button 
+                    type="submit" 
+                    class="btn btn-subscribe" 
+                    [class.loading]="isSubmitting"
+                    [class.success]="isSuccess"
+                    [disabled]="isSubmitting">
+                    <span class="btn-text" *ngIf="!isSubmitting && !isSuccess">Subscribe</span>
+                    <span class="btn-text" *ngIf="isSubmitting">
+                      <i class="fa fa-spinner fa-spin"></i> Sending...
+                    </span>
+                    <span class="btn-text" *ngIf="isSuccess">
+                      <i class="fa fa-check"></i>
+                    </span>
+                  </button>
+                </div>
+                
+                <div class="success-message" [class.show]="isSuccess">
+                  <i class="fa fa-check-circle"></i>
+                  <span>Thank you! Your subscription has been confirmed.</span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+  
+  <!-- ZardUI inspired Toast Container -->
+  <div class="toast-container">
+    <div 
+      *ngFor="let toast of toasts" 
+      class="toast"
+      [class.toast-success]="toast.type === 'success'"
+      [class.toast-error]="toast.type === 'error'"
+      [class.show]="toast.show"
+      (click)="removeToast(toast.id)">
+      <div class="toast-content">
+        <i class="toast-icon fa" 
+           [class.fa-check-circle]="toast.type === 'success'"
+           [class.fa-exclamation-circle]="toast.type === 'error'"></i>
+        <span class="toast-message">{{ toast.message }}</span>
+        <button class="toast-close" (click)="removeToast(toast.id)">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

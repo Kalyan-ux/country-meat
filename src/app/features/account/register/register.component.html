@@ -1,0 +1,82 @@
+<!-- BEGIN sections : login -->
+<div id="section-login" class="countrymeat-section">
+  <section class="login-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+          <div class="tptrack__product mt-40 mb-40">
+
+            <div *ngIf="showRegisterForm" class="tptrack__content grey-bg">
+              <div class="tptrack__item d-flex mb-20">
+                <div class="tptrack__item-icon"><i class="fa fa-lock"></i></div>
+                <div class="tptrack__item-content">
+                  <h4 class="tptrack__item-title">Sign Up</h4>
+                  <p>Fill in your details below to access and manage your account.</p>
+                </div>
+              </div>
+              <form>
+                <div class="tptrack__id mb-10">
+                  <div class="tpsign__input"><span><i class="fa fa-user"></i></span><input id="name"
+                      placeholder="Enter Name" type="text" name="name" required></div>
+                  <div style="color: red;"></div>
+                </div>
+                <div class="tptrack__mobile mb-10">
+                  <div class="tpsign__input"><span><i class="fa fa-mobile"></i></span><input id="email"
+                      placeholder="Enter Mobile number" type="text" name="mobile" required></div>
+                  <div style="color: red;"></div>
+                </div>
+                <div class="tpsign__account mt-20 mb-20"><a href="account/login">Already Have Account?</a></div>
+                <div class="tptrack__btn">
+                  <button type="button" (click)="onRegisterClick()" class="tptrack__submition tpsign__reg">Proceed Via
+                    OTP<i class="fa fa-long-arrow-right"></i>
+                  </button>
+                </div>
+                <div class="tpsign__account mt-20">By Registering, you agree to our <a href="#"
+                    class="font-cm-primary-color">Terms and Conditions</a> &amp; <a href="#"
+                    class="font-cm-primary-color">Privacy Policy</a></div>
+              </form>
+            </div>
+
+            <div *ngIf="!showRegisterForm" class="tptrack__content grey-bg">
+              <div class="tptrack__item d-flex mb-20">
+                <div class="tptrack__item-icon icon-mobile"><i class="fa fa-mobile"></i></div>
+                <div class="tptrack__item-content mb-10">
+                  <h4 class="tptrack__item-title">Mobile Phone Verification</h4>
+                  <p>Enter the 4-digit OTP code that was sent to your phone number.</p>
+                </div>
+              </div>
+                <form id="otp-form">
+                  <div class="flex items-center justify-center gap-3">
+
+
+                    <div class="otp-container">
+                      <div class="otp-inputs mb-10">
+                        <input *ngFor="let digit of otpArray; let i = index" type="text" maxlength="1"
+                          inputmode="numeric" [(ngModel)]="otpArray[i]" (input)="onInput(i)"
+                          (keydown)="onKeyDown($event, i)" #otpInput />
+                      </div>
+                      <button class="verify-btn" (click)="verifyOTP()">Verify Account</button>
+                    </div>
+
+                    <div class="tpsign__account items-center mt-20">Didn't receive code ? <a href="#"
+                      class="font-cm-primary-color">Resend</a></div>
+
+                  </div>
+
+                  
+
+                </form>
+              
+
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+</div>

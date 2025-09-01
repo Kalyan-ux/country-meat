@@ -1,0 +1,479 @@
+// Shop by Category Section
+.shop-category {
+  background: white;
+  padding: 3rem 0;
+  margin: 0 !important;
+}
+
+.section-header {
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.2rem;
+    color: #6c757d;
+    margin-bottom: 2rem;
+  }
+
+  .title-underline {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(135deg, #ec2c34, #b8362a);
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+}
+
+// Category Items - Ensure all images are same size (including chicken)
+.category-item {
+  background: transparent;
+
+
+
+  transition: all 0.4s ease;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-5px);
+
+    .category-image {
+      img {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .category-image {
+    position: relative;
+    height: 250px;
+    width: 250px; // Fixed height for all images
+
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; // Ensures all images fill uniformly
+      transition: all 0.3s ease;
+    }
+  }
+
+  .category-info {
+    padding: 0 0 0 0; // Top padding only
+    text-align: center;
+    background: transparent; // Transparent background for text area
+
+    h4 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: rgb(0, 0, 0); // Semi-transparent text
+      margin-bottom: 0.5rem;
+      background: transparent; // Transparent background for heading
+    }
+
+    .item-count {
+      color: rgba(108, 117, 125, 0.6); // Semi-transparent text
+      font-size: 0.95rem;
+      font-weight: 500;
+      background: transparent; // Transparent background for count
+    }
+  }
+}
+
+.category-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  height: 100%;
+
+  
+  &:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+
+    .category-image {
+      .category-overlay {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      img {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .category-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.4s ease;
+    }
+
+    .category-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg,
+          rgba(236, 44, 52, 0.9) 0%,
+          rgba(184, 54, 42, 0.9) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+
+      .category-content {
+        text-align: center;
+        color: white;
+
+        .category-title {
+          font-size: 1.8rem;
+          font-weight: 700;
+          margin-bottom: 0.5rem;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-desc {
+          font-size: 1rem;
+          margin-bottom: 1.5rem;
+          opacity: 0.9;
+        }
+
+        .btn-category {
+          background: white;
+          color: #ec2c34;
+          border: none;
+          padding: 12px 25px;
+          font-weight: 600;
+          border-radius: 25px;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+          }
+        }
+      }
+    }
+  }
+
+  .category-info {
+    padding: 1.5rem;
+    text-align: center;
+
+    h4 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+    }
+
+    .item-count {
+      color: #6c757d;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 992px) {
+  .shop-category {
+    padding: 4rem 0;
+  }
+
+  .section-header .section-title {
+    font-size: 2.2rem;
+  }
+
+  .category-card {
+    margin-bottom: 2rem;
+
+    .category-image {
+      height: 220px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .shop-category {
+    padding: 3rem 0;
+  }
+
+  .section-header {
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+    }
+  }
+
+  .category-card {
+    .category-image {
+      height: 200px;
+
+      .category-overlay .category-content {
+        .category-title {
+          font-size: 1.5rem;
+        }
+
+        .category-desc {
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    .category-info {
+      padding: 1.2rem;
+
+      h4 {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .category-card {
+    .category-image {
+      height: 180px;
+    }
+
+    .category-info {
+      padding: 1rem;
+
+      h4 {
+        font-size: 1.1rem;
+      }
+
+      .item-count {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+// Animation Classes
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.category-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+// Button Styles
+.btn-primary {
+  background: linear-gradient(135deg, #ec2c34, #b8362a);
+  border: none;
+  padding: 15px 30px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: linear-gradient(135deg, #b8362a, #9e2e22);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(236, 44, 52, 0.3);
+  }
+}
+
+.category-wrap .category-image:hover a.cat-img::before {
+  transform: scale(1);
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: all 0.2s ease-in-out 0s;
+  -o-transition: all 0.2s ease-in-out 0s;
+  transition: all 0.2s ease-in-out 0s;
+}
+
+.category-wrap .category-image .cat-title {
+  font-size: 14px;
+  color: #fff;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.2s ease-in-out 0s;
+  -o-transition: all 0.2s ease-in-out 0s;
+  transition: all 0.2s ease-in-out 0s;
+}
+
+.category-wrap:hover .category-image .cat-title {
+  opacity: 1;
+  visibility: visible;
+}
+
+.category-wrap .category-image span.cat-count {
+  margin-top: 15px;
+}
+
+.owl-carousel .owl-nav {
+  margin-top: 0;
+}
+
+.category-items-slider.owl-carousel .owl-nav button {
+  position: absolute;
+  bottom: 50%;
+  transform: translateY(50%);
+  margin: 0;
+  line-height: 0;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.2s ease-in-out 0s;
+  -o-transition: all 0.2s ease-in-out 0s;
+  transition: all 0.2s ease-in-out 0s;
+  background-color: var(--color-primary);
+}
+
+.category-items-slider.owl-carousel .owl-nav button.owl-prev {
+  left: 0;
+}
+
+.category-items-slider.owl-carousel .owl-nav button.owl-next {
+  right: 0;
+}
+
+.category-items-slider.owl-carousel:hover .owl-nav button {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: all 0.2s ease-in-out 0s;
+  -o-transition: all 0.2s ease-in-out 0s;
+  transition: all 0.2s ease-in-out 0s;
+}
+
+.category-items-slider.owl-carousel .owl-nav button:hover {
+  color: var(--color-primary);
+  background-color: #fff;
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
+}
+
+.category-items-slider.owl-carousel:hover .owl-nav button.owl-prev {
+  left: -15px;
+}
+
+.category-items-slider.owl-carousel:hover .owl-nav button.owl-next {
+  right: -15px;
+}
+
+@media (max-width : 1199px) {
+  .category-items-slider.owl-carousel .owl-nav button {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .category-items-slider.owl-carousel .owl-nav button.owl-prev {
+    left: -15px;
+  }
+
+  .category-items-slider.owl-carousel .owl-nav button.owl-next {
+    right: -15px;
+  }
+
+  // .category-wrap .category-image a.cat-img {
+  //   width: 200px; /* Reduced from 150px */
+  //   height: 200px;
+  //   overflow: hidden;
+  // }
+}
+
+
+@media(max-width: 1199px) {
+  .shop-category {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  // .category-wrap .category-image a.cat-img {
+  //   width: 150px; /* Reduced from 150px */
+  //   height: 150px;
+  //   overflow: hidden;
+  // }
+}
+
+// Coming Soon Hover Effect
+.category-coming-soon {
+  .category-image {
+    position: relative;
+
+    .coming-soon-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(52, 58, 64, 0.9) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 15;
+
+      .coming-soon-content {
+        text-align: center;
+        color: white;
+        transform: translateY(20px);
+        transition: transform 0.3s ease;
+
+        .coming-soon-text {
+          font-size: 1.5rem;
+          font-weight: 700;
+          margin-bottom: 0.5rem;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+          color: #ffc107;
+        }
+
+        .coming-soon-desc {
+          font-size: 0.9rem;
+          opacity: 0.9;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .coming-soon-overlay {
+      opacity: 1;
+      visibility: visible;
+
+      .coming-soon-content {
+        transform: translateY(0);
+      }
+    }
+  }
+}

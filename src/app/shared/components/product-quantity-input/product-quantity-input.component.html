@@ -1,0 +1,11 @@
+<div class="product-qty">
+  <h6 class="qty-head">
+    Quantity:
+  </h6>
+  <div class="quantity qty-box">
+    <button class="qty-bt" name="minus" type="button" (click)="decreaseQty()">-</button>
+    <input class="qty-box-input" type="number" [(ngModel)]="quantity" data-min="1" min="1"
+      step="1" value="1" form="product-form">
+    <button class="qty-bt" name="plus" type="button" (click)="increaseQty()">+</button>
+  </div>
+</div>

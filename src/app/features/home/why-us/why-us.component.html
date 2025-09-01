@@ -1,0 +1,20 @@
+<section id="section-why-us" class="why-us-section">
+  <div class="container-fluid">
+    <!-- Section Title -->
+    <div class="section-header">
+      <h2 class="section-title text-center">Why Choose Us</h2>
+    </div>
+    
+    <!-- Simple Horizontal Scroll -->
+    <div class="horizontal-scroll-container">
+      <div class="scroll-wrapper">
+        <div 
+          *ngFor="let feature of whyUsFeatures" 
+          class="scroll-item"
+        >
+          <img [src]="feature.image" [alt]="feature.title" class="feature-image">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

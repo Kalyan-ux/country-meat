@@ -1,0 +1,275 @@
+<div class="premium-product-details" *ngIf="!isLoading && product">
+  <!-- Breadcrumb Navigation -->
+  <div class="breadcrumb-section">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+          <li class="breadcrumb-item"><a routerLink="/products">Products</a></li>
+          <li class="breadcrumb-item"><a [routerLink]="['/products', product.category]">{{ product.category | titlecase }}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main Product Section -->
+  <div class="product-showcase">
+    <div class="container">
+      <div class="row">
+        
+        <!-- Product Images -->
+        <div class="col-lg-6 col-md-6">
+          <div class="product-gallery">
+            <!-- Main Image -->
+            <div class="main-image-container">
+              <img [src]="selectedImage" [alt]="product.name" class="main-product-image">
+              <div class="image-badges">
+                <span class="discount-badge" *ngIf="product.discount">
+                  -{{ product.discount }}%
+                </span>
+                <span class="fresh-badge">FRESH</span>
+              </div>
+            </div>
+            
+            <!-- Thumbnail Gallery -->
+            <div class="thumbnail-gallery" *ngIf="product.images.gallery.length > 1">
+              <div 
+                *ngFor="let image of product.images.gallery" 
+                class="thumbnail-item"
+                [class.active]="selectedImage === image"
+                (click)="selectImage(image)">
+                <img [src]="image" [alt]="product.name" class="thumbnail-image">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Information -->
+        <div class="col-lg-6 col-md-6">
+          <div class="product-info-section">
+            
+            <!-- Product Title -->
+            <div class="product-header">
+              <h1 class="product-title">{{ product.name }}</h1>
+              <p class="product-subtitle">{{ product.shortDescription }}</p>
+              
+              <!-- Tags -->
+              <div class="product-tags">
+                <span *ngFor="let tag of product.tags" class="product-tag">{{ tag }}</span>
+              </div>
+            </div>
+
+            <!-- Rating & Reviews -->
+            <div class="rating-section">
+              <div class="star-rating">
+                <i *ngFor="let star of getStarArray(product.rating)" 
+                   class="fas fa-star" 
+                   [class.filled]="star === 1">
+                </i>
+                <span class="rating-score">{{ product.rating }}</span>
+              </div>
+              <span class="review-count">({{ product.reviewCount }} reviews)</span>
+              <button class="reviews-link" (click)="toggleReviews()">
+                {{ showReviews ? 'Hide' : 'View' }} Reviews
+              </button>
+            </div>
+
+            <!-- Availability Status -->
+            <div class="availability-section">
+              <div class="availability-status" [ngClass]="getAvailabilityStatus().class">
+                <i [class]="getAvailabilityStatus().icon"></i>
+                <span>{{ getAvailabilityStatus().text }}</span>
+              </div>
+            </div>
+
+            <!-- Pricing -->
+            <div class="pricing-section">
+              <div class="price-display">
+                <span class="current-price">₹{{ product.price }}</span>
+                <span class="original-price" *ngIf="product.originalPrice">₹{{ product.originalPrice }}</span>
+              </div>
+              <div class="savings-info" *ngIf="product.originalPrice">
+                <span class="savings-text">You save ₹{{ product.originalPrice - product.price }}</span>
+                <span class="savings-percentage">({{ product.discount }}% off)</span>
+              </div>
+              <div class="weight-info" *ngIf="product.weight || product.quantity">
+                <span class="weight-display">{{ product.weight || product.quantity }}</span>
+                <span class="weight-details" *ngIf="product.grossWeight">
+                  Gross: {{ product.grossWeight }} | Net: {{ product.netWeight }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Product Variants -->
+            <div class="variants-section" *ngIf="product.variants">
+              <!-- Type Selection -->
+              <div class="variant-group" *ngIf="product.variants.types">
+                <h6 class="variant-label">Type:</h6>
+                <div class="variant-options">
+                  <label *ngFor="let type of product.variants.types" class="variant-option">
+                    <input type="radio" [value]="type" name="productType" [(ngModel)]="selectedVariant.type">
+                    <span class="option-text">{{ type }}</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Cut Selection -->
+              <div class="variant-group" *ngIf="product.variants.cuts">
+                <h6 class="variant-label">Cut Size:</h6>
+                <div class="variant-options">
+                  <label *ngFor="let cut of product.variants.cuts" class="variant-option">
+                    <input type="radio" [value]="cut" name="productCut" [(ngModel)]="selectedVariant.cut">
+                    <span class="option-text">{{ cut }}</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Quantity Selection -->
+              <div class="variant-group" *ngIf="product.variants.quantities">
+                <h6 class="variant-label">Quantity:</h6>
+                <div class="variant-options">
+                  <label *ngFor="let qty of product.variants.quantities" class="variant-option">
+                    <input type="radio" [value]="qty" name="productQuantity" [(ngModel)]="selectedVariant.quantity">
+                    <span class="option-text">{{ qty }}</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quantity Selector -->
+            <div class="quantity-section">
+              <h6 class="quantity-label">Quantity:</h6>
+              <div class="quantity-controls">
+                <button class="qty-btn qty-decrease" (click)="updateQuantity(-1)" [disabled]="selectedQuantity <= 1">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <span class="quantity-display">{{ selectedQuantity }}</span>
+                <button class="qty-btn qty-increase" (click)="updateQuantity(1)" [disabled]="selectedQuantity >= 10">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+              <button class="btn-primary add-to-cart-btn" 
+                      [disabled]="product.availability === 'out-of-stock'"
+                      (click)="addToCart()">
+                <i class="fas fa-shopping-cart"></i>
+                Add to Cart
+              </button>
+              <button class="btn-secondary buy-now-btn" 
+                      [disabled]="product.availability === 'out-of-stock'"
+                      (click)="buyNow()">
+                <i class="fas fa-bolt"></i>
+                Buy Now
+              </button>
+            </div>
+
+            <!-- Delivery & Storage Info -->
+            <div class="product-info-cards">
+              <div class="info-card delivery-info">
+                <i class="fas fa-truck"></i>
+                <div class="info-content">
+                  <h6>Delivery</h6>
+                  <p>{{ product.deliveryInfo }}</p>
+                </div>
+              </div>
+              <div class="info-card storage-info">
+                <i class="fas fa-snowflake"></i>
+                <div class="info-content">
+                  <h6>Storage</h6>
+                  <p>{{ product.storageInfo }}</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Details Tabs -->
+  <div class="product-details-tabs">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          
+          <!-- Description Section -->
+          <div class="details-section">
+            <h3 class="section-title">Product Description</h3>
+            <div class="description-content">
+              <p>{{ product.description }}</p>
+            </div>
+          </div>
+
+          <!-- Features Section -->
+          <div class="details-section">
+            <h3 class="section-title">Key Features</h3>
+            <div class="features-grid">
+              <div *ngFor="let feature of product.features" class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                <span>{{ feature }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nutrition Facts (Collapsible) -->
+          <div class="details-section">
+            <h3 class="section-title clickable" (click)="toggleNutritionFacts()">
+              Nutrition Facts
+              <i class="fas" [class.fa-chevron-down]="!showNutritionFacts" [class.fa-chevron-up]="showNutritionFacts"></i>
+            </h3>
+            <div class="nutrition-content" [class.show]="showNutritionFacts">
+              <div class="nutrition-table">
+                <div class="nutrition-header">Per 100g</div>
+                <div *ngFor="let item of product.nutritionPer100g | keyvalue" class="nutrition-row">
+                  <span class="nutrient-name">{{ item.key | titlecase }}</span>
+                  <span class="nutrient-value">{{ item.value }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Products -->
+  <div class="related-products-section" *ngIf="relatedProducts.length > 0">
+    <div class="container">
+      <h3 class="section-title">Related Products</h3>
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4" *ngFor="let relatedProduct of relatedProducts">
+          <div class="related-product-card" [routerLink]="['/product-details', relatedProduct.id]">
+            <div class="related-product-image">
+              <img [src]="relatedProduct.images.main" [alt]="relatedProduct.name">
+              <div class="related-product-discount" *ngIf="relatedProduct.discount">
+                -{{ relatedProduct.discount }}%
+              </div>
+            </div>
+            <div class="related-product-info">
+              <h5 class="related-product-name">{{ relatedProduct.name }}</h5>
+              <div class="related-product-price">
+                <span class="current">₹{{ relatedProduct.price }}</span>
+                <span class="original" *ngIf="relatedProduct.originalPrice">₹{{ relatedProduct.originalPrice }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Loading State -->
+<div class="loading-container" *ngIf="isLoading">
+  <div class="loading-spinner">
+    <i class="fas fa-spinner fa-spin"></i>
+    <p>Loading product details...</p>
+  </div>
+</div>

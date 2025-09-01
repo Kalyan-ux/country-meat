@@ -1,0 +1,8 @@
+<!-- Navbar Component - Hidden on splash page -->
+<cm-navbar *ngIf="!isSplashPage"></cm-navbar> 
+
+<!-- Load component as per route -->
+<router-outlet></router-outlet>
+
+<!-- Footer component - Hidden on splash page -->
+<cm-footer *ngIf="!isSplashPage"></cm-footer>

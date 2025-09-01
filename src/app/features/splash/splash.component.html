@@ -1,0 +1,185 @@
+<!-- BEGIN sections : splash-page -->
+<div id="section-splash" class="countrymeat-section">
+  
+  <!-- Splash Header / Navigation Bar -->
+  <header class="splash-header">
+    <div class="container-fluid">
+      <div class="splash-nav">
+        <!-- Left side - Logo -->
+        <div class="logo-section">
+          <a routerLink="/" class="brand-logo">
+            <img src="assets/LOGO_ori.png" class="logo-img" alt="Country Meat Logo">
+            <div class="brand-text">
+              
+            </div>
+          </a>
+        </div>
+        
+        <!-- Right side - Auth buttons -->
+        <div class="auth-section">
+          <a routerLink="/account/login" class="auth-btn signin-btn">
+            <i class="fa fa-sign-in-alt"></i>
+            <span>Sign In</span>
+          </a>
+          <a routerLink="/account/register" class="auth-btn register-btn">
+            <i class="fa fa-user-plus"></i>
+            <span>Register</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-splash">
+    <div class="hero-background">
+      <img src="assets/images/Splash Image 1.png" alt="Country Meat Fresh Products" class="hero-bg-image">
+      <div class="hero-overlay"></div>
+      <!-- Decorative Elements -->
+      <div class="decorative-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+      </div>
+    </div>
+    <div class="hero-content">
+      <div class="container-fluid">
+        <div class="hero-text">
+          <div class="hero-subtitle">
+            <i class="fa fa-star"></i>
+            Farm Fresh Quality
+            <i class="fa fa-star"></i>
+          </div>
+          <h1 class="hero-title">
+            Delicious <span class="text-accent">Chicken</span><br>
+            <span class="text-secondary">with Fresh Vegetables</span>
+          </h1>
+          <p class="hero-description">
+            Experience the authentic taste of farm-fresh country chicken and premium meat products, 
+            delivered with care from our trusted local farms directly to your family table.
+          </p>
+          <div class="hero-actions">
+            <a routerLink="/products" class="btn btn-primary">
+              <span>Order Now</span>
+              <i class="fa fa-shopping-cart"></i>
+            </a>
+            <a routerLink="/about" class="btn btn-outline">
+              <i class="fa fa-play-circle"></i>
+              <span>Watch Video</span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="hero-image">
+          <div class="food-image-container">
+            <div class="image-background-circle"></div>
+            <img src="assets/images/Splash Image 1.png" alt="Delicious Chicken" class="main-food-image">
+            <div class="price-badge">
+              <div class="price-amount">₹899</div>
+              <div class="price-text">per kg</div>
+            </div>
+            <div class="quality-badge">
+              <i class="fa fa-award"></i>
+              <span>Premium</span>
+            </div>
+            <div class="floating-elements">
+              <i class="fa fa-leaf leaf leaf-1"></i>
+              <i class="fa fa-leaf leaf leaf-2"></i>
+              <i class="fa fa-leaf leaf leaf-3"></i>
+              <div class="sparkle sparkle-1"></div>
+              <div class="sparkle sparkle-2"></div>
+              <div class="sparkle sparkle-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="values-section">
+    <div class="container">
+      <div class="section-header text-center mb-5">
+        <h2 class="section-title">Our Core Values</h2>
+        <p class="section-subtitle">What makes Country Meat the trusted choice for premium quality</p>
+        <div class="title-underline"></div>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6" *ngFor="let value of keyValues">
+          <div class="value-card">
+            <div class="value-icon">
+              <i [class]="value.icon"></i>
+            </div>
+            <h4 class="value-title">{{ value.title }}</h4>
+            <p class="value-description">{{ value.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="why-choose-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="choose-content">
+            <h2 class="section-title">Why Choose Country Meat?</h2>
+            <p class="lead">
+              We are committed to providing the freshest, highest quality meat products 
+              directly from farm to your table, maintaining the authentic taste and nutrition 
+              your family deserves.
+            </p>
+            <div class="choose-features">
+              <div class="feature-item">
+                <i class="fa fa-check-circle text-success"></i>
+                <span>100% Natural & Organic</span>
+              </div>
+              <div class="feature-item">
+                <i class="fa fa-check-circle text-success"></i>
+                <span>No Hormones or Antibiotics</span>
+              </div>
+              <div class="feature-item">
+                <i class="fa fa-check-circle text-success"></i>
+                <span>Expert Butchery & Packaging</span>
+              </div>
+              <div class="feature-item">
+                <i class="fa fa-check-circle text-success"></i>
+                <span>Temperature Controlled Delivery</span>
+              </div>
+              <div class="feature-item">
+                <i class="fa fa-check-circle text-success"></i>
+                <span>Ethically Sourced from Local Farms</span>
+              </div>
+            </div>
+            <div class="choose-actions">
+              <a routerLink="/products" class="btn btn-primary btn-lg">
+                Shop Now <i class="fa fa-shopping-bag"></i>
+              </a>
+              <a routerLink="/about" class="btn btn-outline-primary btn-lg">
+                Our Story
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="choose-image">
+            <img src="assets/images/image1.jpg" alt="Fresh Country Meat" class="img-fluid rounded shadow">
+            <div class="image-overlay">
+              <div class="quality-badge">
+                <i class="fa fa-award"></i>
+                <span>Premium Quality</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <cm-footer></cm-footer>
+
+</div>
+<!-- END sections : splash-page -->

@@ -1,0 +1,191 @@
+<!-- BEGIN sections : order-confirmation -->
+<div id="section-order-confirmation" class="countrymeat-section">
+  <section class="order-confirmation-section pt-40 pb-40">
+    <div class="container">
+
+      <!-- Loading State -->
+      <div *ngIf="isLoading" class="text-center py-5">
+        <i class="fa fa-spinner fa-spin fa-3x text-primary mb-3"></i>
+        <h4>Processing your order...</h4>
+        <p class="text-muted">Please wait while we confirm your order details</p>
+      </div>
+
+      <!-- Order Confirmation Content -->
+      <div *ngIf="!isLoading && order" class="order-confirmation-content">
+        
+        <!-- Success Header -->
+        <div class="confirmation-header text-center mb-40">
+          <div class="success-icon">
+            <i class="fa fa-check-circle"></i>
+          </div>
+          <h2 class="confirmation-title">Order Confirmed!</h2>
+          <p class="confirmation-subtitle">Thank you for your order. We'll start preparing it right away.</p>
+          <div class="order-number">
+            <strong>Order #{{ order.id }}</strong>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Order Details -->
+          <div class="col-lg-8 mb-30">
+            <div class="order-details-card">
+              <div class="card-header">
+                <h4 class="card-title">
+                  <i class="fa fa-shopping-bag"></i>
+                  Order Details
+                </h4>
+                <div class="order-date">
+                  {{ formatDate(order.orderDate) }} at {{ formatTime(order.orderDate) }}
+                </div>
+              </div>
+
+              <div class="card-body">
+                <!-- Order Items -->
+                <div class="order-items">
+                  <div class="item-row" *ngFor="let item of order.items">
+                    <div class="item-image">
+                      <img [src]="item.image" [alt]="item.name">
+                    </div>
+                    <div class="item-details">
+                      <h5 class="item-name">{{ item.name }}</h5>
+                      <div class="item-meta">
+                        <span class="quantity">Qty: {{ item.quantity }}</span>
+                        <span class="price">₹{{ item.price }} each</span>
+                      </div>
+                    </div>
+                    <div class="item-total">
+                      ₹{{ item.price * item.quantity }}
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                  <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>₹{{ order.subtotal }}</span>
+                  </div>
+                  <div class="summary-row">
+                    <span>Delivery Fee</span>
+                    <span>₹{{ order.deliveryFee }}</span>
+                  </div>
+                  <div class="summary-row discount" *ngIf="order.discount > 0">
+                    <span>Discount</span>
+                    <span>-₹{{ order.discount }}</span>
+                  </div>
+                  <div class="summary-row total">
+                    <strong>
+                      <span>Total</span>
+                      <span>₹{{ order.total }}</span>
+                    </strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Info Sidebar -->
+          <div class="col-lg-4">
+            <!-- Delivery Info -->
+            <div class="info-card mb-30">
+              <div class="card-header">
+                <h5 class="card-title">
+                  <i class="fa fa-truck"></i>
+                  Delivery Information
+                </h5>
+              </div>
+              <div class="card-body">
+                <div class="delivery-date">
+                  <i class="fa fa-calendar"></i>
+                  <div>
+                    <strong>Expected Delivery</strong>
+                    <div class="date">{{ formatDate(order.estimatedDelivery) }}</div>
+                  </div>
+                </div>
+                
+                <div class="delivery-address">
+                  <i class="fa fa-map-marker"></i>
+                  <div>
+                    <strong>{{ order.deliveryAddress.name }}</strong>
+                    <div class="phone">{{ order.deliveryAddress.phone }}</div>
+                    <div class="address">
+                      {{ order.deliveryAddress.address }}<br>
+                      {{ order.deliveryAddress.city }} - {{ order.deliveryAddress.pincode }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Payment Info -->
+            <div class="info-card mb-30">
+              <div class="card-header">
+                <h5 class="card-title">
+                  <i class="fa fa-credit-card"></i>
+                  Payment Method
+                </h5>
+              </div>
+              <div class="card-body">
+                <div class="payment-method">
+                  <i class="fa fa-money" *ngIf="order.paymentMethod === 'Cash on Delivery'"></i>
+                  <i class="fa fa-credit-card" *ngIf="order.paymentMethod !== 'Cash on Delivery'"></i>
+                  {{ order.paymentMethod }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+              <button class="btn btn-primary btn-block mb-10" (click)="trackOrder()">
+                <i class="fa fa-map-marker"></i>
+                Track Order
+              </button>
+              
+              <button class="btn btn-outline-secondary btn-block mb-10" (click)="downloadInvoice()">
+                <i class="fa fa-download"></i>
+                Download Invoice
+              </button>
+              
+              <button class="btn btn-outline-primary btn-block" (click)="continueShopping()">
+                <i class="fa fa-shopping-cart"></i>
+                Continue Shopping
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Info -->
+        <div class="additional-info mt-40">
+          <div class="row">
+            <div class="col-md-4 text-center mb-20">
+              <i class="fa fa-phone-square fa-2x text-primary mb-10"></i>
+              <h6>Need Help?</h6>
+              <p class="text-muted">Call us at<br><strong>+91 80123 45678</strong></p>
+            </div>
+            <div class="col-md-4 text-center mb-20">
+              <i class="fa fa-envelope fa-2x text-primary mb-10"></i>
+              <h6>Email Updates</h6>
+              <p class="text-muted">Order updates will be sent to<br>your registered email</p>
+            </div>
+            <div class="col-md-4 text-center mb-20">
+              <i class="fa fa-shield fa-2x text-primary mb-10"></i>
+              <h6>Quality Assured</h6>
+              <p class="text-muted">Fresh products with<br>100% quality guarantee</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error State -->
+      <div *ngIf="!isLoading && !order" class="text-center py-5">
+        <i class="fa fa-exclamation-triangle fa-3x text-warning mb-3"></i>
+        <h4>Order Not Found</h4>
+        <p class="text-muted">We couldn't find the order details. Please try again.</p>
+        <button class="btn btn-primary" (click)="continueShopping()">
+          Go to Home
+        </button>
+      </div>
+
+    </div>
+  </section>
+</div>
