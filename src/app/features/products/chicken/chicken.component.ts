@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-chicken',
@@ -111,10 +111,10 @@ chickenProducts = [
     subtitle: 'Farm Fresh • Naturally Raised • Premium Quality',
     backgroundImage: 'assets/images/banner_image3.jpg'
   };
-  router: any;
 
+  constructor(private router: Router) { }
   onProductClick(productId: number) {
-    this.router.navigate(['/src/app/features/product-details', productId]);    // Add navigation logic to product details
+    this.router.navigate(['products/product-details'], {queryParams :{id:productId}});    // Add navigation logic to product details
   }
 
   addToCart(product: any, event: Event) {

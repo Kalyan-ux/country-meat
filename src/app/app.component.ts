@@ -4,13 +4,14 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { ProductDetailsComponent } from "./features/product-details/product-details.component";
 
 @Component({
   standalone: true,
   selector: 'country-meat-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [CommonModule, RouterModule, NavbarComponent, FooterComponent]
+  imports: [CommonModule, RouterModule, NavbarComponent, FooterComponent, ProductDetailsComponent]
 })
 export class AppComponent implements OnInit {
   title = 'country-meat-frontoffice';
@@ -25,7 +26,7 @@ export class AppComponent implements OnInit {
       .subscribe((event: NavigationEnd) => {
         this.isSplashPage = event.url === '/splash';
       });
-    
+
     // Check initial route
     this.isSplashPage = this.router.url === '/splash';
   }

@@ -1,0 +1,121 @@
+<div *ngIf="product; else notFound" class="container py-4">
+  <div class="row">
+    <div class="col-12 mb-0">
+      <div class="product-detail-card">
+        <div class="row g-4  mb-4">
+          <div class="col-md-6">
+            <img [src]="product.image" class="img-fluid rounded " [alt]="product.name" />
+          </div>
+
+          <div class="col-md-6 d-flex flex-column">
+            <h2 class="product-title mb-3">{{ product.name }}</h2>
+
+            <p class="product-tags text-muted">
+              <span *ngFor="let tag of product.tags; let last = last">{{ tag }}{{ !last ? ' | ' : '' }}</span>
+            </p>
+
+
+            <div class="info-badges d-flex flex-wrap align-items-center gap-3 mb-3">
+              <div class="badge-item">
+                <i class="fas fa-weight-hanging"></i> {{ product.netWeight }}
+              </div>
+              <div class="badge-item">
+                <i class="fas fa-utensils"></i> {{ product.pieces }}
+              </div>
+              <div class="badge-item">
+                <i class="fas fa-concierge-bell"></i> Serves {{ product.serves }}
+              </div>
+            </div>
+
+            <p class="product-description text-secondary mx-3 text-md-start">{{ product.description }}
+              <a href="#" class="read-more">Read more</a>
+            </p>
+
+            <div class="price-section d-flex justify-content-between align-items-center mb-4">
+              <div class="price-display">
+                <span class="current-price">₹{{ product.price }}</span>
+                <span class="discount" *ngIf="product.originalPrice > product.price">
+                  {{ getDiscount(product.originalPrice, product.price) }}% off
+                </span>
+                <div class="mrp text-muted">
+                  MRP: <s>₹{{ product.originalPrice }}</s> (incl. of all taxes)
+                </div>
+              </div>
+              <button class="btn btn-add mx-4">Add <i class="fas fa-plus"></i></button>
+            </div>
+
+            <div class="info-lines">
+              <div class="info-line-safe mb-2">
+                <a href="#">Only the Safest Chicken!</a>
+              </div>
+              <div class="info-line-delivery text-muted">
+                <i class="fas fa-bolt"></i> Today in 30 mins
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="features-benefits-tabs mb-5 col-lg-10 mx-auto">
+    <div class="text-center my-5">
+        <img src="assets/logo.png" alt="Country Meat Logo" class="brand-logo" />
+      </div>
+    <div class="tabs-nav d-flex">
+      <button class="btn tab-btn" [class.active]="activeTab === 'keyFeatures'" (click)="selectTab('keyFeatures')">
+        Key Features
+      </button>
+      <button class="btn tab-btn" [class.active]="activeTab === 'healthBenefits'" (click)="selectTab('healthBenefits')">
+        Health Benefits
+      </button>
+    </div>
+
+    <div class="tabs-content p-4">
+      <div *ngIf="activeTab === 'keyFeatures'">
+        <ul class="list-unstyled mb-0">
+          <li *ngFor="let feature of product.keyFeatures" class="d-flex align-items-start mb-3">
+            <i class="fas fa-check-circle text-success me-3 mt-1"></i>
+            <span>{{ feature }}</span>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="activeTab === 'healthBenefits'">
+        <ul class="list-unstyled mb-0">
+          <li *ngFor="let benefit of product.healthBenefits" class="d-flex align-items-start mb-3">
+            <i class="fas fa-check-circle text-success me-3 mt-1"></i>
+            <span>{{ benefit }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-lg-10 mx-auto">
+      <h4 class="mb-4">More Like This</h4>
+      <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let r of relatedProducts">
+          <div class="card h-100 shadow-sm related-card">
+            <a [routerLink]="['/products/product-details']" [queryParams]="{ id: r.id }" class="text-decoration-none d-block">
+              <img [src]="r.image" class="card-img-top" [alt]="r.name" />
+              <div class="card-body">
+                <h6 class="card-title text-dark">{{ r.name }}</h6>
+                <p class="card-text mb-0">
+                  <span class="fs-5 fw-bold text-dark">₹{{ r.price }}</span>
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #notFound>
+  <div class="text-center py-5">
+    <h3>Product not found</h3>
+    <p>Sorry, the product you are looking for does not exist.</p>
+  </div>
+</ng-template>

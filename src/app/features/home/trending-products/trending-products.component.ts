@@ -2,13 +2,15 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { CarouselModule, OwlOptions } from "ngx-owl-carousel-o";
 import { ProductQuantityInputComponent } from "../../../shared/components/product-quantity-input/product-quantity-input.component";
 import { ProductRatingsComponent } from "../../../shared/components/product-ratings/product-ratings.component";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
 
 @Component({
   standalone: true,
   selector: 'cm-trending-products',
   templateUrl: './trending-products.component.html',
   styleUrls: ['./trending-products.component.scss'],
-  imports: [CarouselModule, ProductRatingsComponent, ProductQuantityInputComponent]
+  imports: [CarouselModule, ProductRatingsComponent, ProductQuantityInputComponent, CommonModule, RouterModule]
 })
 
 export class TrendingProductsComponent implements OnInit, OnDestroy {
