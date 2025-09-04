@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, HostListener } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
@@ -7,17 +7,29 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './product-details.component.html',
-  styleUrl: './product-details.component.scss'
+  styleUrl: './product-details.component.scss',
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, AfterViewInit {
+  @ViewChild('relatedProductsContainer') relatedProductsContainer!: ElementRef;
+
   productId!: number;
   product: any;
   relatedProducts: any[] = [];
-  activeTab: string = 'keyFeatures'; // To manage the active tab
+  activeTab: string = 'keyFeatures';
 
-  sharedDescription = 'Experience the rich, authentic flavor of our Country King — a premium class of chicken that is 100% natural and matured in village farms. Known for its firm texture and bold taste, this bird is indeed a traditional delicacy. Our bird is grown for 7-10 months and raised without antibiotics, this bird is fed a nutritious native diet. A favorite among meat lovers who value quality, tradition, and unmatched taste.';
+  // New properties to manage cart state
+  productQuantity: number = 0;
+  showAddToCart: boolean = false;
 
-  // Content for Key Features from the new image
+  // New properties for arrow visibility
+  showLeftArrow: boolean = false;
+  showRightArrow: boolean = true;
+  isDescriptionExpanded: boolean = false;
+  truncatedDescription: string = '';
+
+  sharedDescription =
+    'Experience the rich, authentic flavor of our Country King — a premium class of chicken that is 100% natural and matured in village farms. Known for its firm texture and bold taste, this bird is indeed a traditional delicacy. Our bird is grown for 7-10 months and raised without antibiotics, this bird is fed a nutritious native diet. A favorite among meat lovers who value quality, tradition, and unmatched taste.';
+
   sharedKeyFeatures = [
     '100% Natural & Antibiotic-Free – No antibiotics, steroids, or artificial growth enhancers',
     'Free-Range – Raised in the backyards of farmers, where they roam freely and grow in a stress-free, organic environment.',
@@ -25,10 +37,9 @@ export class ProductDetailsComponent implements OnInit {
     'Nutritious Diet – Fed on grains, millets, greens, and insects for superior flavor and health benefits.',
     'Pure Nati Roosters & Hens – Authentic, naturally raised native breed.',
     'Better Taste & Texture – Firm, excellent flavorful meat due to an active lifestyle.',
-    'Perfect for: Health-conscious families, fitness enthusiasts, organic food lovers & traditional food enthusiasts.'
+    'Perfect for: Health-conscious families, fitness enthusiasts, organic food lovers & traditional food enthusiasts.',
   ];
 
-  // Content for Health Benefits from the previous image
   sharedHealthBenefits = [
     'Nutritional superiority, Higher Protein-to-Fat Ratio.',
     'Calcium & Phosphorus Rich – Supports strong bones and teeth',
@@ -36,7 +47,7 @@ export class ProductDetailsComponent implements OnInit {
     'Lower Fat Content – Leaner than commercially raised chicken, making it a healthier option',
     'More Collagen – improves joint and skin health.',
     'Rich in Micro nutrients - Higher levels of iron, zinc, and B vitamins, which boost immunity.',
-    'Better option for long-term health'
+    'Better option for long-term health',
   ];
 
   products = [
@@ -52,7 +63,7 @@ export class ProductDetailsComponent implements OnInit {
       tags: ['Bone-in', 'Curry Cut', 'Premium'],
       netWeight: '1 Kilogram',
       pieces: '15 Pieces',
-      serves: '8-10', // Updated format
+      serves: '8-10',
     },
     {
       id: 2,
@@ -66,7 +77,7 @@ export class ProductDetailsComponent implements OnInit {
       tags: ['Bone-in', 'Curry Cut', 'Tender'],
       netWeight: '1 Kilogram',
       pieces: '18 Pieces',
-      serves: '6-8', // Updated format
+      serves: '6-8',
     },
     {
       id: 3,
@@ -80,7 +91,7 @@ export class ProductDetailsComponent implements OnInit {
       tags: ['Bone-in', 'Biryani Cut', 'Robust'],
       netWeight: '1 Kilogram',
       pieces: '12 Pieces',
-      serves: '7-9', // Updated format
+      serves: '7-9',
     },
     {
       id: 4,
@@ -94,7 +105,7 @@ export class ProductDetailsComponent implements OnInit {
       tags: ['Bone-in', 'Specialty', 'Nutrient-Rich'],
       netWeight: '900 Grams',
       pieces: '14 Pieces',
-      serves: '5-7', // Updated format
+      serves: '5-7',
     },
     {
       id: 5,
@@ -108,28 +119,74 @@ export class ProductDetailsComponent implements OnInit {
       tags: ['Bone-in', 'Small Cuts', 'Tender'],
       netWeight: '750 Grams',
       pieces: '20 Pieces',
-      serves: '4-5', // Updated format
-    }
+      serves: '4-5',
+    },
   ];
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       this.productId = +params['id'];
-      const foundProduct = this.products.find(p => p.id === this.productId);
+      const foundProduct = this.products.find((p) => p.id === this.productId);
 
       if (foundProduct) {
         this.product = {
           ...foundProduct,
           description: this.sharedDescription,
           keyFeatures: this.sharedKeyFeatures,
-          healthBenefits: this.sharedHealthBenefits
+          healthBenefits: this.sharedHealthBenefits,
         };
+        if (this.product.description.length > 150) {
+          this.truncatedDescription = this.product.description.substring(0, 150) + '...';
+        } else {
+          this.truncatedDescription = this.product.description;
+        }
       } else {
         this.product = null;
       }
-      this.relatedProducts = this.products.filter(p => p.id !== this.productId);
+      this.relatedProducts = this.products.filter(
+        (p) => p.id !== this.productId
+      );
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.updateArrowVisibility();
+  }
+
+  // New method to handle the scroll event from the container
+  onContainerScroll(): void {
+    this.updateArrowVisibility();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.updateArrowVisibility();
+  }
+
+    updateArrowVisibility(): void {
+    const container = this.relatedProductsContainer.nativeElement;
+    const scrollLeft = container.scrollLeft;
+    const maxScrollLeft = container.scrollWidth - container.clientWidth;
+
+    this.showLeftArrow = scrollLeft > 0;
+    this.showRightArrow = scrollLeft < maxScrollLeft - 1;
+  }
+
+  scrollRight(): void {
+    const container = this.relatedProductsContainer.nativeElement;
+    container.scrollBy({
+      left: 300,
+      behavior: 'smooth',
+    });
+  }
+
+  scrollLeft(): void {
+    const container = this.relatedProductsContainer.nativeElement;
+    container.scrollBy({
+      left: -300,
+      behavior: 'smooth',
     });
   }
 
@@ -137,9 +194,28 @@ export class ProductDetailsComponent implements OnInit {
   selectTab(tabName: string): void {
     this.activeTab = tabName;
   }
-    // Calculate discount percentage
+
+  // Calculate discount percentage
   getDiscount(originalPrice: number, currentPrice: number): number {
     if (!originalPrice || !currentPrice) return 0;
     return Math.round(((originalPrice - currentPrice) / originalPrice) * 100);
+  }
+
+  addToCart(): void {
+    this.productQuantity = 1;
+  }
+
+  increaseQuantity(): void {
+    this.productQuantity++;
+  }
+
+  decreaseQuantity(): void {
+    if (this.productQuantity > 0) {
+      this.productQuantity--;
+    }
+  }
+
+  toggleDescription(): void {
+    this.isDescriptionExpanded = !this.isDescriptionExpanded;
   }
 }

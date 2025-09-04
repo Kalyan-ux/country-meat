@@ -74,6 +74,62 @@
     }
   }
 
+/* Styling for the new Quantity Control component */
+.quantity-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dee2e6;
+  /* Light gray border */
+  border-radius: 50px;
+  /* Pill-shaped */
+  overflow: hidden;
+  background-color: #f8f9fa;
+  /* Light background for contrast */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  /* Subtle shadow */
+  height: 40px;
+  /* Fixed height for consistency */
+  width: 120px;
+  /* Fixed width */
+}
+
+/* Styles for the minus and plus buttons */
+.btn-quantity {
+  background-color: transparent;
+  border: none;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #e63946;
+  /* The main brand color */
+  cursor: pointer;
+  height: 100%;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  padding: 0;
+
+  /* Separator lines between the buttons and the display */
+  &:first-child {
+    border-right: 1px solid #dee2e6;
+  }
+
+  &:last-child {
+    border-left: 1px solid #dee2e6;
+  }
+}
+
+/* Styles for the quantity number display */
+.quantity-display {
+  flex-grow: 1;
+  /* Takes up the remaining space */
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #343a40;
+}
+
   .btn-add {
     background-color: #e63946;
     color: #fff;
@@ -122,6 +178,7 @@
 
 .tabs-nav {
   background-color: #f8f9fa;
+  justify-content: center;
 }
 
 .tab-btn {
@@ -175,4 +232,85 @@
     height: 200px;
     object-fit: cover;
   }
+}
+
+.related-products-section {
+  position: relative;
+  padding: 0 45px;
+}
+
+.related-products-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.related-products-container {
+  display: flex;
+  flex-wrap: nowrap;
+  /* Prevents wrapping to the next line */
+  overflow-x: auto;
+  /* Enables horizontal scrolling */
+  -webkit-overflow-scrolling: touch;
+  /* For smoother scrolling on iOS */
+  gap: 20px;
+  /* Space between cards */
+  padding-bottom: 1rem;
+  /* Add padding to prevent scrollbar from hiding content */
+  width: 100%;
+}
+
+/* Hide the scrollbar but keep functionality */
+.related-products-container::-webkit-scrollbar {
+  display: none;
+}
+
+.related-product-card {
+  flex: 0 0 auto;
+  /* Ensures cards don't grow or shrink and maintain their width */
+  width: 300px;
+  /* Fixed width for each card */
+  min-width: 250px;
+  /* Minimum width for smaller screens */
+}
+
+/* Optional: Add a subtle hover effect to the cards */
+.related-product-card .card {
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.related-product-card .card:hover {
+  transform: translateY(-5px);
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #e63946;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+.scroll-btn.left-btn {
+  left: 0;
+  right: auto;
+}
+
+.scroll-btn.right-btn {
+  right: 0;
+  left: auto;
+}
+.scroll-btn:hover {
+  background-color: #d62839;
 }
