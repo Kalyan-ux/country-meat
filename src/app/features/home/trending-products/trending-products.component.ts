@@ -10,7 +10,7 @@ import { RouterModule } from "@angular/router";
   selector: 'cm-trending-products',
   templateUrl: './trending-products.component.html',
   styleUrls: ['./trending-products.component.scss'],
-  imports: [CarouselModule, ProductRatingsComponent, ProductQuantityInputComponent, CommonModule, RouterModule]
+  imports: [CarouselModule, ProductRatingsComponent, CommonModule, RouterModule]
 })
 
 export class TrendingProductsComponent implements OnInit, OnDestroy {

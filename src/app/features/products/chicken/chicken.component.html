@@ -32,7 +32,7 @@
 
     <!-- Products Grid -->
     <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-12 mb-4" *ngFor="let product of chickenProducts">
+      <div class="col-lg-4 col-md-4 col-sm-12 mb-4" *ngFor="let product of chickenProducts">
         <div class="card product-card premium-card h-100" (click)="onProductClick(product.id)">
           <div class="card-img-wrapper position-relative">
             <img [src]="product.image" class="card-img-top" [alt]="product.name"

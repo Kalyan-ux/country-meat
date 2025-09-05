@@ -4,14 +4,13 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { ProductDetailsComponent } from "./features/product-details/product-details.component";
 
 @Component({
   standalone: true,
   selector: 'country-meat-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [CommonModule, RouterModule, NavbarComponent, FooterComponent, ProductDetailsComponent]
+  imports: [CommonModule, RouterModule, NavbarComponent, FooterComponent]
 })
 export class AppComponent implements OnInit {
   title = 'country-meat-frontoffice';
