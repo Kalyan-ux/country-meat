@@ -11,7 +11,7 @@
 .bulk-order-link {
   display: flex !important;
   align-items: center;
-  gap: 6px; /* Space between icon and text */
+  gap: 2px; /* Space between icon and text */
 
   .whatsapp-icon {
     display: inline-flex;
@@ -20,10 +20,10 @@
     flex-shrink: 0; // Prevents the icon from shrinking
     width: 22px;    // Size of the circular background
     height: 22px;
-    background-color: white;
+    // background-color: white;
     border-radius: 50%; // Makes it perfectly round
     font-size: 1rem;    // Size of the WhatsApp logo itself
-    color: #d9232d;   // Icon color set to the theme red
+    color: #ffffff;   // Icon color set to the theme red
   }
 }
 
