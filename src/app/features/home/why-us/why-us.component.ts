@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import {Component, ViewChild, ElementRef, AfterViewInit, HostListener} from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+  HostListener,
+} from '@angular/core';
 
 @Component({
   selector: 'cm-why-us',
@@ -57,6 +63,16 @@ export class WhyUsComponent implements AfterViewInit {
     // Use a timeout to ensure the view is fully rendered before checking dimensions
     setTimeout(() => this.updateArrowVisibility(), 0);
   }
+
+  // ADD THIS NEW HOST LISTENER
+  @HostListener('window:load')
+  onWindowLoad(): void {
+    // This runs the check again after all images are loaded,
+    // ensuring the container has its final width.
+    // A small timeout gives the browser a moment to settle.
+    setTimeout(() => this.updateArrowVisibility(), 100);
+  }
+  
   // Update arrow visibility on scroll
   onContainerScroll(): void {
     this.updateArrowVisibility();

@@ -5,9 +5,32 @@
 }
 
 .pb-40 {
-  padding-bottom: 40px;
+  padding-bottom: 100px;
 }
 
+.bulk-order-link {
+  display: flex !important;
+  align-items: center;
+  gap: 6px; /* Space between icon and text */
+
+  .whatsapp-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0; // Prevents the icon from shrinking
+    width: 22px;    // Size of the circular background
+    height: 22px;
+    background-color: white;
+    border-radius: 50%; // Makes it perfectly round
+    font-size: 1rem;    // Size of the WhatsApp logo itself
+    color: #d9232d;   // Icon color set to the theme red
+  }
+}
+
+.min-order{
+  align-items: center;
+  margin-left: 2px;
+}
 .pt-50 {
   padding-top: 50px;
 }
@@ -17,7 +40,7 @@
 }
 
 .pb-15 {
-  padding-bottom: 15px;
+  padding-bottom: 10px;
 }
 
 .mainfeature__icon {
@@ -44,7 +67,7 @@
 }
 
 .mb-30 {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 /* footer css */
@@ -57,7 +80,7 @@
 }
 
 .pb-15 {
-  padding-bottom: 15px;
+  padding-bottom: -1px;
 }
 
 .mb-50 {
@@ -69,7 +92,7 @@
   font-weight: 700;
   font-size: 14px;
   color: #ffffff;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .tpfooter__widget p {
@@ -87,8 +110,55 @@
 }
 
 .tpfooter__widget-social-title {
+  margin-top: 70px;
   color: #ffffff;
   display: block;
+  .footer-col-2 {
+    margin-left: -40px;
+  }
+}
+.tpfooter__widget-social {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.tpfooter__widget-social-row {
+  display: flex;
+  align-items: center;
+  gap: 32px; /* Set desired horizontal spacing between social and store sections */
+}
+
+/* Updated styles for the app stores section */
+.app-stores {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 65px; /* No longer needed */
+  margin-left: 48px;
+}
+
+.app-stores p {
+  color: #ffffff;
+  margin-bottom: 0px; /* Adjusted for better spacing */
+  font-size: 14px; /* Matched to other footer text */
+}
+
+.store-links {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Reduced the gap between logos */
+  margin-top: 12px;
+}
+
+.store-links a img {
+  height: 30px; /* Reduced logo height to better match social icons */
+  width: auto;
+  transition: opacity 0.3s ease;
+}
+
+.store-links a:hover img {
+  opacity: 0.85;
 }
 
 .tpfooter__widget-social a {
@@ -96,28 +166,29 @@
   // font-size: 16px;
   // margin-right: 5px;
   color: var(--cm-global-color-primary);
-    line-height: 0;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background-color: #fff;
+  line-height: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #fff;
 }
 
 .tpfooter_widget_social_icons {
   display: flex;
+  gap: 12px;
+  margin-top: 8px;
 }
 
 .tpfooter_widget_social_icons a {
-  margin-right: 5px;
+  margin-right: 6px;
 }
-
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .footer-col-2 {
-      margin-left: -15px;
+    margin-left: -15px;
   }
 }
 
@@ -141,7 +212,7 @@
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .footer-col-3 {
-      margin-left: -10px;
+    margin-left: -10px;
   }
 }
 
@@ -156,7 +227,7 @@
 .tpfooter__widget-links ul li a {
   font-size: 14px;
   color: #ffffff;
-  transition: all .3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
   display: inline-block;
   margin-bottom: 8px;
 }
@@ -186,7 +257,7 @@
   display: block;
   min-height: 1.5rem;
   padding-left: 1.5em;
-  margin-bottom: .125rem;
+  margin-bottom: 0.125rem;
 }
 
 .tpfooter__widget-newsletter form span {
@@ -197,7 +268,7 @@
 }
 
 i {
-  transition: all .3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
 }
 
 .tpfooter__widget-newsletter form input {
@@ -209,7 +280,8 @@ i {
   padding: 5px 150px 5px 50px;
 }
 
-.tpfooter__widget-newsletter-check .form-check-input.form-check-input[type=checkbox] {
+.tpfooter__widget-newsletter-check
+  .form-check-input.form-check-input[type="checkbox"] {
   border-radius: 2px;
 }
 
@@ -232,7 +304,9 @@ i {
   transform: translateY(-50%);
 }
 
-.tp-news-btn, .tpcart-btn, .tpcheck-btn {
+.tp-news-btn,
+.tpcart-btn,
+.tpcheck-btn {
   font-weight: 600;
   font-size: 13px;
   color: #ffffff;
@@ -246,11 +320,11 @@ i {
 }
 
 .pb-40 {
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
 
 .pt-40 {
-  padding-top: 40px;
+  padding-top: 20px;
 }
 
 .tpfooter__copyright-text {
@@ -262,32 +336,50 @@ i {
   color: #ffffff;
 }
 
-@media (max-width: 767px), only screen and (min-width: 576px) and (max-width: 767px), only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 992px) and (max-width: 1199px) {
+.footer-contact-row {
+  display: flex;
+  align-items: flex-start; /* Aligns both blocks to the top */
+  gap: 10px; /* Space between the "Social Media" and "Available on" sections */
+  margin-top: 45px; /* This was moved from the HTML to the parent wrapper */
+}
+
+@media (max-width: 767px),
+  only screen and (min-width: 576px) and (max-width: 767px),
+  only screen and (min-width: 768px) and (max-width: 991px),
+  only screen and (min-width: 992px) and (max-width: 1199px) {
   .footer-col-2 {
-      margin-left: 0;
+    margin-left: 0;
   }
 }
 
-@media (max-width: 767px), only screen and (min-width: 576px) and (max-width: 767px), only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 992px) and (max-width: 1199px) {
+@media (max-width: 767px),
+  only screen and (min-width: 576px) and (max-width: 767px),
+  only screen and (min-width: 768px) and (max-width: 991px),
+  only screen and (min-width: 992px) and (max-width: 1199px) {
   .footer-col-3 {
-      margin-left: 0;
+    margin-left: 0;
   }
 }
 
-@media (max-width: 767px), only screen and (min-width: 576px) and (max-width: 767px), only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 992px) and (max-width: 1199px) {
+@media (max-width: 767px),
+  only screen and (min-width: 576px) and (max-width: 767px),
+  only screen and (min-width: 768px) and (max-width: 991px),
+  only screen and (min-width: 992px) and (max-width: 1199px) {
   .footer-col-4 {
-      margin-left: 0;
+    margin-left: 0;
   }
 }
 
-@media (max-width: 767px), only screen and (min-width: 576px) and (max-width: 767px) {
+@media (max-width: 767px),
+  only screen and (min-width: 576px) and (max-width: 767px) {
   .tpfooter__copyright {
-      margin-bottom: 20px;
+    margin-bottom: 20px;
   }
 }
 
-@media (max-width: 767px), only screen and (min-width: 576px) and (max-width: 767px) {
+@media (max-width: 767px),
+  only screen and (min-width: 576px) and (max-width: 767px) {
   .tpfooter__copyright-thumb {
-      text-align: center !important;
+    text-align: center !important;
   }
 }

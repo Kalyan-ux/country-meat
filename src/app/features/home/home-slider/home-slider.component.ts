@@ -1,7 +1,7 @@
-import { CommonModule } from "@angular/common";
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from "@angular/core";
-import { RouterModule } from "@angular/router";
-import { CarouselModule, OwlOptions } from "ngx-owl-carousel-o";
+import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   standalone: true,
@@ -9,13 +9,10 @@ import { CarouselModule, OwlOptions } from "ngx-owl-carousel-o";
   templateUrl: './home-slider.component.html',
   styleUrls: ['./home-slider.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  imports: [CommonModule, RouterModule, CarouselModule]
+  imports: [CommonModule, RouterModule, CarouselModule],
 })
-
 export class HomeSliderComponent implements OnInit, OnDestroy {
-  constructor() {
-    console.log('HomeSliderComponent loaded');
-  }
+  constructor() {}
 
   customOptions: OwlOptions = {
     items: 1,
@@ -24,7 +21,7 @@ export class HomeSliderComponent implements OnInit, OnDestroy {
     autoplay: true,
     autoplayTimeout: 8000,
     autoplayHoverPause: false,
-    dots: false,
+    dots: true, // show dots
     nav: false,
     mouseDrag: false,
     touchDrag: false,
@@ -33,30 +30,14 @@ export class HomeSliderComponent implements OnInit, OnDestroy {
     smartSpeed: 1500,
     animateOut: 'fadeOut',
     animateIn: 'fadeIn',
+    lazyLoad: true,
     responsive: {
-      0: {
-        items: 1,
-        nav: false,
-        dots: false
-      },
-      600: {
-        items: 1,
-        nav: false,
-        dots: false
-      },
-      1000: {
-        items: 1,
-        nav: false,
-        dots: false
-      }
-    }
+      0: { items: 1 },
+      600: { items: 1 },
+      1000: { items: 1 },
+    },
   };
 
-  ngOnDestroy(): void {
-  }
-  
-  ngOnInit(): void {
-    
-  }
-
+  ngOnDestroy(): void {}
+  ngOnInit(): void {}
 }

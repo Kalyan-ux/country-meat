@@ -1,23 +1,26 @@
-import { Component, OnInit, OnDestroy, Input, EventEmitter, Output } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Input,
+  EventEmitter,
+  Output,
+} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
   selector: 'cm-product-quantity-input',
   templateUrl: './product-quantity-input.component.html',
   styleUrls: ['./product-quantity-input.component.scss'],
-  imports: [FormsModule]
+  imports: [FormsModule],
 })
-
 export class ProductQuantityInputComponent implements OnInit, OnDestroy {
-  
   quantity: number = 1;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 
   increaseQty() {
     this.quantity++;
@@ -28,5 +31,4 @@ export class ProductQuantityInputComponent implements OnInit, OnDestroy {
       this.quantity--;
     }
   }
-
 }

@@ -1,6 +1,5 @@
 <!-- Premium About Page -->
 <div class="about-page-container">
-  
   <!-- Hero Section with Modern Design -->
   <section class="premium-hero">
     <div class="hero-overlay"></div>
@@ -12,7 +11,9 @@
               <span class="hero-badge">Since 2014</span>
               <h1 class="hero-title">About Country Meat</h1>
               <p class="hero-subtitle">
-                India's premier destination for farm-fresh, premium quality meat and poultry products, connecting rural farms directly to urban families.
+                India's premier destination for farm-fresh, premium quality meat
+                and poultry products, connecting rural farms directly to urban
+                families.
               </p>
               <div class="hero-features">
                 <div class="feature-item">
@@ -33,7 +34,10 @@
                   <i class="fas fa-shopping-cart"></i>
                   Explore Products
                 </a>
-                <button class="btn btn-outline-premium btn-lg" (click)="scrollToSection('our-story')">
+                <button
+                  class="btn btn-outline-premium btn-lg"
+                  (click)="scrollToSection('our-story')"
+                >
                   <i class="fas fa-arrow-down"></i>
                   Learn More
                 </button>
@@ -43,7 +47,11 @@
           <div class="col-lg-6">
             <div class="hero-image" data-aos="fade-left">
               <div class="image-wrapper">
-                <img src="assets/images/image2.jpg" alt="Country Meat About" class="img-fluid">
+                <img
+                  src="assets/images/image2.jpg"
+                  alt="Country Meat About"
+                  class="img-fluid"
+                />
                 <div class="image-decoration"></div>
               </div>
             </div>
@@ -51,13 +59,20 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Stats Section -->
     <div class="stats-section">
       <div class="container">
         <div class="row">
-          <div class="col-lg-3 col-md-6 mb-4 mb-lg-0" *ngFor="let stat of statsData; let i = index">
-            <div class="stat-card" [attr.data-aos]="'fade-up'" [attr.data-aos-delay]="i * 100">
+          <div
+            class="col-lg-3 col-md-6 mb-4 mb-lg-0"
+            *ngFor="let stat of statsData; let i = index"
+          >
+            <div
+              class="stat-card"
+              [attr.data-aos]="'fade-up'"
+              [attr.data-aos-delay]="i * 100"
+            >
               <div class="stat-icon">
                 <i class="fas {{ stat.icon }}"></i>
               </div>
@@ -71,14 +86,22 @@
       </div>
     </div>
   </section>
+
   <!-- Story Section with Modern Layout -->
   <section id="our-story" class="story-section">
+    <div class="text-center">
+      <span class="section-badge">Our Journey</span>
+    </div>
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-6 mb-5 mb-lg-0">
           <div class="story-image" data-aos="fade-right">
             <div class="image-container">
-              <img src="assets/images/image1.jpg" alt="Our Story" class="img-fluid">
+              <img
+                src="assets/images/image1.jpg"
+                alt="Our Story"
+                class="img-fluid"
+              />
               <div class="image-overlay">
                 <div class="play-button">
                   <i class="fas fa-play"></i>
@@ -89,10 +112,11 @@
         </div>
         <div class="col-lg-6">
           <div class="story-content" data-aos="fade-left">
-            <span class="section-badge">Our Journey</span>
             <h2 class="section-title">From Farm to Your Family Table</h2>
             <p class="section-description">
-              Country Meat was founded in 2014 by agricultural enthusiasts who recognized the growing demand for high-quality, fresh meat products in India's rapidly urbanizing landscape.
+              Country Meat was founded in 2014 by agricultural enthusiasts who
+              recognized the growing demand for high-quality, fresh meat
+              products in India's rapidly urbanizing landscape.
             </p>
             <div class="story-points">
               <div class="point-item">
@@ -101,7 +125,10 @@
                 </div>
                 <div class="point-content">
                   <h4>Farm Partnership</h4>
-                  <p>Started with local farms in rural Karnataka, now partnering with 200+ certified farms across India.</p>
+                  <p>
+                    Started with local farms in rural Karnataka, now partnering
+                    with 200+ certified farms across India.
+                  </p>
                 </div>
               </div>
               <div class="point-item">
@@ -110,7 +137,10 @@
                 </div>
                 <div class="point-content">
                   <h4>Quality Excellence</h4>
-                  <p>Maintaining 98% customer satisfaction rate with state-of-the-art processing facilities.</p>
+                  <p>
+                    Maintaining 98% customer satisfaction rate with
+                    state-of-the-art processing facilities.
+                  </p>
                 </div>
               </div>
               <div class="point-item">
@@ -119,7 +149,10 @@
                 </div>
                 <div class="point-content">
                   <h4>Customer Trust</h4>
-                  <p>Successfully delivered over 500,000 orders while supporting farming families nationwide.</p>
+                  <p>
+                    Successfully delivered over 500,000 orders while supporting
+                    farming families nationwide.
+                  </p>
                 </div>
               </div>
             </div>
@@ -135,15 +168,29 @@
       <div class="row">
         <div class="col-12 text-center mb-5">
           <span class="section-badge" data-aos="fade-up">Why Choose Us</span>
-          <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">What Makes Us Different</h2>
-          <p class="section-description" data-aos="fade-up" data-aos-delay="200">
-            Experience the Country Meat advantage with our commitment to quality, freshness, and customer satisfaction.
+          <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+            What Makes Us Different
+          </h2>
+          <p
+            class="section-description"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            Experience the Country Meat advantage with our commitment to
+            quality, freshness, and customer satisfaction.
           </p>
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-3 col-md-6 mb-4" *ngFor="let feature of features; let i = index">
-          <div class="feature-card premium-card" [attr.data-aos]="'fade-up'" [attr.data-aos-delay]="i * 100">
+        <div
+          class="col-lg-3 col-md-6 mb-4"
+          *ngFor="let feature of features; let i = index"
+        >
+          <div
+            class="feature-card premium-card"
+            [attr.data-aos]="'fade-up'"
+            [attr.data-aos-delay]="i * 100"
+          >
             <div class="feature-icon">
               <i class="fas {{ feature.icon }}"></i>
             </div>
@@ -162,7 +209,9 @@
       <div class="row">
         <div class="col-12 text-center mb-5">
           <span class="section-badge" data-aos="fade-up">Our Purpose</span>
-          <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Mission & Vision</h2>
+          <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+            Mission & Vision
+          </h2>
         </div>
       </div>
       <div class="row">
@@ -176,22 +225,10 @@
             </div>
             <div class="card-content">
               <p class="card-description">
-                To transform India's meat and poultry industry by establishing a comprehensive ecosystem that connects ethical farms directly with conscious consumers, ensuring the highest standards of quality, freshness, and food safety.
+                To deliver naturally raised, hygienically processed country
+                chicken and clean meat - fresh from farm to home - while
+                empowering rural farmers and upholding traditional values.
               </p>
-              <div class="mission-points">
-                <div class="point">
-                  <i class="fas fa-check"></i>
-                  <span>Promote sustainable agricultural practices</span>
-                </div>
-                <div class="point">
-                  <i class="fas fa-check"></i>
-                  <span>Support rural livelihoods</span>
-                </div>
-                <div class="point">
-                  <i class="fas fa-check"></i>
-                  <span>Ensure complete supply chain transparency</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -205,57 +242,10 @@
             </div>
             <div class="card-content">
               <p class="card-description">
-                To become India's most trusted and largest platform for fresh meat and poultry products, setting new benchmarks for quality, sustainability, and customer service by 2030.
+                To be India’s most trusted source for naturally raised country
+                chicken and clean meat - delivering unmatched freshness,
+                quality, and honesty from farm to fork.
               </p>
-              <div class="vision-goals">
-                <div class="goal">
-                  <div class="goal-number">2030</div>
-                  <div class="goal-text">Market Leadership Goal</div>
-                </div>
-                <div class="goal">
-                  <div class="goal-number">100%</div>
-                  <div class="goal-text">Sustainable Sourcing</div>
-                </div>
-                <div class="goal">
-                  <div class="goal-number">1M+</div>
-                  <div class="goal-text">Families Served</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Team Section with Modern Cards -->
-  <section class="team-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 text-center mb-5">
-          <span class="section-badge" data-aos="fade-up">Our Team</span>
-          <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Meet Our Leadership</h2>
-          <p class="section-description" data-aos="fade-up" data-aos-delay="200">
-            The passionate individuals driving Country Meat's mission forward
-          </p>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-lg-4 col-md-6 mb-5" *ngFor="let member of teamMembers; let i = index">
-          <div class="team-card premium-card" [attr.data-aos]="'fade-up'" [attr.data-aos-delay]="i * 100">
-            <div class="team-image">
-              <img [src]="member.image" [alt]="member.name" class="img-fluid">
-              <div class="team-overlay">
-                <div class="social-links">
-                  <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                  <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                </div>
-              </div>
-            </div>
-            <div class="team-content">
-              <h4 class="team-name">{{ member.name }}</h4>
-              <p class="team-position">{{ member.position }}</p>
-              <p class="team-description">{{ member.description }}</p>
             </div>
           </div>
         </div>
@@ -269,8 +259,14 @@
       <div class="row">
         <div class="col-12 text-center mb-5">
           <span class="section-badge" data-aos="fade-up">Our Values</span>
-          <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Principles That Guide Us</h2>
-          <p class="section-description" data-aos="fade-up" data-aos-delay="200">
+          <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+            Principles That Guide Us
+          </h2>
+          <p
+            class="section-description"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
             The core values that shape every decision and action at Country Meat
           </p>
         </div>
@@ -284,7 +280,9 @@
             <div class="value-content">
               <h4 class="value-title">Trust & Transparency</h4>
               <p class="value-description">
-                Building lasting relationships through complete transparency in our supply chain, honest pricing, and reliable service delivery that our customers can depend on.
+                Building lasting relationships through complete transparency in
+                our supply chain, honest pricing, and reliable service delivery
+                that our customers can depend on.
               </p>
             </div>
           </div>
@@ -297,7 +295,9 @@
             <div class="value-content">
               <h4 class="value-title">Uncompromising Quality</h4>
               <p class="value-description">
-                Maintaining the highest standards of quality through rigorous testing, certification processes, and continuous monitoring at every stage of our supply chain.
+                Maintaining the highest standards of quality through rigorous
+                testing, certification processes, and continuous monitoring at
+                every stage of our supply chain.
               </p>
             </div>
           </div>
@@ -310,7 +310,9 @@
             <div class="value-content">
               <h4 class="value-title">Community Partnership</h4>
               <p class="value-description">
-                Fostering strong partnerships with farming communities, ensuring fair trade practices, and contributing to rural economic development across India.
+                Fostering strong partnerships with farming communities, ensuring
+                fair trade practices, and contributing to rural economic
+                development across India.
               </p>
             </div>
           </div>
@@ -323,7 +325,9 @@
             <div class="value-content">
               <h4 class="value-title">Environmental Responsibility</h4>
               <p class="value-description">
-                Promoting sustainable farming practices, minimizing environmental impact, and supporting eco-friendly initiatives throughout our operations.
+                Promoting sustainable farming practices, minimizing
+                environmental impact, and supporting eco-friendly initiatives
+                throughout our operations.
               </p>
             </div>
           </div>
@@ -332,32 +336,5 @@
     </div>
   </section>
 
-  <!-- CTA Section with Modern Design -->
-  <section class="cta-section">
-    <div class="cta-overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-12 text-center">
-          <div class="cta-content" data-aos="fade-up">
-            <span class="cta-badge">Ready to Experience?</span>
-            <h2 class="cta-title">Experience the Country Meat Difference</h2>
-            <p class="cta-description">
-              Join over 50,000 satisfied customers who trust Country Meat for fresh, high-quality meat and poultry products delivered with care.
-            </p>
-            <div class="cta-buttons">
-              <a routerLink="/products" class="btn btn-premium btn-lg">
-                <i class="fas fa-shopping-cart"></i>
-                Explore Our Products
-              </a>
-              <a href="tel:+918012345678" class="btn btn-outline-white btn-lg">
-                <i class="fas fa-phone"></i>
-                Contact Us Today
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
 </div>

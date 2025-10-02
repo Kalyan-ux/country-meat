@@ -21,23 +21,34 @@ interface Product {
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './product-listing.component.html',
-  styleUrls: ['./product-listing.component.scss']
+  styleUrls: ['./product-listing.component.scss'],
 })
 export class ProductListingComponent implements OnInit {
-
   products: Product[] = [];
   filteredProducts: Product[] = [];
   currentCategory: string = '';
   searchTerm: string = '';
   sortBy: string = 'name';
-  priceRange: { min: number, max: number } = { min: 0, max: 1000 };
+  priceRange: { min: number; max: number } = { min: 0, max: 1000 };
   isLoading: boolean = false;
 
   categories = [
-    { id: 'chicken', name: 'Chicken', image: 'assets/images/categories/country-queen.jpg' },
-    { id: 'eggs', name: 'Eggs', image: 'assets/images/categories/original-country-chicken-eggs.jpg' },
-    { id: 'mutton', name: 'Mutton', image: 'assets/images/categories/country-warrior.jpg' },
-    { id: 'seafood', name: 'Seafood', image: 'assets/images/seafood.jpg' }
+    {
+      id: 'chicken',
+      name: 'Chicken',
+      image: 'assets/images/categories/country-queen.jpg',
+    },
+    {
+      id: 'eggs',
+      name: 'Eggs',
+      image: 'assets/images/categories/original-country-chicken-eggs.jpg',
+    },
+    {
+      id: 'mutton',
+      name: 'Mutton',
+      image: 'assets/images/categories/country-warrior.jpg',
+    },
+    { id: 'seafood', name: 'Seafood', image: 'assets/images/seafood.jpg' },
   ];
 
   // Sample products data
@@ -52,7 +63,7 @@ export class ProductListingComponent implements OnInit {
       rating: 4.5,
       description: 'Fresh country chicken, naturally raised',
       inStock: true,
-      discount: 10
+      discount: 10,
     },
     {
       id: 2,
@@ -64,7 +75,7 @@ export class ProductListingComponent implements OnInit {
       rating: 4.3,
       description: 'Premium quality country chicken',
       inStock: true,
-      discount: 9
+      discount: 9,
     },
     {
       id: 3,
@@ -74,7 +85,7 @@ export class ProductListingComponent implements OnInit {
       category: 'eggs',
       rating: 4.7,
       description: 'Farm fresh country chicken eggs - 12 pieces',
-      inStock: true
+      inStock: true,
     },
     {
       id: 4,
@@ -86,7 +97,7 @@ export class ProductListingComponent implements OnInit {
       rating: 4.8,
       description: 'Premium Kadaknath chicken, rich in nutrients',
       inStock: true,
-      discount: 7
+      discount: 7,
     },
     {
       id: 5,
@@ -96,7 +107,7 @@ export class ProductListingComponent implements OnInit {
       category: 'mutton',
       rating: 4.4,
       description: 'Fresh mutton cuts, premium quality',
-      inStock: true
+      inStock: true,
     },
     {
       id: 6,
@@ -106,31 +117,34 @@ export class ProductListingComponent implements OnInit {
       category: 'seafood',
       rating: 4.2,
       description: 'Mixed seafood selection',
-      inStock: true
-    }
+      inStock: true,
+    },
   ];
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.products = this.sampleProducts;
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       this.currentCategory = params['category'] || '';
       this.filterProducts();
     });
   }
 
   filterProducts(): void {
-    this.filteredProducts = this.products.filter(product => {
-      const matchesCategory = !this.currentCategory || product.category === this.currentCategory;
-      const matchesSearch = !this.searchTerm || 
+    this.filteredProducts = this.products.filter((product) => {
+      const matchesCategory =
+        !this.currentCategory || product.category === this.currentCategory;
+      const matchesSearch =
+        !this.searchTerm ||
         product.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        product.description.toLowerCase().includes(this.searchTerm.toLowerCase());
-      const matchesPrice = product.price >= this.priceRange.min && product.price <= this.priceRange.max;
-      
+        product.description
+          .toLowerCase()
+          .includes(this.searchTerm.toLowerCase());
+      const matchesPrice =
+        product.price >= this.priceRange.min &&
+        product.price <= this.priceRange.max;
+
       return matchesCategory && matchesSearch && matchesPrice;
     });
 
@@ -175,7 +189,9 @@ export class ProductListingComponent implements OnInit {
   }
 
   getCategoryName(): string {
-    const category = this.categories.find(cat => cat.id === this.currentCategory);
+    const category = this.categories.find(
+      (cat) => cat.id === this.currentCategory
+    );
     return category ? category.name : 'All Products';
   }
 

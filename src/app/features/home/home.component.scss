@@ -2,13 +2,13 @@
 .hero-section {
   position: relative;
   overflow: hidden;
-  margin: 0 !important;
-  padding: 0 !important;
+  margin-bottom: 0 !important;
+  padding: 0px !important;
 }
 
 .features-section {
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  
+
   .feature-card {
     background: white;
     padding: 2rem;
@@ -17,12 +17,12 @@
     transition: all 0.3s ease;
     height: 100%;
     border: 1px solid rgba(0,0,0,0.05);
-    
+
     &:hover {
       transform: translateY(-10px);
       box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     }
-    
+
     .feature-icon {
       width: 80px;
       height: 80px;
@@ -32,20 +32,20 @@
       justify-content: center;
       background: linear-gradient(135deg, #ec2c34, #b8362a);
       border-radius: 50%;
-      
+
       img {
         max-width: 40px;
         filter: brightness(0) invert(1);
       }
     }
-    
+
     h4 {
       font-size: 1.25rem;
       font-weight: 600;
       margin-bottom: 1rem;
       color: #2c3e50;
     }
-    
+
     p {
       color: #6c757d;
       margin-bottom: 0;
@@ -77,14 +77,14 @@
 
 .about-section {
   background: linear-gradient(135deg, #f1f3f4 0%, #e8eaed 100%);
-  
+
   .section-title {
     font-size: 2.5rem;
     font-weight: 700;
     color: #2c3e50;
     margin-bottom: 1.5rem;
     position: relative;
-    
+
     &::after {
       content: '';
       position: absolute;
@@ -96,7 +96,7 @@
       border-radius: 2px;
     }
   }
-  
+
   .lead {
     font-size: 1.4rem;
     color: #2c3e50;
@@ -105,28 +105,28 @@
     font-weight: 500;
     text-shadow: 0 1px 2px rgba(0,0,0,0.1);
   }
-  
+
   .about-features {
     margin: 2rem 0;
-    
+
     .feature-item {
       font-size: 1.1rem;
       color: #495057;
-      
+
       i {
         font-size: 1.25rem;
       }
     }
   }
-  
+
   .about-image {
     position: relative;
-    
+
     img {
       border-radius: 15px;
       box-shadow: 0 15px 35px rgba(0,0,0,0.1);
     }
-    
+
     &::before {
       content: '';
       position: absolute;
@@ -141,20 +141,20 @@
 }
 
 .reviews-section {
-  background: white;
+  background: #fff;
   margin: 0 !important;
-  padding-top: 1rem !important; // Minimal top padding instead of py-5
+  padding-top: 48px !important; // Minimal top padding instead of py-5
   padding-bottom: 1rem !important; // Minimal bottom padding instead of py-5
-  margin-top: 0 !important; // Remove any top margin
+  margin-top: 10px !important; // Remove any top margin
 }
-  
+
   .section-title {
     font-size: 2.5rem;
     font-weight: 700;
     color: #2c3e50;
     margin-bottom: 1.5rem;
     position: relative;
-    
+
     &::after {
       content: '';
       position: absolute;
@@ -166,7 +166,7 @@
       border-radius: 2px;
     }
   }
-  
+
   .lead {
     font-size: 1.4rem;
     color: #2c3e50;
@@ -175,28 +175,28 @@
     font-weight: 500;
     text-shadow: 0 1px 2px rgba(0,0,0,0.1);
   }
-  
+
   .about-features {
     margin: 2rem 0;
-    
+
     .feature-item {
       font-size: 1.1rem;
       color: #495057;
-      
+
       i {
         font-size: 1.25rem;
       }
     }
   }
-  
+
   .about-image {
     position: relative;
-    
+
     img {
       border-radius: 15px;
       box-shadow: 0 15px 35px rgba(0,0,0,0.1);
     }
-    
+
     &::before {
       content: '';
       position: absolute;
@@ -211,7 +211,7 @@
   }
 
 .reviews-section {
-  background: white;
+  background: #fff;
 }
 
 .newsletter-section {
@@ -225,38 +225,38 @@
     .feature-card {
       padding: 1.5rem;
       margin-bottom: 1rem;
-      
+
       .feature-icon {
         width: 60px;
         height: 60px;
-        
+
         img {
           max-width: 30px;
         }
       }
-      
+
       h4 {
         font-size: 1.1rem;
       }
     }
   }
-  
+
   .about-section {
     .section-title {
       font-size: 2rem;
       text-align: center;
-      
+
       &::after {
         left: 50%;
         transform: translateX(-50%);
       }
     }
-    
+
     .about-content {
       text-align: center;
       margin-bottom: 2rem;
     }
-    
+
     .about-image {
       &::before {
         display: none;
@@ -268,25 +268,25 @@
 @media (max-width: 576px) {
   .features-section {
     padding: 3rem 0;
-    
+
     .feature-card {
       padding: 1rem;
-      
+
       h4 {
         font-size: 1rem;
       }
-      
+
       p {
         font-size: 0.9rem;
       }
     }
   }
-  
+
   .about-section {
     .section-title {
       font-size: 1.75rem;
     }
-    
+
     .lead {
       font-size: 1.1rem;
     }
@@ -317,7 +317,7 @@
   font-weight: 600;
   border-radius: 8px;
   transition: all 0.3s ease;
-  
+
   &:hover {
     background: linear-gradient(135deg, #b8362a, #9e2e22);
     transform: translateY(-2px);
@@ -328,11 +328,11 @@
 // Section Spacing
 section {
   padding: 4rem 0;
-  
+
   @media (max-width: 768px) {
     padding: 3rem 0;
   }
-  
+
   @media (max-width: 576px) {
     padding: 2rem 0;
   }

@@ -1,6 +1,13 @@
-import { CommonModule } from "@angular/common";
-import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { CommonModule } from '@angular/common';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,11 +15,9 @@ import { Router } from '@angular/router';
   selector: 'cm-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule],
 })
-
 export class RegisterComponent implements OnInit, OnDestroy {
-
   showRegisterForm = true;
   otpArray: string[] = ['', '', '', ''];
 
@@ -41,7 +46,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   verifyOTP(): void {
     const otp = this.otpArray.join('');
     console.log('Entered OTP:', otp);
-    
+
     // Simple OTP validation - in real app, you'd verify with backend
     if (otp.length === 4) {
       console.log('Registration successful');
@@ -52,15 +57,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
   }
 
-  onRegisterClick () {
+  onRegisterClick() {
     this.showRegisterForm = false;
   }
 
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 
-  ngOnInit(): void {
-  }
-  
-
+  ngOnInit(): void {}
 }

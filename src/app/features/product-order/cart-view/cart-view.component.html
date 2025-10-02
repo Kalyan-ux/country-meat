@@ -70,21 +70,21 @@
                   <div class="quantity-control">
                     <label class="quantity-label">Quantity:</label>
                     <div class="quantity-input-group">
-                      <button 
-                        class="quantity-btn minus" 
+                      <button
+                        class="quantity-btn minus"
                         (click)="decreaseQuantity(item)"
                         [disabled]="item.quantity <= 1">
                         <i class="fa fa-minus"></i>
                       </button>
-                      <input 
-                        type="number" 
-                        class="quantity-input" 
+                      <input
+                        type="number"
+                        class="quantity-input"
                         [(ngModel)]="item.quantity"
                         (ngModelChange)="updateQuantity(item, $event)"
                         [min]="1"
                         [max]="item.maxQuantity || 99">
-                      <button 
-                        class="quantity-btn plus" 
+                      <button
+                        class="quantity-btn plus"
                         (click)="increaseQuantity(item)"
                         [disabled]="item.quantity >= (item.maxQuantity || 99)">
                         <i class="fa fa-plus"></i>
@@ -108,14 +108,14 @@
 
                   <!-- Action Buttons -->
                   <div class="item-actions">
-                    <button 
-                      class="action-btn save-later" 
+                    <button
+                      class="action-btn save-later"
                       (click)="saveForLater(item)"
                       title="Save for Later">
                       <i class="fa fa-heart"></i>
                     </button>
-                    <button 
-                      class="action-btn remove-item" 
+                    <button
+                      class="action-btn remove-item"
                       (click)="removeItem(item)"
                       title="Remove Item">
                       <i class="fa fa-trash-alt"></i>
@@ -144,14 +144,14 @@
             <div class="coupon-section">
               <h4>Apply Coupon</h4>
               <div class="coupon-input-group">
-                <input 
-                  type="text" 
-                  class="coupon-input" 
+                <input
+                  type="text"
+                  class="coupon-input"
                   placeholder="Enter coupon code"
                   [(ngModel)]="couponCode"
                   #couponInput>
-                <button 
-                  class="apply-coupon-btn" 
+                <button
+                  class="apply-coupon-btn"
                   (click)="applyCoupon()"
                   [disabled]="!couponCode.trim()">
                   Apply
@@ -226,8 +226,8 @@
 
             <!-- Proceed to Checkout -->
             <div class="checkout-section">
-              <button 
-                class="checkout-btn" 
+              <button
+                class="checkout-btn"
                 (click)="proceedToCheckout()"
                 [disabled]="cartItems.length === 0">
                 <i class="fa fa-lock"></i>

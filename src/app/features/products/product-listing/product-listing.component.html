@@ -1,8 +1,8 @@
-<!-- BEGIN sections : product-listing -->
+a<!-- BEGIN sections : product-listing -->
 <div id="section-product-listing" class="countrymeat-section">
   <section class="product-listing-section pt-40 pb-40">
     <div class="container">
-      
+
       <!-- Page Header -->
       <div class="row mb-40">
         <div class="col-12">
@@ -20,11 +20,11 @@
             <div class="filter-group mb-20">
               <label class="filter-label">Search Products</label>
               <div class="search-input">
-                <input 
-                  type="text" 
-                  [(ngModel)]="searchTerm" 
+                <input
+                  type="text"
+                  [(ngModel)]="searchTerm"
                   (ngModelChange)="onSearchChange()"
-                  placeholder="Search products..." 
+                  placeholder="Search products..."
                   class="form-control">
                 <i class="fa fa-search search-icon"></i>
               </div>
@@ -43,12 +43,12 @@
             <div class="filter-group mb-20">
               <label class="filter-label">Price Range</label>
               <div class="price-range">
-                <input 
-                  type="range" 
-                  [(ngModel)]="priceRange.min" 
+                <input
+                  type="range"
+                  [(ngModel)]="priceRange.min"
                   (ngModelChange)="onPriceRangeChange()"
-                  min="0" 
-                  max="1000" 
+                  min="0"
+                  max="1000"
                   class="price-slider">
                 <div class="price-values">
                   <span>₹{{ priceRange.min }}</span> - <span>₹{{ priceRange.max }}</span>
@@ -60,14 +60,14 @@
             <div class="filter-group">
               <label class="filter-label">Categories</label>
               <div class="category-list">
-                <a [routerLink]="['/products']" 
-                   [class.active]="!currentCategory" 
+                <a [routerLink]="['/products']"
+                   [class.active]="!currentCategory"
                    class="category-item">
                   All Products
                 </a>
-                <a *ngFor="let category of categories" 
+                <a *ngFor="let category of categories"
                    [routerLink]="['/products', category.id]"
-                   [class.active]="currentCategory === category.id" 
+                   [class.active]="currentCategory === category.id"
                    class="category-item">
                   {{ category.name }}
                 </a>
@@ -110,36 +110,36 @@
                     </button>
                   </div>
                 </div>
-                
+
                 <div class="product-content">
                   <div class="product-rating">
                     <div class="stars">
-                      <i *ngFor="let star of getStarRating(product.rating)" 
-                         class="fa {{ star }}" 
+                      <i *ngFor="let star of getStarRating(product.rating)"
+                         class="fa {{ star }}"
                          [class.filled]="star === 'fa-star'">
                       </i>
                     </div>
                     <span class="rating-count">({{ product.rating }})</span>
                   </div>
-                  
+
                   <h4 class="product-title">
                     <a (click)="viewProduct(product.id)">{{ product.name }}</a>
                   </h4>
-                  
+
                   <p class="product-description">{{ product.description }}</p>
-                  
+
                   <div class="product-price">
                     <span class="current-price">₹{{ product.price }}</span>
                     <span class="original-price" *ngIf="product.originalPrice">₹{{ product.originalPrice }}</span>
                   </div>
-                  
+
                   <div class="product-stock" [class.out-of-stock]="!product.inStock">
                     <i class="fa" [class.fa-check-circle]="product.inStock" [class.fa-times-circle]="!product.inStock"></i>
                     <span>{{ product.inStock ? 'In Stock' : 'Out of Stock' }}</span>
                   </div>
-                  
-                  <button 
-                    class="btn btn-primary btn-add-cart" 
+
+                  <button
+                    class="btn btn-primary btn-add-cart"
                     (click)="addToCart(product)"
                     [disabled]="!product.inStock">
                     <i class="fa fa-shopping-cart"></i>

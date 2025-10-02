@@ -35,20 +35,16 @@ interface Order {
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './order-confirmation.component.html',
-  styleUrls: ['./order-confirmation.component.scss']
+  styleUrls: ['./order-confirmation.component.scss'],
 })
 export class OrderConfirmationComponent implements OnInit {
-
   order: Order | null = null;
   isLoading: boolean = true;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       const orderId = params['orderId'];
       if (orderId) {
         this.loadOrderDetails(orderId);
@@ -83,15 +79,15 @@ export class OrderConfirmationComponent implements OnInit {
           name: 'Country King Chicken',
           price: 450,
           quantity: 1,
-          image: 'assets/images/products/country-king-a.jpg'
+          image: 'assets/images/products/country-king-a.jpg',
         },
         {
           id: 2,
           name: 'Fresh Country Eggs',
           price: 120,
           quantity: 2,
-          image: 'assets/images/eggs1.png'
-        }
+          image: 'assets/images/eggs1.png',
+        },
       ],
       subtotal: 690,
       deliveryFee: 50,
@@ -102,11 +98,11 @@ export class OrderConfirmationComponent implements OnInit {
         phone: '+91 9876543210',
         address: '123 Main Street, Near Park',
         city: 'Bangalore',
-        pincode: '560001'
+        pincode: '560001',
       },
       paymentMethod: 'Cash on Delivery',
       estimatedDelivery: new Date(Date.now() + 24 * 60 * 60 * 1000), // Tomorrow
-      status: 'confirmed'
+      status: 'confirmed',
     };
   }
 
@@ -127,14 +123,14 @@ export class OrderConfirmationComponent implements OnInit {
     return date.toLocaleDateString('en-IN', {
       day: 'numeric',
       month: 'long',
-      year: 'numeric'
+      year: 'numeric',
     });
   }
 
   formatTime(date: Date): string {
     return date.toLocaleTimeString('en-IN', {
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
     });
   }
 }

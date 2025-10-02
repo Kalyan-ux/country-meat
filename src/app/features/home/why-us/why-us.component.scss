@@ -1,11 +1,21 @@
-.why-us-section {
-  background: #ffffff;
-  position: relative;
-  overflow: hidden;
-  padding: 10px 0;
+.section-why-us-main {
+  background: #fff;
+  padding: 0px 0;
+  margin-top: 0;
 
   @media (max-width: 768px) {
-    padding: 30px 0;
+    padding: 20px 0;
+  }
+}
+
+.why-us-section {
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  padding: 0px 0;
+
+  @media (max-width: 768px) {
+    padding: 20px 0;
   }
 }
 
@@ -40,7 +50,6 @@
 // Horizontal Scroll Container
 .related-products-container {
   width: 100%;
-  position: relative;
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;

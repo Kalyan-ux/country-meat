@@ -1,0 +1,381 @@
+@use 'sass:color';
+
+// --- BREADCRUMB ---
+.breadcrumb {
+  background: none;
+  padding: 0;
+  font-size: 0.9rem;
+  .breadcrumb-item {
+    a {
+      color: #d9232d;
+      text-decoration: none;
+    }
+    &.active {
+      color: #343a40;
+    }
+    & + .breadcrumb-item::before {
+      content: "/";
+      padding: 0 0.5rem;
+      color: #6c757d;
+    }
+  }
+}
+
+// --- NEW IMAGE GALLERY STYLES ---
+.product-image-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.thumbnail-column {
+  display: flex;
+  flex-direction: row;   /* MODIFIED: Lays out thumbnails horizontally */
+  justify-content: center; /* ADDED: Centers the thumbnails horizontally */
+  flex-wrap: wrap;         /* ADDED: Allows thumbnails to wrap to the next line if needed */
+  gap: 0.75rem;
+
+}
+
+.thumbnail-item {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: #a0a0a0;
+  }
+
+  &.active {
+    border-color: #d9232d; // Active state border color
+  }
+}
+
+.main-image-container {
+  position: relative;
+  height: 400px; // Fixed height for the main image container
+
+  .main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 12px;
+  }
+}
+
+// --- PRODUCT DETAILS ---
+.product-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #212529;
+  .special-note {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #495057;
+  }
+}
+.product-subtitle {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-top: -5px;
+  margin-bottom: 1rem;
+}
+.product-description {
+  font-size: 0.95rem;
+  color: #495057;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.info-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0rem;
+  .badge-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #343a40;
+    i {
+      color: #d9232d;
+    }
+  }
+}
+
+.price-section {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  .current-price {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #212529;
+  }
+  .discount {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #28a745;
+  }
+}
+
+.mrp-text {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-top: -5px;
+  margin-bottom: 2rem;
+}
+
+// --- ADD THIS SCSS FOR THE NEW MRP STYLE ---
+
+.mrp-block-no-discount {
+  margin-top: -5px;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  font-size: 0.9rem;
+  color: #6c757d;
+
+  .mrp-main-text {
+    font-size: 1rem; // Makes "MRP: ₹899" slightly larger
+    color: #343a40;
+
+    strong {
+      font-weight: 700; // Ensures the price is bold
+    }
+  }
+
+  .mrp-subtext {
+    display: block; // Puts "(incl. of all taxes)" on a new line
+  }
+}
+
+// --- ACTION BUTTONS ---
+.action-section {
+  .btn-add {
+    background-color: #d9232d;
+    color: white;
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    &:hover {
+      background-color: color.adjust(#d9232d, $lightness: -10%);
+    }
+  }
+
+  .delivery-info {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    .delivery-icon {
+      width: 28px;
+    }
+  }
+
+  .out-of-stock-section {
+    .btn-notify {
+      background-color: #fff;
+      color: #d9232d;
+      border: 1px solid #d9232d;
+      font-weight: 600;
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      &:hover {
+        background-color: #f8f9fa;
+      }
+    }
+    .or-separator {
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+    .out-of-stock-text {
+      color: #d9232d;
+      font-weight: 500;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+// Info lines at the bottom
+.info-lines {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  margin-top: auto; // Pushes this block to the bottom
+
+  .info-line-safe a {
+    color: #e63946;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .info-line-delivery {
+    font-size: 0.9rem;
+
+    i {
+      color: #ff9f1c;
+      margin-right: 0.3rem;
+    }
+  }
+}
+
+// Styling for the new tab component
+.features-benefits-tabs {
+  margin-top: 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #dee2e6;
+}
+
+.tabs-nav {
+  background-color: #f8f9fa;
+  justify-content: center;
+}
+
+.tab-btn {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6c757d;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  background-color: transparent;
+  transition: color 0.2s, border-color 0.2s;
+
+  &.active {
+    color: #e63946;
+    border-bottom-color: #e63946;
+    background-color: #fff;
+  }
+
+  &:hover:not(.active) {
+    color: #e63946;
+  }
+}
+
+.tabs-content {
+  background-color: #fff;
+
+  li {
+    font-size: 1rem;
+    color: #333;
+
+    i {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+// Styling for the related products cards
+.related-card {
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  img {
+    height: 200px;
+    object-fit: cover;
+  }
+}
+
+.card-subtitle {
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-top: -3px;
+  margin-bottom: 0.5rem;
+}
+
+.related-products-section {
+  position: relative;
+  padding: 0 45px;
+}
+
+.related-products-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.related-products-container {
+  display: flex;
+  flex-wrap: nowrap;
+  /* Prevents wrapping to the next line */
+  overflow-x: auto;
+  /* Enables horizontal scrolling */
+  -webkit-overflow-scrolling: touch;
+  /* For smoother scrolling on iOS */
+  gap: 20px;
+  /* Space between cards */
+  padding-bottom: 1rem;
+  /* Add padding to prevent scrollbar from hiding content */
+  width: 100%;
+}
+
+/* Hide the scrollbar but keep functionality */
+.related-products-container::-webkit-scrollbar {
+  display: none;
+}
+
+.related-product-card {
+  flex: 0 0 auto;
+  /* Ensures cards don't grow or shrink and maintain their width */
+  width: 300px;
+  /* Fixed width for each card */
+  min-width: 250px;
+  /* Minimum width for smaller screens */
+}
+
+/* Optional: Add a subtle hover effect to the cards */
+.related-product-card .card {
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.related-product-card .card:hover {
+  transform: translateY(-5px);
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #e63946;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+.scroll-btn.left-btn {
+  left: 0;
+  right: auto;
+}
+
+.scroll-btn.right-btn {
+  right: 0;
+  left: auto;
+}
+.scroll-btn:hover {
+  background-color: #d62839;
+}

@@ -1,3 +1,6 @@
+@use 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel' as *;
+@use 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default' as *;
+
 :root {
   --cm-global-color-primary: #d43b3b;
   --cm-global-color-secondary: #333333;
@@ -11,11 +14,15 @@
 }
 
 body {
+  font-family: 'Lato', sans-serif;
   color: var(--cm-global-color-secondary);
   font-size: 14px;
   margin: 0;
   padding: 0;
 }
+
+/* src/styles.scss */
+
 
 // Ensure no gaps between major sections
 .countrymeat-section {
@@ -37,6 +44,48 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+/* src/styles.scss */
+
+/* Define Lato Regular */
+@font-face {
+  font-family: 'Lato';
+  src: url('assets/fonts/lato/Lato-Regular.ttf') format('truetype');
+  font-weight: normal; /* Corresponds to 400 */
+  font-style: normal;
+}
+
+/* Define Lato Italic */
+@font-face {
+  font-family: 'Lato';
+  src: url('assets/fonts/lato/Lato-Italic.ttf') format('truetype');
+  font-weight: normal; /* Corresponds to 400 */
+  font-style: italic;
+}
+
+/* Define Lato Bold */
+@font-face {
+  font-family: 'Lato';
+  src: url('assets/fonts/lato/Lato-Bold.ttf') format('truetype');
+  font-weight: bold; /* Corresponds to 700 */
+  font-style: normal;
+}
+
+/* Define Lato Light */
+@font-face {
+  font-family: 'Lato';
+  src: url('assets/fonts/lato/Lato-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Define Lato Black (Heavy) */
+@font-face {
+  font-family: 'Lato';
+  src: url('assets/fonts/lato/Lato-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
 }
 
 input,

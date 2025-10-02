@@ -1,123 +1,121 @@
-<div class="chicken-products-container">
-  <!-- Hero Section -->
-  <section class="hero-section" [style.background-image]="'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(' + heroSection.backgroundImage + ')'">
-    <div class="container">
-      <div class="row justify-content-center text-center text-white">
-        <div class="col-lg-8">
-          <h1 class="hero-title mb-3">{{ heroSection.title }}</h1>
-          <p class="hero-subtitle lead">{{ heroSection.subtitle }}</p>
-          <div class="hero-badges mt-4">
-            <span class="badge badge-premium me-3"><i class="fas fa-leaf"></i> Farm Fresh</span>
-            <span class="badge badge-premium me-3"><i class="fas fa-heart"></i> Premium Quality</span>
-            <span class="badge badge-premium"><i class="fas fa-truck"></i> Fresh Delivery</span>
+<div class="container py-5">
+  <div class="row mb-4">
+    <div class="col-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a routerLink="/"><i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a routerLink="/products">Categories</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Country Chicken
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="chickenProducts.length > 0">
+    <div
+      class="col-lg-4 col-md-6 col-sm-12 mb-4"
+      *ngFor="let product of chickenProducts"
+    >
+      <div
+        class="card product-card h-100"
+        (click)="onProductClick(product.id)"
+      >
+        <div class="card-img-wrapper">
+          <img
+            [src]="product.image"
+            class="card-img-top"
+            [alt]="product.name"
+            onerror="this.src='assets/images/chicken.jpg'"
+          />
+          <div *ngIf="product.specialBadge" class="special-badge">
+            ({{ product.specialBadge }})
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <div class="container py-5">
-    <!-- Breadcrumb -->
-    <div class="row mb-4">
-      <div class="col-12">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a routerLink="/"><i class="fas fa-home"></i> Home</a></li>
-            <li class="breadcrumb-item"><a routerLink="/products">Products</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Chicken</li>
-          </ol>
-        </nav>
-      </div>
-    </div>
+        <div class="card-body d-flex flex-column">
+          <div>
+            <h5 class="product-name">{{ product.name }}</h5>
+            <p class="product-subtitle" *ngIf="product.subtitle">
+              {{ product.subtitle }}
+            </p>
+            <p class="product-age">{{ product.age }}</p>
 
-    <!-- Products Grid -->
-    <div class="row">
-      <div class="col-lg-4 col-md-4 col-sm-12 mb-4" *ngFor="let product of chickenProducts">
-        <div class="card product-card premium-card h-100" (click)="onProductClick(product.id)">
-          <div class="card-img-wrapper position-relative">
-            <img [src]="product.image" class="card-img-top" [alt]="product.name"
-                 onerror="this.src='assets/images/chicken.jpg'">
-
-            <!-- Product Badge -->
-            <div class="product-badge" [ngClass]="'badge-' + product.badge.toLowerCase()">
-              {{ product.badge }}
+            <div class="product-features">
+              <span
+                class="feature-tag"
+                *ngFor="let feature of product.features"
+                >{{ feature }}</span
+              >
             </div>
 
-            <!-- Discount Badge -->
-            <div class="discount-badge" *ngIf="product.originalPrice > product.price">
-              {{ ((product.originalPrice - product.price) / product.originalPrice * 100).toFixed(0) }}% OFF
-            </div>
-
-            <!-- Product Overlay -->
-            <div class="product-overlay">
-              <button class="btn btn-premium btn-sm me-2" (click)="onProductClick(product.id)">
-                <i class="fas fa-eye"></i> View Details
-              </button>
-              <button class="btn btn-cart btn-sm" (click)="addToCart(product, $event)">
-                <i class="fas fa-shopping-cart"></i> Add to Cart
-              </button>
+            <div class="product-weight">
+              <i class="fas fa-weight-hanging"></i>
+              <span>{{ product.weight }}</span>
             </div>
           </div>
 
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title product-name">{{ product.name }}</h5>
-
-            <!-- Rating -->
-            <div class="product-rating mb-2">
-              <span class="stars">
-                <i class="fas fa-star" *ngFor="let star of getStarArray(product.rating)"></i>
-                <i class="far fa-star" *ngFor="let star of getEmptyStarArray(product.rating)"></i>
-              </span>
-              <span class="rating-text ms-2">{{ product.rating }} ({{ product.reviews }} reviews)</span>
-            </div>
-
-            <!-- Price -->
-            <div class="price-section mb-3">
+          <div class="mt-auto d-flex justify-content-between align-items-center">
+            <div class="price-section">
               <span class="current-price">₹{{ product.price }}</span>
-              <span class="original-price ms-2" *ngIf="product.originalPrice > product.price">₹{{ product.originalPrice }}</span>
-              <span class="price-unit">per kg</span>
-            </div>
-
-            <!-- Features -->
-            <div class="product-features mb-3">
-              <span class="feature-tag" *ngFor="let feature of product.features">
-                <i class="fas fa-check-circle"></i> {{ feature }}
+              <span class="original-price" *ngIf="product.originalPrice"
+                >₹{{ product.originalPrice }}</span
+              >
+              <span class="discount" *ngIf="product.originalPrice">
+                {{
+                  ((product.originalPrice - product.price) /
+                    product.originalPrice) *
+                    100 | number : "1.0-0"
+                }}% off
               </span>
             </div>
 
-            <!-- Description -->
-            <p class="card-text description">{{ product.description }}</p>
+            <div class="action-buttons">
+              <button
+                *ngIf="product.quantity === 0"
+                class="btn btn-add"
+                (click)="addToCart(product, $event)"
+              >
+                Add +
+              </button>
 
-            <!-- Action Buttons -->
-            <div class="mt-auto">
-              <div class="row g-2">
-                <div class="col-7">
-                  <button class="btn btn-premium w-100" (click)="addToCart(product, $event)">
-                    <i class="fas fa-shopping-cart"></i> Add to Cart
-                  </button>
-                </div>
-                <div class="col-5">
-                  <button class="btn btn-outline-premium w-100" (click)="onProductClick(product.id)">
-                    <i class="fas fa-heart"></i> Wishlist
-                  </button>
-                </div>
+              <div
+                *ngIf="product.quantity > 0"
+                class="quantity-stepper"
+              >
+                <button
+                  class="stepper-btn"
+                  (click)="decreaseQuantity(product, $event)"
+                >
+                  &ndash;
+                </button>
+                <span class="quantity-display">{{ product.quantity }}</span>
+                <button
+                  class="stepper-btn"
+                  (click)="increaseQuantity(product, $event)"
+                >
+                  +
+                </button>
               </div>
             </div>
           </div>
-        </div>
+          </div>
       </div>
     </div>
+  </div>
 
-    <!-- Empty State -->
-    <div class="row" *ngIf="chickenProducts.length === 0">
-      <div class="col-12 text-center">
-        <div class="empty-state py-5">
-          <i class="fas fa-drumstick-bite fa-4x text-muted mb-3"></i>
-          <h3 class="text-muted">No Chicken Products Available</h3>
-          <p class="text-muted">Check back later for fresh chicken products!</p>
-        </div>
+  <div class="row" *ngIf="chickenProducts.length === 0">
+    <div class="col-12 text-center">
+      <div class="empty-state py-5">
+        <i class="fas fa-drumstick-bite fa-4x text-muted mb-3"></i>
+        <h3 class="text-muted">No Chicken Products Available</h3>
+        <p class="text-muted">Check back later for fresh chicken products!</p>
       </div>
     </div>
   </div>
 </div>
-

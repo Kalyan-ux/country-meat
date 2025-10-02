@@ -1,7 +1,7 @@
-import { CommonModule } from "@angular/common";
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { FormsModule } from "@angular/forms";
-import { Router, RouterModule } from "@angular/router";
+import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 
 // Cart Item Interface
 export interface CartItem {
@@ -36,10 +36,9 @@ export interface Coupon {
   selector: 'cm-cart-view',
   templateUrl: './cart-view.component.html',
   styleUrls: ['./cart-view.component.scss'],
-  imports: [CommonModule, FormsModule, RouterModule]
+  imports: [CommonModule, FormsModule, RouterModule],
 })
 export class CartViewComponent implements OnInit, OnDestroy {
-  
   // Cart data
   cartItems: CartItem[] = [
     {
@@ -55,7 +54,7 @@ export class CartViewComponent implements OnInit, OnDestroy {
       unit: 'kg',
       category: 'Chicken',
       discount: 10,
-      isAvailable: true
+      isAvailable: true,
     },
     {
       id: '2',
@@ -70,8 +69,8 @@ export class CartViewComponent implements OnInit, OnDestroy {
       unit: 'pack',
       category: 'Chicken',
       discount: 8,
-      isAvailable: true
-    }
+      isAvailable: true,
+    },
   ];
 
   // Coupon data
@@ -84,7 +83,7 @@ export class CartViewComponent implements OnInit, OnDestroy {
       description: 'Get 10% off on fresh meat',
       discount: 10,
       type: 'percentage',
-      minOrderValue: 500
+      minOrderValue: 500,
     },
     {
       code: 'NEWUSER',
@@ -92,7 +91,7 @@ export class CartViewComponent implements OnInit, OnDestroy {
       description: '₹100 off for new customers',
       discount: 100,
       type: 'fixed',
-      minOrderValue: 1000
+      minOrderValue: 1000,
     },
     {
       code: 'BULK20',
@@ -101,8 +100,8 @@ export class CartViewComponent implements OnInit, OnDestroy {
       discount: 20,
       type: 'percentage',
       minOrderValue: 2000,
-      maxDiscount: 500
-    }
+      maxDiscount: 500,
+    },
   ];
 
   // Delivery and pricing
@@ -115,7 +114,7 @@ export class CartViewComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadCartData();
   }
-  
+
   ngOnDestroy(): void {
     // Cleanup if needed
   }
@@ -155,7 +154,9 @@ export class CartViewComponent implements OnInit, OnDestroy {
 
   // Item management
   removeItem(item: CartItem): void {
-    const index = this.cartItems.findIndex(cartItem => cartItem.id === item.id);
+    const index = this.cartItems.findIndex(
+      (cartItem) => cartItem.id === item.id
+    );
     if (index > -1) {
       this.cartItems.splice(index, 1);
       this.updateCartTotal();
@@ -178,8 +179,8 @@ export class CartViewComponent implements OnInit, OnDestroy {
 
   // Coupon management
   applyCoupon(): void {
-    const coupon = this.availableOffers.find(offer => 
-      offer.code.toLowerCase() === this.couponCode.toLowerCase()
+    const coupon = this.availableOffers.find(
+      (offer) => offer.code.toLowerCase() === this.couponCode.toLowerCase()
     );
 
     if (coupon) {
@@ -189,7 +190,9 @@ export class CartViewComponent implements OnInit, OnDestroy {
         this.couponCode = '';
         console.log('Coupon applied:', coupon.name);
       } else {
-        alert(`Minimum order value of ₹${coupon.minOrderValue} required for this coupon.`);
+        alert(
+          `Minimum order value of ₹${coupon.minOrderValue} required for this coupon.`
+        );
       }
     } else {
       alert('Invalid coupon code');
@@ -202,7 +205,9 @@ export class CartViewComponent implements OnInit, OnDestroy {
       this.appliedCoupon = offer;
       console.log('Offer applied:', offer.name);
     } else {
-      alert(`Minimum order value of ₹${offer.minOrderValue} required for this offer.`);
+      alert(
+        `Minimum order value of ₹${offer.minOrderValue} required for this offer.`
+      );
     }
   }
 
@@ -220,7 +225,10 @@ export class CartViewComponent implements OnInit, OnDestroy {
   }
 
   getSubtotal(): number {
-    return this.cartItems.reduce((total, item) => total + this.getItemTotal(item), 0);
+    return this.cartItems.reduce(
+      (total, item) => total + this.getItemTotal(item),
+      0
+    );
   }
 
   getCouponDiscount(): number {
@@ -255,9 +263,9 @@ export class CartViewComponent implements OnInit, OnDestroy {
 
   getTotalSavings(): number {
     let savings = 0;
-    
+
     // Savings from item discounts
-    this.cartItems.forEach(item => {
+    this.cartItems.forEach((item) => {
       if (item.originalPrice && item.originalPrice > item.price) {
         savings += (item.originalPrice - item.price) * item.quantity;
       }

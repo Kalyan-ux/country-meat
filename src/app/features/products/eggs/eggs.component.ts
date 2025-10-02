@@ -1,97 +1,138 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core'; // MODIFIED: Imported OnInit
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-eggs',
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './eggs.component.html',
-  styleUrl: './eggs.component.scss'
+  styleUrl: './eggs.component.scss',
 })
-export class EggsComponent {
-  
-  title = 'Egg Products';
-  
-  // Premium egg products data
-  eggProducts = [
+export class EggsComponent implements OnInit {
+  title = 'EggProducts';
+
+  // Note to be shared across all egg products
+  eggNote =
+    'The color of country eggs may vary depending on the breed of the hen. The color of the eggshell has no impact on the taste, nutritional value or the quality of the egg.';
+
+  initialEggProducts = [
     {
       id: 1,
-      name: 'Farm Fresh Brown Eggs',
-      price: 129,
-      originalPrice: 149,
-      image: 'assets/images/eggs.jpg',
-      badge: 'BESTSELLER',
-      rating: 4.9,
-      reviews: 324,
-      description: 'Premium farm fresh brown eggs from free-range hens. Rich in protein and omega-3.',
-      features: ['Free Range', 'Organic Feed', 'Antibiotic Free'],
-      packSize: '12 pieces'
+      name: 'Free Range Original Country Chicken Eggs',
+      description:
+        'These Country Eggs are laid by rare original native Country Hens (Country Queen) — naturally hatched and lovingly raised in open free-range farms.',
+      price: 180,
+      originalPrice: 180, // ADDED
+      packOptions: [
+        { label: 'Pack of 6', price: 180 },
+        { label: 'Pack of 12', price: 360 },
+      ],
+      image: 'assets/images/products/eggs/egg-2.png',
+      features: [
+        'Protein Rich',
+        'Packed with Minerals',
+        'Low-Fat',
+        'High Omega-3',
+        'Free Range',
+        'Packed with Vitamins',
+      ],
+      note: this.eggNote,
     },
     {
       id: 2,
-      name: 'Organic White Eggs',
-      price: 99,
-      originalPrice: 119,
-      image: 'assets/images/eggs1.png',
-      badge: 'ORGANIC',
-      rating: 4.7,
-      reviews: 267,
-      description: 'Certified organic white eggs from cage-free chickens. Perfect for daily nutrition.',
-      features: ['Certified Organic', 'Cage Free', 'Non-GMO Feed'],
-      packSize: '10 pieces'
+      name: 'Free Range Country Chicken Eggs',
+      description:
+        'These Country Eggs are laid by breeds like sonali raised in open free-range farms. Pure, wholesome, and rich in nutrition, just the way nature intended.',
+      price: 119,
+      originalPrice: 119, // ADDED
+      packOptions: [
+        { label: 'Pack of 6', price: 119 },
+        { label: 'Pack of 12', price: 239 },
+        { label: 'Pack of 30', price: 594 },
+      ],
+      image: 'assets/images/products/eggs/egg-1.png',
+      features: [
+        'Protein Rich',
+        'Nutritious',
+        'Chemical-free',
+        'Omega-3',
+        'Free-Range',
+      ],
+      note: this.eggNote,
     },
     {
       id: 3,
-      name: 'Country Fresh Eggs Tray',
-      price: 189,
-      originalPrice: 209,
-      image: 'assets/images/eggs.jpg',
-      badge: 'FAMILY PACK',
-      rating: 4.8,
-      reviews: 156,
-      description: 'Large family pack of fresh country eggs. Great value for families.',
-      features: ['Family Size', 'Fresh Daily', 'Village Sourced'],
-      packSize: '18 pieces'
+      name: 'Cage Free Country Chicken Eggs',
+      description:
+        'These Country Eggs are laid by breeds like sonali & Aseel raised out of battery cages. Known for their balanced nutrition and authentic taste.',
+      price: 99,
+      originalPrice: 99, // ADDED
+      packOptions: [
+        { label: 'Pack of 6', price: 99 },
+        { label: 'Pack of 12', price: 195 },
+        { label: 'Pack of 30', price: 489 },
+      ],
+      image: 'assets/images/products/eggs/egg-3.png',
+      features: [
+        'Protein Rich',
+        'Nutritious',
+        'Chemical-free',
+        'Better fat profile',
+      ],
+      note: this.eggNote,
     },
-    {
-      id: 4,
-      name: 'Premium Duck Eggs',
-      price: 159,
-      originalPrice: 179,
-      image: 'assets/images/eggs1.png',
-      badge: 'PREMIUM',
-      rating: 4.6,
-      reviews: 89,
-      description: 'Rare premium duck eggs with rich flavor. Perfect for gourmet cooking.',
-      features: ['Gourmet Quality', 'Rich Flavor', 'Limited Edition'],
-      packSize: '6 pieces'
-    }
   ];
 
-  // Hero section data
+  constructor(private router: Router) {}
+
+  eggProducts: any[] = []; // This will hold the products with quantities
+
   heroSection = {
     title: 'Country Egg Collection',
     subtitle: 'Farm Fresh • Organic • Naturally Nutritious',
-    backgroundImage: 'assets/images/banner_image4.jpg'
+    backgroundImage: 'assets/images/banner_image4.jpg',
   };
 
+  ngOnInit(): void {
+    this.eggProducts = this.initialEggProducts.map((p) => ({
+      ...p,
+      quantity: 0,
+    }));
+  }
+
   onProductClick(productId: number) {
-    console.log('Product clicked:', productId);
-    // Add navigation logic to product details
+    this.router.navigate(['products/product-details-eggs'], {
+      queryParams: { id: productId },
+    });
+  }
+
+  getDiscount(originalPrice: number, currentPrice: number): number {
+    if (!originalPrice || !currentPrice || originalPrice <= currentPrice)
+      return 0;
+    return Math.round(((originalPrice - currentPrice) / originalPrice) * 100);
   }
 
   addToCart(product: any, event: Event) {
     event.stopPropagation();
-    console.log('Added to cart:', product);
-    // Add to cart logic here
+    product.quantity = 1;
   }
 
-  getStarArray(rating: number): number[] {
-    return Array(Math.floor(rating)).fill(0);
+  increaseQuantity(product: any, event: Event) {
+    event.stopPropagation();
+    product.quantity++;
   }
 
-  getEmptyStarArray(rating: number): number[] {
-    return Array(5 - Math.floor(rating)).fill(0);
+  decreaseQuantity(product: any, event: Event) {
+    event.stopPropagation();
+    if (product.quantity > 0) {
+      product.quantity--;
+    }
+  }
+
+  onPackChange(product: any, event: Event): void {
+    event.stopPropagation();
+    const selectedPrice = (event.target as HTMLSelectElement).value;
+    product.price = Number(selectedPrice);
   }
 }

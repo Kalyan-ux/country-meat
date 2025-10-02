@@ -5,10 +5,11 @@
       <div class="row justify-content-center">
         <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
           <div class="tptrack__product mt-40 mb-40">
-
             <div class="tptrack__content grey-bg">
               <div class="tptrack__item d-flex mb-20">
-                <div class="tptrack__item-icon"><i class="fa fa-unlock"></i></div>
+                <div class="tptrack__item-icon">
+                  <i class="fa fa-unlock"></i>
+                </div>
                 <div class="tptrack__item-content">
                   <h4 class="tptrack__item-title">Sign In</h4>
                   <p>Enter your Mobile number and proceed login via OTP.</p>
@@ -16,27 +17,34 @@
               </div>
               <form (ngSubmit)="onLogin()">
                 <div class="tptrack__mobile mb-40">
-                  <div class="tpsign__input"><span><i class="fa fa-mobile"></i></span><input id="mobile"
-                      placeholder="Enter Mobile number" type="text" name="mobile" [(ngModel)]="mobile" required></div>
-                  <div style="color: red;"></div>
+                  <div class="tpsign__input">
+                    <span><i class="fa fa-mobile"></i></span
+                    ><input
+                      id="mobile"
+                      placeholder="Enter Mobile number"
+                      type="text"
+                      name="mobile"
+                      [(ngModel)]="mobile"
+                      required
+                    />
+                  </div>
+                  <div style="color: red"></div>
                 </div>
-              
+
                 <div class="tptrack__btn">
-                  <button type="button" (click)="onLogin()" class="tptrack__submition tpsign__reg">Proceed Via
-                    OTP<i class="fa fa-long-arrow-right"></i>
+                  <button
+                    type="button"
+                    (click)="onLogin()"
+                    class="tptrack__submition tpsign__reg"
+                  >
+                    Proceed Via OTP<i class="fa fa-long-arrow-right"></i>
                   </button>
                 </div>
-
               </form>
             </div>
-
           </div>
-
-
         </div>
       </div>
-
     </div>
-
   </section>
 </div>

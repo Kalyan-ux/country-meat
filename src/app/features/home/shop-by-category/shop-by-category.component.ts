@@ -1,6 +1,12 @@
-import { CommonModule } from "@angular/common";
-import { Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from "@angular/core";
-import { RouterModule } from "@angular/router";
+import { CommonModule } from '@angular/common';
+import {
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -8,11 +14,9 @@ import { RouterModule } from "@angular/router";
   templateUrl: './shop-by-category.component.html',
   styleUrls: ['./shop-by-category.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  imports: [CommonModule, RouterModule]
+  imports: [CommonModule, RouterModule],
 })
-
 export class ShopByCategoryComponent implements OnInit, OnDestroy {
-
   isDesktopView: boolean = true;
 
   categories = [
@@ -23,7 +27,7 @@ export class ShopByCategoryComponent implements OnInit, OnDestroy {
       description: 'Fresh & Premium',
       image: '../../../../assets/images/chicken.jpg',
       itemCount: '15+ Varieties',
-      route: '/products/chicken'
+      route: '/products/chicken',
     },
     {
       id: 'eggs',
@@ -32,7 +36,7 @@ export class ShopByCategoryComponent implements OnInit, OnDestroy {
       description: 'Farm Fresh Daily',
       image: '../../../../assets/images/eggs1.png',
       itemCount: '8+ Varieties',
-      route: '/products/eggs'
+      route: '/products/eggs',
     },
     {
       id: 'mutton',
@@ -41,7 +45,7 @@ export class ShopByCategoryComponent implements OnInit, OnDestroy {
       description: 'Premium Cuts',
       image: '../../../../assets/images/mutton.jpg',
       itemCount: '12+ Cuts',
-      route: '/products/mutton'
+      route: '/products/mutton',
     },
     {
       id: 'seafood',
@@ -50,10 +54,10 @@ export class ShopByCategoryComponent implements OnInit, OnDestroy {
       description: 'Ocean Fresh',
       image: '../../../../assets/images/seafood.jpg',
       itemCount: '10+ Varieties',
-      route: '/products/seafood'
-    }
+      route: '/products/seafood',
+    },
   ];
-    
+
   ngOnInit(): void {
     this.updateViewModel();
   }
@@ -68,5 +72,4 @@ export class ShopByCategoryComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {}
-
 }

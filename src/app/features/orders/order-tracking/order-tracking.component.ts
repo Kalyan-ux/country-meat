@@ -30,22 +30,18 @@ interface TrackingOrder {
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './order-tracking.component.html',
-  styleUrls: ['./order-tracking.component.scss']
+  styleUrls: ['./order-tracking.component.scss'],
 })
 export class OrderTrackingComponent implements OnInit {
-
   order: TrackingOrder | null = null;
   isLoading: boolean = false;
   searchOrderId: string = '';
   searchError: string = '';
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       const orderId = params['orderId'];
       if (orderId) {
         this.searchOrderId = orderId;
@@ -67,9 +63,10 @@ export class OrderTrackingComponent implements OnInit {
     setTimeout(() => {
       this.order = this.getMockOrderTracking(this.searchOrderId);
       this.isLoading = false;
-      
+
       if (!this.order) {
-        this.searchError = 'Order not found. Please check your order ID and try again.';
+        this.searchError =
+          'Order not found. Please check your order ID and try again.';
       }
     }, 1500);
   }
@@ -87,7 +84,7 @@ export class OrderTrackingComponent implements OnInit {
         description: 'Your order has been placed successfully',
         timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000), // 4 hours ago
         isCompleted: true,
-        isActive: false
+        isActive: false,
       },
       {
         status: 'confirmed',
@@ -95,7 +92,7 @@ export class OrderTrackingComponent implements OnInit {
         description: 'Your order has been confirmed and is being prepared',
         timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000), // 3 hours ago
         isCompleted: true,
-        isActive: false
+        isActive: false,
       },
       {
         status: 'preparing',
@@ -103,7 +100,7 @@ export class OrderTrackingComponent implements OnInit {
         description: 'Your fresh products are being prepared with care',
         timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
         isCompleted: true,
-        isActive: false
+        isActive: false,
       },
       {
         status: 'packed',
@@ -111,22 +108,22 @@ export class OrderTrackingComponent implements OnInit {
         description: 'Your order has been packed and ready for dispatch',
         timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000), // 1 hour ago
         isCompleted: true,
-        isActive: true
+        isActive: true,
       },
       {
         status: 'dispatched',
         title: 'Order Dispatched',
         description: 'Your order is on the way to your location',
         isCompleted: false,
-        isActive: false
+        isActive: false,
       },
       {
         status: 'delivered',
         title: 'Delivered',
         description: 'Your order has been delivered successfully',
         isCompleted: false,
-        isActive: false
-      }
+        isActive: false,
+      },
     ];
 
     return {
@@ -139,7 +136,7 @@ export class OrderTrackingComponent implements OnInit {
       paymentMethod: 'Cash on Delivery',
       estimatedDelivery: new Date(Date.now() + 2 * 60 * 60 * 1000), // 2 hours from now
       currentStatus: 'packed',
-      statusHistory: orderStatuses
+      statusHistory: orderStatuses,
     };
   }
 
@@ -147,30 +144,32 @@ export class OrderTrackingComponent implements OnInit {
     return date.toLocaleDateString('en-IN', {
       day: 'numeric',
       month: 'short',
-      year: 'numeric'
+      year: 'numeric',
     });
   }
 
   formatTime(date: Date): string {
     return date.toLocaleTimeString('en-IN', {
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
     });
   }
 
   getTimeAgo(date: Date): string {
     const now = new Date();
-    const diffInMinutes = Math.floor((now.getTime() - date.getTime()) / (1000 * 60));
-    
+    const diffInMinutes = Math.floor(
+      (now.getTime() - date.getTime()) / (1000 * 60)
+    );
+
     if (diffInMinutes < 60) {
       return `${diffInMinutes} min ago`;
     }
-    
+
     const diffInHours = Math.floor(diffInMinutes / 60);
     if (diffInHours < 24) {
       return `${diffInHours} hour${diffInHours > 1 ? 's' : ''} ago`;
     }
-    
+
     const diffInDays = Math.floor(diffInHours / 24);
     return `${diffInDays} day${diffInDays > 1 ? 's' : ''} ago`;
   }

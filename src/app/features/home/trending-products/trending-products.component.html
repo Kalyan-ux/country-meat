@@ -1,304 +1,94 @@
-<!-- BEGIN sections : trending-products-group -->
-<div id="section-trending-products" class="countrymeat-section">
-  <section class="home-page-section trending-products-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12">
-          <!-- Modern Left-Aligned Header -->
-          <div class="section-header-ecommerce mb-4">
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="section-titles">
-                <h3 class="section-title-left mb-2">Trending Products</h3>
-                <p class="section-subtitle-left text-muted mb-0">Popular choices from our premium meat collection</p>
-              </div>
-              <a routerLink="/products" class="btn btn-primary">
-                View All Products <i class="fa fa-shopping-bag ms-2"></i>
-              </a>
+<div class="full-section">
+  <section class="trending-products-section">
+    <h2 class="section-title-left mb-2">Best Sellers</h2>
+    <h6 class="section-subtitle">Most popular products near you</h6>
+    <div class="horizontal-scroll-container">
+      <div class="trending-item" *ngFor="let product of TrendingProducts">
+        <div
+          class="card product-card h-100"
+          (click)="onProductClick(product.id)"
+        >
+          <div class="card-img-wrapper">
+            <img
+              [src]="product.image"
+              class="card-img-top"
+              [alt]="product.name"
+            />
+            <div *ngIf="product.specialBadge" class="special-badge">
+              ({{ product.specialBadge }})
             </div>
           </div>
 
-          <div class="trending-products-horizontal">
-            <div class="horizontal-scroll-container">
+          <div class="card-body d-flex flex-column">
+            <div>
+              <h5 class="product-name">{{ product.name }}</h5>
+              <p class="product-subtitle" *ngIf="product.subtitle">
+                {{ product.subtitle }}
+              </p>
+              <p class="product-age">{{ product.age }}</p>
 
-              <!-- Product 1: Country King -->
-              <div class="trending-item horizontal-card">
-                <div class="meat-product-card">
-                  <div class="product-image-section">
-                    <div class="product-badge">Best Seller</div>
-                    <img src="../../../assets/images/products/country-king-a.jpg" alt="Country King" class="product-main-image">
-                    <div class="product-overlay">
-                      <div class="quick-actions">
-                        <button class="action-btn wishlist-btn">
-                          <i class="fa fa-heart"></i>
-                        </button>
-                        <button class="action-btn quick-view-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                          <i class="fa fa-eye"></i>
-                        </button>
-                        <button class="action-btn cart-btn">
-                          <i class="fa fa-shopping-cart"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="product-info-section">
-                    <div class="product-category">Premium Chicken</div>
-                    <h3 class="product-name">Country King</h3>
-                    <p class="product-description">Top-notch and delicious chicken, naturally raised with premium care</p>
-                    <div class="product-specs">
-                      <div class="spec-item">
-                        <i class="fa fa-weight"></i>
-                        <span>1000g</span>
-                      </div>
-                      <div class="spec-item">
-                        <i class="fa fa-cut"></i>
-                        <span>14-22 Pieces</span>
-                      </div>
-                      <div class="spec-item">
-                        <i class="fa fa-users"></i>
-                        <span>Serves 6</span>
-                      </div>
-                    </div>
-                    <div class="product-rating">
-                      <cm-product-ratings></cm-product-ratings>
-                      <span class="rating-text">(4.8/5)</span>
-                    </div>
-                    <div class="price-section">
-                      <span class="current-price">₹650</span>
-                      <span class="original-price">₹700</span>
-                      <span class="discount-badge">7% OFF</span>
-                    </div>
-                    <button class="add-to-cart-btn">
-                      <i class="fa fa-shopping-bag"></i>
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
+              <div class="product-features">
+                <span
+                  class="feature-tag"
+                  *ngFor="let feature of product.features"
+                  >{{ feature }}</span
+                >
               </div>
 
-              <!-- Product 2: Country Queen -->
-              <div class="trending-item horizontal-card">
-                <div class="meat-product-card">
-                  <div class="product-image-section">
-                    <div class="product-badge trending">Trending</div>
-                    <img src="../../../assets/images/categories/country-queen.jpg" alt="Country Queen" class="product-main-image">
-                    <div class="product-overlay">
-                      <div class="quick-actions">
-                        <button class="action-btn wishlist-btn">
-                          <i class="fa fa-heart"></i>
-                        </button>
-                        <button class="action-btn quick-view-btn">
-                          <i class="fa fa-eye"></i>
-                        </button>
-                        <button class="action-btn cart-btn">
-                          <i class="fa fa-shopping-cart"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="product-info-section">
-                    <div class="product-category">Premium Chicken</div>
-                    <h3 class="product-name">Country Queen</h3>
-                    <p class="product-description">Premium quality country chicken, perfect for family meals</p>
-                    <div class="product-specs">
-                      <div class="spec-item">
-                        <i class="fa fa-weight"></i>
-                        <span>800g</span>
-                      </div>
-                      <div class="spec-item">
-                        <i class="fa fa-cut"></i>
-                        <span>12-18 Pieces</span>
-                      </div>
-                      <div class="spec-item">
-                        <i class="fa fa-users"></i>
-                        <span>Serves 4</span>
-                      </div>
-                    </div>
-                    <div class="product-rating">
-                      <cm-product-ratings></cm-product-ratings>
-                      <span class="rating-text">(4.6/5)</span>
-                    </div>
-                    <div class="price-section">
-                      <span class="current-price">₹380</span>
-                      <span class="original-price">₹420</span>
-                      <span class="discount-badge">10% OFF</span>
-                    </div>
-                    <button class="add-to-cart-btn">
-                      <i class="fa fa-shopping-bag"></i>
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
+              <div class="product-weight">
+                <img
+                  src="assets/icon/weight.png"
+                  alt="Weight"
+                  class="weight-icon"
+                />
+                <span>{{ product.weight }}</span>
               </div>
-
-              <!-- Product 3: Fresh Country Eggs -->
-              <div class="trending-item horizontal-card">
-                <div class="meat-product-card">
-                  <div class="product-image-section">
-                    <div class="product-badge fresh">Farm Fresh</div>
-                    <img src="../../../assets/images/eggs1.png" alt="Fresh Country Eggs" class="product-main-image">
-                    <div class="product-overlay">
-                      <div class="quick-actions">
-                        <button class="action-btn wishlist-btn">
-                          <i class="fa fa-heart"></i>
-                        </button>
-                        <button class="action-btn quick-view-btn">
-                          <i class="fa fa-eye"></i>
-                        </button>
-                        <button class="action-btn cart-btn">
-                          <i class="fa fa-shopping-cart"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="product-info-section">
-                    <div class="product-category">Fresh Eggs</div>
-                    <h3 class="product-name">Country Eggs</h3>
-                    <p class="product-description">Farm fresh country chicken eggs, collected daily for maximum freshness</p>
-                    <div class="product-specs">
-                      <div class="spec-item">
-                        <i class="fa fa-egg"></i>
-                        <span>12 Pieces</span>
-                      </div>
-                      <div class="spec-item">
-                        <i class="fa fa-leaf"></i>
-                        <span>Farm Fresh</span>
-                      </div>
-                      <div class="spec-item">
-                        <i class="fa fa-clock"></i>
-                        <span>Daily Collection</span>
-                      </div>
-                    </div>
-                    <div class="product-rating">
-                      <cm-product-ratings></cm-product-ratings>
-                      <span class="rating-text">(4.9/5)</span>
-                    </div>
-                    <div class="price-section">
-                      <span class="current-price">₹120</span>
-                      <span class="value-badge">Great Value</span>
-                    </div>
-                    <button class="add-to-cart-btn">
-                      <i class="fa fa-shopping-bag"></i>
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Product 4: Kadaknath Chicken -->
-              <div class="trending-item horizontal-card">
-                <div class="meat-product-card">
-                  <div class="product-image-section">
-                    <div class="product-badge premium">Premium</div>
-                    <img src="../../../assets/images/categories/kadaknath-country-chicken.jpg" alt="Kadaknath Chicken" class="product-main-image">
-                    <div class="product-overlay">
-                      <div class="quick-actions">
-                        <button class="action-btn wishlist-btn">
-                          <i class="fa fa-heart"></i>
-                        </button>
-                        <button class="action-btn quick-view-btn">
-                          <i class="fa fa-eye"></i>
-                        </button>
-                        <button class="action-btn cart-btn">
-                          <i class="fa fa-shopping-cart"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="product-info-section">
-                    <div class="product-category">Premium Chicken</div>
-                    <h3 class="product-name">Kadaknath Chicken</h3>
-                    <p class="product-description">Premium Kadaknath chicken, rich in nutrients and exceptional flavor</p>
-                    <div class="product-specs">
-                      <div class="spec-item">
-                        <i class="fa fa-weight"></i>
-                        <span>1200g</span>
-                      </div>
-                      <div class="spec-item">
-                        <i class="fa fa-cut"></i>
-                        <span>16-24 Pieces</span>
-                      </div>
-                      <div class="spec-item">
-                        <i class="fa fa-users"></i>
-                        <span>Serves 7</span>
-                      </div>
-                    </div>
-                    <div class="product-rating">
-                      <cm-product-ratings></cm-product-ratings>
-                      <span class="rating-text">(4.7/5)</span>
-                    </div>
-                    <div class="price-section">
-                      <span class="current-price">₹650</span>
-                      <span class="original-price">₹700</span>
-                      <span class="discount-badge">7% OFF</span>
-                    </div>
-                    <button class="add-to-cart-btn">
-                      <i class="fa fa-shopping-bag"></i>
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Product 5: Country Warrior -->
-              <div class="trending-item horizontal-card">
-                <div class="meat-product-card">
-                  <div class="product-image-section">
-                    <div class="product-badge new">New Arrival</div>
-                    <img src="../../../assets/images/categories/country-warrior.jpg" alt="Country Warrior" class="product-main-image">
-                    <div class="product-overlay">
-                      <div class="quick-actions">
-                        <button class="action-btn wishlist-btn">
-                          <i class="fa fa-heart"></i>
-                        </button>
-                        <button class="action-btn quick-view-btn">
-                          <i class="fa fa-eye"></i>
-                        </button>
-                        <button class="action-btn cart-btn">
-                          <i class="fa fa-shopping-cart"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="product-info-section">
-                    <div class="product-category">Premium Chicken</div>
-                    <h3 class="product-name">Country Warrior</h3>
-                    <p class="product-description">Robust and flavorful chicken, perfect for hearty meals and special occasions</p>
-                    <div class="product-specs">
-                      <div class="spec-item">
-                        <i class="fa fa-weight"></i>
-                        <span>1500g</span>
-                      </div>
-                      <div class="spec-item">
-                        <i class="fa fa-cut"></i>
-                        <span>18-26 Pieces</span>
-                      </div>
-                      <div class="spec-item">
-                        <i class="fa fa-users"></i>
-                        <span>Serves 8</span>
-                      </div>
-                    </div>
-                    <div class="product-rating">
-                      <cm-product-ratings></cm-product-ratings>
-                      <span class="rating-text">(4.5/5)</span>
-                    </div>
-                    <div class="price-section">
-                      <span class="current-price">₹850</span>
-                      <span class="original-price">₹950</span>
-                      <span class="discount-badge">11% OFF</span>
-                    </div>
-                    <button class="add-to-cart-btn">
-                      <i class="fa fa-shopping-bag"></i>
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-
             </div>
-          </div>
+
+            <div class="mt-auto price-action-container">
+              <div class="price-details">
+                <span class="current-price">₹{{ product.price }}</span>
+                <span
+                  class="original-price"
+                  *ngIf="getDiscount(product.originalPrice, product.price) > 0"
+                  >₹{{ product.originalPrice }}</span
+                >
+                <span
+                  class="discount"
+                  *ngIf="getDiscount(product.originalPrice, product.price) > 0"
+                >
+                  {{ getDiscount(product.originalPrice, product.price) }}% off
+                </span>
+              </div>
+
+              <div class="action-buttons">
+                <button
+                  *ngIf="product.quantity === 0"
+                  class="btn btn-add"
+                  (click)="addToCart(product, $event)"
+                >
+                  Add +
+                </button>
+                <div *ngIf="product.quantity > 0" class="quantity-stepper">
+                  <button
+                    class="stepper-btn"
+                    (click)="decreaseQuantity(product, $event)"
+                  >
+                    &ndash;
+                  </button>
+                  <span class="quantity-display">{{ product.quantity }}</span>
+                  <button
+                    class="stepper-btn"
+                    (click)="increaseQuantity(product, $event)"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+            </div>
         </div>
       </div>
     </div>
   </section>
-
 </div>

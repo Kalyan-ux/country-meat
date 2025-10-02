@@ -1,9 +1,14 @@
+.section-customer-reviews {
+  padding: 0;
+  margin: 0;
+}
+
 .customer-reviews-section {
-  background: #ffffff;
-  padding-top: 20px; // Reduced from 50px to 20px for minimal gap
+  background: #fff;
+  padding-top: 0px; // Reduced from 50px to 20px for minimal gap
   padding-bottom: 20px; // Reduced from 50px to 20px for minimal gap
   position: relative;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -19,7 +24,7 @@
 .section-title {
   text-align: center;
   margin-bottom: 40px;
-  
+
   h2 {
     font-size: 2.5rem;
     font-weight: 700;
@@ -27,7 +32,7 @@
     margin-bottom: 15px;
     position: relative;
     display: inline-block;
-    
+
     &::after {
       content: '';
       position: absolute;
@@ -40,7 +45,7 @@
       border-radius: 2px;
     }
   }
-  
+
   .section-subtitle {
     font-size: 1.1rem;
     color: #6c757d;
@@ -54,7 +59,7 @@
     padding-top: 15px; // Reduced from 40px to 15px
     padding-bottom: 15px; // Reduced from 40px to 15px
   }
-  
+
   .section-title h2 {
     font-size: 2.2rem;
   }
@@ -65,14 +70,14 @@
     padding-top: 10px; // Reduced from 30px to 10px
     padding-bottom: 10px; // Reduced from 30px to 10px
   }
-  
+
   .section-title {
     margin-bottom: 30px;
-    
+
     h2 {
       font-size: 1.8rem;
     }
-    
+
     .section-subtitle {
       font-size: 1rem;
     }
@@ -87,15 +92,15 @@
 
 .testimonial-slider .testi-content {
   padding: 40px 30px;
-  background: rgba(255, 255, 255, 0.95);
+  background: #fff;
   backdrop-filter: blur(10px);
   border: none;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -106,10 +111,10 @@
     background: linear-gradient(135deg, rgba(220, 53, 69, 0.02) 0%, rgba(255, 107, 107, 0.02) 100%);
     pointer-events: none;
   }
-  
+
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
   }
 }
 
@@ -148,7 +153,7 @@
   margin: 20px 0;
   z-index: 2;
   position: relative;
-  
+
   p {
     font-size: 1rem;
     line-height: 1.7;
@@ -179,23 +184,23 @@
   margin-top: 25px;
   z-index: 2;
   position: relative;
-  
+
   .author-name {
     font-size: 1.1rem;
     font-weight: 600;
     color: #2c3e50;
     margin-bottom: 8px;
   }
-  
+
   .author-review {
     margin-top: 8px;
     color: #ffc107;
     font-size: 1.1rem;
-    
+
     i {
       margin: 0 2px;
       transition: all 0.2s ease;
-      
+
       &:hover {
         transform: scale(1.2);
       }
@@ -214,30 +219,30 @@
     width: 100%;
     padding: 30px 20px;
     border-radius: 15px;
-    
+
     .review-content {
       margin: 15px 0;
-      
+
       p {
         font-size: 0.95rem;
       }
     }
-    
+
     .author-detail {
       margin-top: 20px;
-      
+
       .author-name {
         font-size: 1rem;
       }
     }
-    
+
     &:before {
       width: 60px;
       height: 60px;
       font-size: 20px;
       margin-bottom: 15px;
     }
-    
+
     h4 {
       font-size: 1.2rem;
       margin: 15px 0 10px;

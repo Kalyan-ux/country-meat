@@ -10,7 +10,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
   selector: 'country-meat-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [CommonModule, RouterModule, NavbarComponent, FooterComponent]
+  imports: [CommonModule, RouterModule, NavbarComponent, FooterComponent],
 })
 export class AppComponent implements OnInit {
   title = 'country-meat-frontoffice';
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     // Listen to route changes to detect splash page
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+      .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         this.isSplashPage = event.url === '/splash';
       });
