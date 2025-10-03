@@ -88,12 +88,6 @@ export class EggsComponent implements OnInit {
 
   eggProducts: any[] = []; // This will hold the products with quantities
 
-  heroSection = {
-    title: 'Country Egg Collection',
-    subtitle: 'Farm Fresh • Organic • Naturally Nutritious',
-    backgroundImage: 'assets/images/banner_image4.jpg',
-  };
-
   ngOnInit(): void {
     this.eggProducts = this.initialEggProducts.map((p) => ({
       ...p,

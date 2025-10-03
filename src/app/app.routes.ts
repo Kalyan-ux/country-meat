@@ -12,6 +12,7 @@ import { ChickenComponent } from './features/products/chicken/chicken.component'
 import { EggsComponent } from './features/products/eggs/eggs.component';
 import { ProductListingComponent } from './features/products/product-listing/product-listing.component';
 import { SplashComponent } from './features/splash/splash.component';
+import { ProductDetailsComponentEggs } from './features/product-details-eggs/product-details-eggs.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,6 +24,7 @@ export const routes: Routes = [
   { path: 'products', component: ProductListingComponent },
   { path: 'products/chicken', component: ChickenComponent },
   { path: 'products/product-details', component: ProductDetailsComponent },
+  {path: 'products/product-details-eggs', component: ProductDetailsComponentEggs },
   { path: 'products/eggs', component: EggsComponent },
   { path: 'products/:category', component: ProductListingComponent },
   { path: 'cart', component: CartViewComponent },

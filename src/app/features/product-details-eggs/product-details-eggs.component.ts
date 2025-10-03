@@ -16,7 +16,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
   templateUrl: './product-details-eggs.component.html',
   styleUrl: './product-details-eggs.component.scss',
 })
-export class ProductDetailsComponent implements OnInit, AfterViewInit {
+export class ProductDetailsComponentEggs implements OnInit, AfterViewInit {
   @ViewChild('relatedProductsContainer') relatedProductsContainer!: ElementRef;
 
   productId!: number;
@@ -27,18 +27,13 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   showAddToCart: boolean = false;
   showLeftArrow: boolean = false;
   showRightArrow: boolean = true;
+  isDescriptionExpanded: boolean = false;
 
   allImages: string[] = [];
   selectedImage!: string;
 
   sharedHealthBenefits = [
-    'Nutritional superiority, Higher Protein-to-Fat Ratio.',
-    'Calcium & Phosphorus Rich – Supports strong bones and teeth',
-    'Rich in Protein & Omega-3s – Higher in lean protein, essential vitamins, and healthy fats for better well-being.',
-    'Lower Fat Content – Leaner than commercially raised chicken, making it a healthier option',
-    'More Collagen – improves joint and skin health.',
-    'Rich in Micro nutrients - Higher levels of iron, zinc, and B vitamins, which boost immunity.',
-    'Better option for long-term health',
+    'Contains vital nutrients – Vitamins A, B5, B12 and E, including phosphorus and iodine, helps to improve good cholesterol levels and aids weight management',
   ];
 
   products = [
@@ -46,6 +41,8 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       id: 1,
       name: 'Free Range Original Country Chicken Eggs',
       subtitle: 'Rare variety of high-protein eggs that come cleaned',
+      description:
+        'These Country Eggs are laid by rare original native Country Hens (Country Queen) — naturally hatched and lovingly raised in open free-range farms. Pure, wholesome, and rich in authentic nutrition, just the way nature intended. Unlike other breeds, these heritage hens lay only a limited number of eggs each year, making every egg truly special, nutrient-rich, and authentic.',
       features: [
         'Protein rich',
         'Free-Range',
@@ -61,6 +58,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       id: 2,
       name: 'Free Range Original Country Chicken Eggs',
       subtitle: 'Rare variety of high-protein eggs that come cleaned',
+      description:'These Country Eggs are laid by breeds like sonali raised in open free-range farms. Pure, wholesome, and rich in nutrition, just the way nature intended.',
       features: [
         'Protein rich',
         'Free-Range',
@@ -76,6 +74,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       id: 3,
       name: 'Free Range Original Country Chicken Eggs',
       subtitle: 'Rare variety of high-protein eggs that come cleaned',
+      description:'These Country Eggs are laid by breeds like sonali & Aseel raised out of battery cages. Known for their balanced nutrition and authentic taste, they’re a wholesome choice for the whole family.',
       features: [
         'Protein rich',
         'Free-Range',
