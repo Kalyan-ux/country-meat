@@ -24,9 +24,6 @@
 
     <!-- Cart Content -->
     <div class="cart-content" *ngIf="cartItems.length > 0; else emptyCart">
-      <div class="row">
-        <!-- Cart Items Section -->
-        <div class="col-lg-8">
           <div class="cart-items-section">
             <div class="section-header">
               <h3>Cart Items ({{ cartItems.length }})</h3>
@@ -38,10 +35,20 @@
 
             <!-- Cart Items List -->
             <div class="cart-items-list">
-              <div class="cart-item" *ngFor="let item of cartItems; trackBy: trackByItemId">
+              <div
+                class="cart-item"
+                *ngFor="let item of cartItems; trackBy: trackByItemId"
+              >
                 <div class="item-image">
-                  <img [src]="item.image" [alt]="item.name" class="product-image">
-                  <div class="item-badge" *ngIf="item.discount && item.discount > 0">
+                  <img
+                    [src]="item.image"
+                    [alt]="item.name"
+                    class="product-image"
+                  />
+                  <div
+                    class="item-badge"
+                    *ngIf="item.discount && item.discount > 0"
+                  >
                     -{{ item.discount }}%
                   </div>
                 </div>
@@ -73,7 +80,8 @@
                       <button
                         class="quantity-btn minus"
                         (click)="decreaseQuantity(item)"
-                        [disabled]="item.quantity <= 1">
+                        [disabled]="item.quantity <= 1"
+                      >
                         <i class="fa fa-minus"></i>
                       </button>
                       <input
@@ -82,11 +90,13 @@
                         [(ngModel)]="item.quantity"
                         (ngModelChange)="updateQuantity(item, $event)"
                         [min]="1"
-                        [max]="item.maxQuantity || 99">
+                        [max]="item.maxQuantity || 99"
+                      />
                       <button
                         class="quantity-btn plus"
                         (click)="increaseQuantity(item)"
-                        [disabled]="item.quantity >= (item.maxQuantity || 99)">
+                        [disabled]="item.quantity >= (item.maxQuantity || 99)"
+                      >
                         <i class="fa fa-plus"></i>
                       </button>
                     </div>
@@ -95,11 +105,19 @@
                   <!-- Price Section -->
                   <div class="item-pricing">
                     <div class="price-breakdown">
-                      <span class="original-price" *ngIf="item.originalPrice && item.originalPrice !== item.price">
+                      <span
+                        class="original-price"
+                        *ngIf="
+                          item.originalPrice &&
+                          item.originalPrice !== item.price
+                        "
+                      >
                         ₹{{ item.originalPrice }}
                       </span>
                       <span class="current-price">₹{{ item.price }}</span>
-                      <span class="price-per-unit">per {{ item.unit || 'kg' }}</span>
+                      <span class="price-per-unit"
+                        >per {{ item.unit || "kg" }}</span
+                      >
                     </div>
                     <div class="total-price">
                       <strong>₹{{ getItemTotal(item) }}</strong>
@@ -111,13 +129,15 @@
                     <button
                       class="action-btn save-later"
                       (click)="saveForLater(item)"
-                      title="Save for Later">
+                      title="Save for Later"
+                    >
                       <i class="fa fa-heart"></i>
                     </button>
                     <button
                       class="action-btn remove-item"
                       (click)="removeItem(item)"
-                      title="Remove Item">
+                      title="Remove Item"
+                    >
                       <i class="fa fa-trash-alt"></i>
                     </button>
                   </div>
@@ -133,34 +153,37 @@
               </a>
             </div>
           </div>
-        </div>
 
-        <!-- Cart Summary Section -->
-        <div class="col-lg-4">
-          <div class="cart-summary">
-            <h3 class="summary-title">Order Summary</h3>
+          <!-- Cart Summary Section -->
+          <div class="col-lg-4">
+            <div class="cart-summary">
+              <h3 class="summary-title">Order Summary</h3>
 
-            <!-- Coupon Code Section -->
-            <div class="coupon-section">
-              <h4>Apply Coupon</h4>
-              <div class="coupon-input-group">
-                <input
+              <!-- Coupon Code Section -->
+              <div class="coupon-section">
+                <h4>Apply Coupon</h4>
+                <div class="coupon-input-group">
+                  <input
                   type="text"
                   class="coupon-input"
                   placeholder="Enter coupon code"
                   [(ngModel)]="couponCode"
-                  #couponInput>
-                <button
+                  #couponInput
+                  />
+                  <button
                   class="apply-coupon-btn"
                   (click)="applyCoupon()"
-                  [disabled]="!couponCode.trim()">
+                  [disabled]="!couponCode.trim()"
+                  >
                   Apply
                 </button>
               </div>
               <div class="applied-coupon" *ngIf="appliedCoupon">
                 <div class="coupon-info">
                   <span class="coupon-name">{{ appliedCoupon.name }}</span>
-                  <span class="coupon-discount">-₹{{ appliedCoupon.discount }}</span>
+                  <span class="coupon-discount"
+                  >-₹{{ appliedCoupon.discount }}</span
+                  >
                   <button class="remove-coupon" (click)="removeCoupon()">
                     <i class="fa fa-times"></i>
                   </button>
@@ -171,7 +194,9 @@
                 <div class="suggestion" *ngFor="let offer of availableOffers">
                   <span class="offer-code">{{ offer.code }}</span>
                   <span class="offer-desc">{{ offer.description }}</span>
-                  <button class="apply-offer" (click)="applyOffer(offer)">Apply</button>
+                  <button class="apply-offer" (click)="applyOffer(offer)">
+                    Apply
+                  </button>
                 </div>
               </div>
             </div>
@@ -179,24 +204,28 @@
             <!-- Price Calculation -->
             <div class="price-calculation">
               <div class="calculation-row">
-                <span class="label">Subtotal ({{ getTotalItems() }} items)</span>
+                <span class="label"
+                >Subtotal ({{ getTotalItems() }} items)</span
+                >
                 <span class="value">₹{{ getSubtotal() }}</span>
               </div>
               <div class="calculation-row" *ngIf="appliedCoupon">
                 <span class="label discount">Coupon Discount</span>
-                <span class="value discount">-₹{{ appliedCoupon.discount }}</span>
+                <span class="value discount"
+                >-₹{{ appliedCoupon.discount }}</span
+                >
               </div>
               <div class="calculation-row">
                 <span class="label">Delivery Charges</span>
                 <span class="value" [class.free]="deliveryCharges === 0">
-                  {{ deliveryCharges === 0 ? 'FREE' : '₹' + deliveryCharges }}
+                  {{ deliveryCharges === 0 ? "FREE" : "₹" + deliveryCharges }}
                 </span>
               </div>
               <div class="calculation-row tax-row">
                 <span class="label">Taxes & Fees</span>
                 <span class="value">₹{{ getTaxAmount() }}</span>
               </div>
-              <hr class="divider">
+              <hr class="divider" />
               <div class="calculation-row total-row">
                 <span class="label">Total Amount</span>
                 <span class="value">₹{{ getTotalAmount() }}</span>
@@ -219,7 +248,9 @@
               </div>
               <div class="delivery-address">
                 <i class="fa fa-map-marker-alt"></i>
-                <span>Deliver to: {{ deliveryAddress || 'Select Address' }}</span>
+                <span
+                >Deliver to: {{ deliveryAddress || "Select Address" }}</span
+                >
                 <a href="#" class="change-address">Change</a>
               </div>
             </div>
@@ -229,7 +260,8 @@
               <button
                 class="checkout-btn"
                 (click)="proceedToCheckout()"
-                [disabled]="cartItems.length === 0">
+                [disabled]="cartItems.length === 0"
+                >
                 <i class="fa fa-lock"></i>
                 Proceed to Checkout
                 <span class="checkout-amount">₹{{ getTotalAmount() }}</span>
@@ -243,6 +275,7 @@
         </div>
       </div>
     </div>
+  </div>
 
     <!-- Empty Cart State -->
     <ng-template #emptyCart>
@@ -251,12 +284,14 @@
           <i class="fa fa-shopping-cart"></i>
         </div>
         <h2>Your cart is empty</h2>
-        <p>Looks like you haven't made your choice yet. Browse our fresh collection and add items to cart.</p>
+        <p>
+          Looks like you haven't made your choice yet. Browse our fresh
+          collection and add items to cart.
+        </p>
         <a routerLink="/products" class="shop-now-btn">
           <i class="fa fa-store"></i>
           Start Shopping
         </a>
       </div>
     </ng-template>
-  </div>
-</div>
+

@@ -73,13 +73,14 @@
 
   // Cart Content Layout
   .cart-content {
-    .row {
-      gap: 2rem;
-    }
+display: flex;
+  gap: 2rem;
+  align-items: flex-start; // Aligns items to the top
   }
 
   // Cart Items Section
   .cart-items-section {
+    flex: 2;
     background: white;
     border-radius: 16px;
     padding: 2rem;
@@ -400,6 +401,7 @@
 
   // Cart Summary Section
   .cart-summary {
+    flex: 1;
     background: white;
     border-radius: 16px;
     padding: 2rem;
@@ -799,8 +801,13 @@
     }
   }
 
+
+
   // Responsive Design
   @media (max-width: 1024px) {
+  //     .cart-content {
+  //   flex-direction: column; // Stacks the items vertically
+  // }
     .cart-summary {
       position: static;
       margin-top: 2rem;
