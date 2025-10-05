@@ -1,0 +1,103 @@
+.faq-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 3rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #fff8f0; // Brighter cream
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+
+  h1 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #b71c1c; // Dark red heading
+    font-size: 2.4rem;
+    font-weight: bold;
+  }
+
+  .faq-item {
+    background: #ffccbc; // Brighter pastel red
+    border-radius: 14px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+    }
+
+    .faq-question {
+      cursor: pointer;
+      font-weight: 700; // More bold
+      padding: 1.4rem 1.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #d84315; // Darker red text
+      transition: background 0.3s, color 0.3s;
+
+      &:hover {
+        background: #ffab91; // Brighter hover
+        color: #bf360c;
+      }
+
+      .arrow {
+        display: inline-block;
+        transition: transform 0.3s ease;
+        font-size: 1.3rem;
+
+        &.open {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 1.6rem;
+      font-weight: 500; // Slightly bold
+      line-height: 1.7;
+      color: #4e342e; // Dark brown text
+      background: #fff3e0; // Light cream
+      border-top: 1px solid #ffd6cc;
+      transition: max-height 0.5s ease, padding 0.5s ease;
+
+      &.open {
+        max-height: 600px;
+        padding: 1.2rem 1.6rem;
+      }
+    }
+  }
+
+  // Back to Home button styling
+  .back-button-container {
+    text-align: center;
+    margin-top: 3rem;
+
+    .back-home-btn {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      background-color: #ef5350; // Soft red
+      color: #fff; // Cream text
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+      transition: background-color 0.3s, transform 0.2s;
+
+      &:hover {
+        background-color: #e53935; // Darker red on hover
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+// Optional fade-in animation for answers
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

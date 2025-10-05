@@ -31,13 +31,19 @@ export const routes: Routes = [
   { path: 'products/product-details-eggs', component: ProductDetailsComponentEggs },
   { path: 'products/eggs', component: EggsComponent },
   { path: 'products/:category', component: ProductListingComponent },
-  { path: 'terms', component: TermsAndConditionsComponent },
+
+  // Important pages
+  { path: 'terms-and-conditions', component: TermsAndConditionsComponent },
   { path: 'faq', component: FaqComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'order-cancellation', component: OrderCancellationComponent },
+
+  // Cart and checkout
   { path: 'cart', component: CartViewComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'order-confirmation', component: OrderConfirmationComponent },
   { path: 'order-tracking', component: OrderTrackingComponent },
+
+  // Wildcard redirect
   { path: '**', redirectTo: '' },
 ];

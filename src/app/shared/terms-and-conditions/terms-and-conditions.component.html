@@ -1,1 +1,10 @@
-<p>terms-and-conditions works!</p>
+<div class="terms-container">
+  <h1>Terms & Conditions</h1>
+  <div *ngFor="let term of terms" class="term-item">
+    <h3>{{ term.title }}</h3>
+    <p>{{ term.content }}</p>
+  </div>
+  <div class="back-button-container">
+    <a routerLink="/" class="back-home-btn">Back to Home</a>
+  </div>
+</div>

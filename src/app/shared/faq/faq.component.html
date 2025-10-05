@@ -1,1 +1,18 @@
-<p>faq works!</p>
+<div class="faq-container">
+  <h1>Frequently Asked Questions</h1>
+
+  <div class="faq-item" *ngFor="let faq of faqs; let i = index">
+    <div class="faq-question" (click)="toggleFaq(i)">
+      {{ faq.question }}
+      <span class="arrow" [class.open]="faq.open">▼</span>
+    </div>
+    <div class="faq-answer" [class.open]="faq.open">
+      {{ faq.answer }}
+    </div>
+  </div>
+
+  <!-- Back to Home Button -->
+  <div class="back-button-container">
+    <a routerLink="/" class="back-home-btn">← Back to Home</a>
+  </div>
+</div>
