@@ -16,6 +16,7 @@ import { ProductDetailsComponentEggs } from './features/product-details-eggs/pro
 import { OrderCancellationComponent } from './shared/order-cancellation/order-cancellation.component';
 import { FaqComponent } from './shared/faq/faq.component';
 import { PrivacyPolicyComponent } from './shared/privacy-policy/privacy-policy.component';
+import { TermsAndConditionsComponent } from './shared/terms-and-conditions/terms-and-conditions.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,12 +31,13 @@ export const routes: Routes = [
   { path: 'products/product-details-eggs', component: ProductDetailsComponentEggs },
   { path: 'products/eggs', component: EggsComponent },
   { path: 'products/:category', component: ProductListingComponent },
-  { path: 'order-cancellation', component: OrderCancellationComponent},
-  { path: 'faq', component: FaqComponent},
-  { path: 'privacy-policy', component: PrivacyPolicyComponent},
+  { path: 'terms', component: TermsAndConditionsComponent },
+  { path: 'faq', component: FaqComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'order-cancellation', component: OrderCancellationComponent },
   { path: 'cart', component: CartViewComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'order-confirmation', component: OrderConfirmationComponent },
   { path: 'order-tracking', component: OrderTrackingComponent },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
 ];
