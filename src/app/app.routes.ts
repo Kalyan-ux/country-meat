@@ -13,6 +13,9 @@ import { EggsComponent } from './features/products/eggs/eggs.component';
 import { ProductListingComponent } from './features/products/product-listing/product-listing.component';
 import { SplashComponent } from './features/splash/splash.component';
 import { ProductDetailsComponentEggs } from './features/product-details-eggs/product-details-eggs.component';
+import { OrderCancellationComponent } from './shared/order-cancellation/order-cancellation.component';
+import { FaqComponent } from './shared/faq/faq.component';
+import { PrivacyPolicyComponent } from './shared/privacy-policy/privacy-policy.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,9 +27,12 @@ export const routes: Routes = [
   { path: 'products', component: ProductListingComponent },
   { path: 'products/chicken', component: ChickenComponent },
   { path: 'products/product-details', component: ProductDetailsComponent },
-  {path: 'products/product-details-eggs', component: ProductDetailsComponentEggs },
+  { path: 'products/product-details-eggs', component: ProductDetailsComponentEggs },
   { path: 'products/eggs', component: EggsComponent },
   { path: 'products/:category', component: ProductListingComponent },
+  { path: 'order-cancellation', component: OrderCancellationComponent},
+  { path: 'faq', component: FaqComponent},
+  { path: 'privacy-policy', component: PrivacyPolicyComponent},
   { path: 'cart', component: CartViewComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'order-confirmation', component: OrderConfirmationComponent },
