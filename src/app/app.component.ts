@@ -19,14 +19,21 @@ export class AppComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    // Listen to route changes to detect splash page
+    // Listen to route changes
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
+        // Check for splash page
         this.isSplashPage = event.url === '/splash';
+
+        // 👇 Scroll to top when navigating to any new page
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth', // for smooth scrolling
+        });
       });
 
-    // Check initial route
+    // Check initial route on load
     this.isSplashPage = this.router.url === '/splash';
   }
 }
