@@ -40,13 +40,14 @@
           <span class="lato-text">Categories</span>
         </a>
         <div class="dropdown-menu" [class.show]="isCategoriesDropdownOpen">
-          <a routerLink="/products/chicken" class="dropdown-item" (click)="closeCategoriesDropdown()">
-            <img src="assets/images/chicken.jpg" alt="Chicken" class="dropdown-item-icon">
-            <div class="dropdown-item-content">
-              <span class="dropdown-item-title">Country Chicken</span>
-              <span class="dropdown-item-desc">Premium quality chicken cuts</span>
-            </div>
-          </a>
+         <a routerLink="/products/chicken" class="dropdown-item" (click)="closeCategoriesDropdown()">
+  <img src="assets/images/categories/country-king-0.png" alt="Chicken" class="dropdown-item-icon">
+  <div class="dropdown-item-content">
+    <span class="dropdown-item-title">Country Chicken</span>
+    <span class="dropdown-item-desc">Premium quality chicken cuts</span>
+  </div>
+</a>
+
           <a routerLink="/products/eggs" class="dropdown-item" (click)="closeCategoriesDropdown()">
             <img src="assets/images/products/eggs/egg-1.png" alt="Eggs" class="dropdown-item-icon">
             <div class="dropdown-item-content">
@@ -55,21 +56,21 @@
             </div>
           </a>
           <div class="dropdown-item coming-soon">
-             <img src="assets/images/mutton.jpg" alt="Mutton" class="dropdown-item-icon">
-             <div class="dropdown-item-content">
-               <span class="dropdown-item-title">Mutton</span>
-               <span class="dropdown-item-desc">Premium goat meat</span>
-             </div>
-             <span class="coming-soon-badge">Coming Soon</span>
-          </div>
-          <div class="dropdown-item coming-soon">
-             <img src="assets/images/seafood.jpg" alt="Seafood" class="dropdown-item-icon">
-             <div class="dropdown-item-content">
-               <span class="dropdown-item-title">Seafood</span>
-               <span class="dropdown-item-desc">Daily catch from ocean</span>
-             </div>
-             <span class="coming-soon-badge">Coming Soon</span>
-          </div>
+  <img src="assets/images/categories/mutton.jpg" alt="Mutton" class="dropdown-item-icon">
+  <div class="dropdown-item-content">
+    <span class="dropdown-item-title">Mutton</span>
+    <span class="dropdown-item-desc">Premium goat meat</span>
+  </div>
+  <span class="coming-soon-badge">Coming Soon</span>
+</div>
+         <div class="dropdown-item coming-soon">
+  <img src="assets/images/categories/sea-food.jpg" alt="Seafood" class="dropdown-item-icon">
+  <div class="dropdown-item-content">
+    <span class="dropdown-item-title">Seafood</span>
+    <span class="dropdown-item-desc">Daily catch from ocean</span>
+  </div>
+  <span class="coming-soon-badge">Coming Soon</span>
+</div>
         </div>
       </div>
 
