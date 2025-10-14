@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   standalone: true,
   templateUrl: './order-cancellation.component.html',
   styleUrls: ['./order-cancellation.component.scss'],
-  imports: [] // RouterModule not needed if using navigate
+  imports: []
 })
 export class OrderCancellationComponent {
   constructor(private router: Router) {}

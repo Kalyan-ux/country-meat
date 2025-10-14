@@ -10,33 +10,54 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  // Property to track the dropdown state
   isCategoriesDropdownOpen = false;
+  isMobileMenuOpen = false; // Property for mobile menu state
 
-  // Reference to the dropdown container element
+  // Element references for closing menus on outside clicks
   @ViewChild('categoriesDropdown') categoriesDropdown!: ElementRef;
+  @ViewChild('navbarCollapse') navbarCollapse!: ElementRef;
+  @ViewChild('navbarToggler') navbarToggler!: ElementRef;
 
-  // Toggles the dropdown when the "Categories" link is clicked
+  // Toggles the "Categories" dropdown
   toggleCategoriesDropdown(event: Event): void {
-    event.stopPropagation(); // Prevents the document click listener from closing it immediately
+    event.stopPropagation();
     this.isCategoriesDropdownOpen = !this.isCategoriesDropdownOpen;
   }
 
-  // Closes the dropdown
+  // Closes the "Categories" dropdown
   closeCategoriesDropdown(): void {
     this.isCategoriesDropdownOpen = false;
   }
 
-  // Listens for clicks on the entire page to close the dropdown
-  // if the user clicks outside of it.
+  // Toggles the entire mobile navigation menu
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  // Closes the mobile menu (used when a link is clicked)
+  closeMobileMenu(): void {
+    this.isMobileMenuOpen = false;
+  }
+
+  // Listens for clicks on the document to close open menus
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event): void {
+    // Close categories dropdown if click is outside
     if (
       this.isCategoriesDropdownOpen &&
       !this.categoriesDropdown.nativeElement.contains(event.target)
     ) {
       this.closeCategoriesDropdown();
     }
+
+    // Close mobile menu if click is outside the menu and its toggler button
+    if (
+      this.isMobileMenuOpen &&
+      this.navbarCollapse &&
+      !this.navbarCollapse.nativeElement.contains(event.target) &&
+      !this.navbarToggler.nativeElement.contains(event.target)
+    ) {
+      this.closeMobileMenu();
+    }
   }
 }
-

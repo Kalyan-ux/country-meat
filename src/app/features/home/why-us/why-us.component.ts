@@ -67,12 +67,9 @@ export class WhyUsComponent implements AfterViewInit {
   // ADD THIS NEW HOST LISTENER
   @HostListener('window:load')
   onWindowLoad(): void {
-    // This runs the check again after all images are loaded,
-    // ensuring the container has its final width.
-    // A small timeout gives the browser a moment to settle.
     setTimeout(() => this.updateArrowVisibility(), 100);
   }
-  
+
   // Update arrow visibility on scroll
   onContainerScroll(): void {
     this.updateArrowVisibility();

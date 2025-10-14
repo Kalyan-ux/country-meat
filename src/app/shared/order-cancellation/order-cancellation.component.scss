@@ -9,6 +9,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   color: #333;
+  text-align: center; // This will center the button
 
   h1 {
     color: #ff3b3b; // strong red heading
@@ -25,9 +26,9 @@
     font-size: 22px;
   }
 
-  p, li {
-    font-size: 16px;
-    margin-bottom: 12px;
+  // Align text content back to the left
+  p, li, h1, h2 {
+    text-align: left;
   }
 
   ul {
@@ -47,13 +48,16 @@
   // back link at the bottom
   .back-link {
     display: inline-block;
+    align-items: center;
     margin-top: 20px;
-    padding: 8px 15px;
+    padding: 10px 25px; // Slightly increased padding for better appearance
     background-color: #ff6b6b;
     color: white;
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s;
+    border: none; // Ensure consistency across browsers
+    cursor: pointer; // Add pointer cursor for button element
 
     &:hover {
       background-color: #ff3b3b;
