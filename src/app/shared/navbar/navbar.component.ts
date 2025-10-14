@@ -22,6 +22,7 @@ export class NavbarComponent {
     this.isCategoriesDropdownOpen = !this.isCategoriesDropdownOpen;
   }
 
+
   // Closes the dropdown
   closeCategoriesDropdown(): void {
     this.isCategoriesDropdownOpen = false;
@@ -38,5 +39,15 @@ export class NavbarComponent {
       this.closeCategoriesDropdown();
     }
   }
+  isMobileMenuOpen = false;
+
+toggleMobileMenu() {
+  this.isMobileMenuOpen = !this.isMobileMenuOpen;
+}
+
+closeMobileMenu() {
+  this.isMobileMenuOpen = false;
+}
+
 }
 

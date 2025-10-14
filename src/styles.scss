@@ -621,3 +621,131 @@ a.go-to-wishlist {
     max-width: 1320px;
   }
 }
+/* ============================= */
+/* 🌐 RESPONSIVE ENHANCEMENTS */
+/* ============================= */
+
+/* General spacing adjustments for mobile */
+@media (max-width: 768px) {
+  body {
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  .home-page-section,
+  .page-section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .section-title h2 {
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+
+  .owl-nav {
+    display: none !important; /* Hide big carousel arrows on small devices */
+  }
+
+  .owl-dots {
+    bottom: 15px;
+  }
+
+  .single-product-wrap .product-image a.pro-img .img1,
+  .single-product-wrap .product-image a.pro-img .img2 {
+    height: 180px;
+  }
+
+  .product-content .product-title {
+    font-size: 16px;
+  }
+
+  .product-content .product-description span {
+    font-size: 13px;
+  }
+
+  .price-box .new-price,
+  .price-box .old-price {
+    font-size: 14px;
+  }
+
+  /* Stack products vertically on small screens */
+  .trending-item {
+    width: 100% !important;
+    margin: 10px 0 !important;
+  }
+
+  /* Center buttons and make them touch-friendly */
+  .purchase-btn {
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+  }
+
+  /* Fix container padding */
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 20px;
+  }
+
+  footer ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  footer a {
+    font-size: 14px;
+  }
+
+  /* Navbar */
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav a {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+/* ============================= */
+/* 📱 Medium Screens (Tablets) */
+/* ============================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .trending-item {
+    width: calc(50% - 20px);
+    margin: 10px;
+  }
+
+  .single-product-wrap .product-image a.pro-img .img1,
+  .single-product-wrap .product-image a.pro-img .img2 {
+    height: 220px;
+  }
+
+  .section-title h2 {
+    font-size: 26px;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+}
+
+/* ============================= */
+/* 💻 Large Screens (Desktop) */
+/* ============================= */
+@media (min-width: 1025px) {
+  .trending-item {
+    width: calc(25% - 20px);
+    margin: 10px;
+  }
+}
