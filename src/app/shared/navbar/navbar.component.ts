@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  // Property to track the dropdown state
+  // Property to track the categories dropdown state
   isCategoriesDropdownOpen = false;
 
   // Reference to the dropdown container element
@@ -21,7 +21,6 @@ export class NavbarComponent {
     event.stopPropagation(); // Prevents the document click listener from closing it immediately
     this.isCategoriesDropdownOpen = !this.isCategoriesDropdownOpen;
   }
-
 
   // Closes the dropdown
   closeCategoriesDropdown(): void {
@@ -34,20 +33,12 @@ export class NavbarComponent {
   onDocumentClick(event: Event): void {
     if (
       this.isCategoriesDropdownOpen &&
-      !this.categoriesDropdown.nativeElement.contains(event.target)
+      this.categoriesDropdown.nativeElement.contains(event.target)
     ) {
       this.closeCategoriesDropdown();
     }
   }
-  isMobileMenuOpen = false;
 
-toggleMobileMenu() {
-  this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  // NOTE: All mobile menu logic (isMobileMenuOpen, toggleMobileMenu) has been removed
+  // as it is no longer needed with the new bottom navigation bar.
 }
-
-closeMobileMenu() {
-  this.isMobileMenuOpen = false;
-}
-
-}
-

@@ -1,13 +1,11 @@
 <nav class="navbar-modern">
   <div class="container-fluid">
-    <!-- Logo -->
     <div class="navbar-logo">
       <a routerLink="/">
         <img src="assets/LOGO_ori.png" alt="Country Meat Logo" />
       </a>
     </div>
 
-    <!-- Location -->
     <div class="navbar-location">
       <i class="fa fa-map-marker location-icon"></i>
       <div class="location-details">
@@ -18,7 +16,6 @@
       </div>
     </div>
 
-    <!-- Search -->
     <div class="navbar-search">
       <div class="search-bar">
         <input
@@ -32,7 +29,6 @@
       </div>
     </div>
 
-    <!-- Desktop Actions -->
     <div class="navbar-actions">
       <div class="action-link-dropdown" #categoriesDropdown>
         <a class="action-link" (click)="toggleCategoriesDropdown($event)">
@@ -45,35 +41,19 @@
         </a>
         <div class="dropdown-menu" [class.show]="isCategoriesDropdownOpen">
           <a routerLink="/products/chicken" class="dropdown-item" (click)="closeCategoriesDropdown()">
-            <img src="assets/images/chicken.jpg" alt="Chicken" class="dropdown-item-icon">
-            <div class="dropdown-item-content">
-              <span class="dropdown-item-title">Country Chicken</span>
-              <span class="dropdown-item-desc">Premium quality chicken cuts</span>
-            </div>
-          </a>
-          <a routerLink="/products/eggs" class="dropdown-item" (click)="closeCategoriesDropdown()">
-            <img src="assets/images/products/eggs/egg-1.png" alt="Eggs" class="dropdown-item-icon">
-            <div class="dropdown-item-content">
-              <span class="dropdown-item-title">Country Eggs</span>
-              <span class="dropdown-item-desc">Fresh organic eggs daily</span>
-            </div>
-          </a>
-          <div class="dropdown-item coming-soon">
-             <img src="assets/images/mutton.jpg" alt="Mutton" class="dropdown-item-icon">
+             <img src="assets/images/chicken.jpg" alt="Chicken" class="dropdown-item-icon">
              <div class="dropdown-item-content">
-               <span class="dropdown-item-title">Mutton</span>
-               <span class="dropdown-item-desc">Premium goat meat</span>
+               <span class="dropdown-item-title">Country Chicken</span>
+               <span class="dropdown-item-desc">Premium quality chicken cuts</span>
              </div>
-             <span class="coming-soon-badge">Coming Soon</span>
-          </div>
-          <div class="dropdown-item coming-soon">
-             <img src="assets/images/seafood.jpg" alt="Seafood" class="dropdown-item-icon">
+           </a>
+           <a routerLink="/products/eggs" class="dropdown-item" (click)="closeCategoriesDropdown()">
+             <img src="assets/images/products/eggs/egg-1.png" alt="Eggs" class="dropdown-item-icon">
              <div class="dropdown-item-content">
-               <span class="dropdown-item-title">Seafood</span>
-               <span class="dropdown-item-desc">Daily catch from ocean</span>
+               <span class="dropdown-item-title">Country Eggs</span>
+               <span class="dropdown-item-desc">Fresh organic eggs daily</span>
              </div>
-             <span class="coming-soon-badge">Coming Soon</span>
-          </div>
+           </a>
         </div>
       </div>
 
@@ -98,7 +78,6 @@
       </a>
     </div>
 
-    <!-- Cart -->
     <div class="navbar-cart">
       <a routerLink="/cart" class="cart-button">
         <div class="cart-icon-wrapper">
@@ -110,20 +89,24 @@
         </div>
       </a>
     </div>
-
-   <!-- Hamburger for mobile -->
-<div class="navbar-hamburger" (click)="toggleMobileMenu()">
-  <i class="fa fa-bars"></i>
-</div>
-
-<!-- Collapsible Mobile Menu -->
-<div class="mobile-menu" [class.show]="isMobileMenuOpen">
-  <a routerLink="/" (click)="closeMobileMenu()">Home</a>
-  <a routerLink="/products/chicken" (click)="closeMobileMenu()">Chicken</a>
-  <a routerLink="/products/eggs" (click)="closeMobileMenu()">Eggs</a>
-  <a routerLink="/login" (click)="closeMobileMenu()">Login</a>
-  <a routerLink="/about" (click)="closeMobileMenu()">About Us</a>
-</div>
-
   </div>
 </nav>
+
+<div class="bottom-nav">
+  <a routerLink="/categories" class="bottom-nav-link">
+    <img src="assets/icon/categories.png" alt="Categories Icon" />
+    <span>Categories</span>
+  </a>
+  <a routerLink="/search" class="bottom-nav-link">
+    <i class="fa fa-search"></i>
+    <span>Search</span>
+  </a>
+  <a routerLink="/login" class="bottom-nav-link">
+    <img src="assets/icon/user.png" alt="Account Icon" />
+    <span>Account</span>
+  </a>
+  <a routerLink="/cart" class="bottom-nav-link">
+    <i class="fa fa-shopping-cart"></i>
+    <span>Cart</span>
+  </a>
+</div>
