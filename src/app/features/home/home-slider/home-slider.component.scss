@@ -5,7 +5,6 @@
 }
 
 .hero-slider-container {
-  // position: relative;
   height: 46vh;
 
   .hero-carousel {
@@ -83,18 +82,36 @@
   }
 }
 
-/* responsive heights */
+
+/* ================================================= */
+/* === RESPONSIVE FIXES (ONLY THIS PART IS CHANGED) === */
+/* ================================================= */
+
+/* For Tablets */
 @media (max-width: 768px) {
   .hero-slider-container,
   .hero-carousel,
   .hero-slide {
-    height: 60vh;
+    // CHANGED: Reduced height for a better tablet view
+    height: 40vh;
+  }
+
+  .hero-background .hero-bg-image {
+    // CHANGED: This makes the image fill the entire space without distortion
+    object-fit: cover;
   }
 }
+
+/* For Phones */
 @media (max-width: 576px) {
   .hero-slider-container,
   .hero-carousel,
   .hero-slide {
-    height: 50vh;
+    // CHANGED: Further reduced height for a better phone view
+    height: 12vh;
+    
+  
+    
   }
 }
+

@@ -39,5 +39,6 @@ export const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
   { path: 'order-confirmation', component: OrderConfirmationComponent },
   { path: 'order-tracking', component: OrderTrackingComponent },
+  
   { path: '**', redirectTo: '' },
 ];

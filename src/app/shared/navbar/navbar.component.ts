@@ -10,25 +10,31 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  // Property to track the categories dropdown state
+  // Property for the desktop categories dropdown
   isCategoriesDropdownOpen = false;
 
-  // Reference to the dropdown container element
+  // Property for the mobile search bar visibility
+  isMobileSearchActive = false;
+
   @ViewChild('categoriesDropdown') categoriesDropdown!: ElementRef;
 
-  // Toggles the dropdown when the "Categories" link is clicked
+  // Toggles the desktop categories dropdown
   toggleCategoriesDropdown(event: Event): void {
-    event.stopPropagation(); // Prevents the document click listener from closing it immediately
+    event.stopPropagation();
     this.isCategoriesDropdownOpen = !this.isCategoriesDropdownOpen;
   }
 
-  // Closes the dropdown
+  // Closes the desktop categories dropdown
   closeCategoriesDropdown(): void {
     this.isCategoriesDropdownOpen = false;
   }
 
-  // Listens for clicks on the entire page to close the dropdown
-  // if the user clicks outside of it.
+  // Toggles the mobile search bar visibility
+  toggleMobileSearch(): void {
+    this.isMobileSearchActive = !this.isMobileSearchActive;
+  }
+
+  // Listens for clicks on the page to close the categories dropdown
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event): void {
     if (
@@ -38,7 +44,4 @@ export class NavbarComponent {
       this.closeCategoriesDropdown();
     }
   }
-
-  // NOTE: All mobile menu logic (isMobileMenuOpen, toggleMobileMenu) has been removed
-  // as it is no longer needed with the new bottom navigation bar.
 }
