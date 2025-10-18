@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
+<<<<<<< HEAD
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+=======
+>>>>>>> updates
 
 @Component({
   selector: 'app-privacy-policy',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [],
   templateUrl: './privacy-policy.component.html',
+<<<<<<< HEAD
   styleUrl: './privacy-policy.component.scss',
 })
 export class PrivacyPolicyComponent {
@@ -18,5 +21,10 @@ export class PrivacyPolicyComponent {
   }
 }
   styleUrls: ['./privacy-policy.component.scss']
+=======
+  styleUrl: './privacy-policy.component.scss'
+>>>>>>> updates
 })
-export class PrivacyPolicyComponent {}
+export class PrivacyPolicyComponent {
+
+}

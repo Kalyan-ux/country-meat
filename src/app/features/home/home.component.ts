@@ -25,8 +25,4 @@ import { WhyUsComponent } from "./why-us/why-us.component";
 
 export class HomeComponent {
 
-  constructor() {
-    console.log('HomeComponent loaded');
-  }
-
 }

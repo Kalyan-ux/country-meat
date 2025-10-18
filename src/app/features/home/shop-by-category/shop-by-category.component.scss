@@ -4,11 +4,13 @@
   padding: 1rem 0;
   margin: 0 !important;
   margin-bottom: 1px;
+  
 }
 
 .section-header-ecommerce{
   margin-bottom: 0;
 }
+
 
 .category-carousel{
   margin-top: -28px;
@@ -21,7 +23,10 @@
     font-weight: 700;
     color: #2c3e50;
     margin-bottom: 0.1rem;
+  
+    
   }
+  
 
   .section-subtitle {
     font-size: 1.2rem;
@@ -209,6 +214,7 @@
 
   .section-header .section-title {
     font-size: 2.2rem;
+    
   }
 
   .category-card {
@@ -488,5 +494,23 @@
         transform: translateY(0);
       }
     }
+  }
+}
+/* =============================================== */
+/* === 📱 MOBILE RESPONSIVE FIX FOR CATEGORY TITLE === */
+/* =============================================== */
+
+@media (max-width: 768px) {
+  .section-header-ecommerce .d-flex {
+    /* Changes the alignment to center the title block */
+    justify-content: center !important;
+  ;
+  }
+
+  .section-header-ecommerce .section-titles {
+    /* Aligns the text inside the block to the center */
+    text-align: center;
+    font-weight: bold;
+  
   }
 }

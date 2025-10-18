@@ -383,3 +383,215 @@ i {
     text-align: center !important;
   }
 }
+/* 🌐 Responsive Additions for Feature + Footer Sections */
+
+/* 📱 Tablet Devices (≤1024px) */
+@media (max-width: 1024px) {
+  .pb-40 {
+    padding-bottom: 60px;
+  }
+
+  .pt-50 {
+    padding-top: 40px;
+  }
+
+  .tpfooter__widget-social-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .app-stores {
+    margin-left: 0;
+    align-items: flex-start;
+  }
+
+  .store-links a img {
+    height: 28px;
+  }
+
+  .tpfooter__widget {
+    margin-bottom: 30px;
+  }
+}
+
+/* 📱 Small Devices (≤768px) */
+@media (max-width: 768px) {
+  /* Feature Area */
+  .mainfeature__border {
+    border: none;
+  }
+
+  .mainfeature__icon img {
+    height: 22px;
+    width: 22px;
+  }
+
+  .mainfeature__title {
+    font-size: 11px;
+  }
+
+  .mainfeature__content p {
+    font-size: 13px;
+  }
+
+  .bulk-order-link {
+    flex-wrap: wrap;
+    font-size: 14px;
+  }
+
+  /* Footer Layout Adjustments */
+  .tpfooter__top {
+    border: none;
+  }
+
+  .tpfooter__widget-title {
+    font-size: 13px;
+  }
+
+  .tpfooter__widget p,
+  .tpfooter__widget-links ul li a,
+  .tpfooter__widget-time-info span {
+    font-size: 13px;
+  }
+
+  .tpfooter__widget-social-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .app-stores {
+    margin: 0;
+    align-items: flex-start;
+  }
+
+  .footer-contact-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .tpfooter_widget_social_icons {
+    gap: 10px;
+  }
+
+  .tpfooter_widget_social_icons a {
+    width: 28px;
+    height: 28px;
+  }
+
+  .footer-col-2,
+  .footer-col-3,
+  .footer-col-4 {
+    margin-left: 0 !important;
+  }
+
+  .footer-col-4:before {
+    display: none;
+  }
+
+  .tpfooter__widget-newsletter form input {
+    height: 45px;
+    padding: 5px 110px 5px 45px;
+  }
+
+  .tpfooter__widget-newsletter-submit {
+    right: 5px;
+  }
+
+  .tpfooter__copyright-text {
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .tpfooter__copyright-thumb {
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+
+/* 📱 Extra Small Devices (≤480px) */
+@media (max-width: 480px) {
+  /* Feature Section */
+  .pb-40,
+  .pt-50 {
+    padding: 30px 0;
+  }
+
+  .mainfeature__icon img {
+    height: 20px;
+    width: 20px;
+  }
+
+  .mainfeature__title {
+    font-size: 10px;
+  }
+
+  .mainfeature__content p {
+    font-size: 12px;
+  }
+
+  .bulk-order-link {
+    font-size: 13px;
+    justify-content: center;
+  }
+
+  /* Footer Section */
+  .tpfooter__widget {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .tpfooter__widget-social {
+    align-items: center;
+  }
+
+  .tpfooter__widget-social-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .app-stores {
+    align-items: center;
+    margin-left: 0;
+  }
+
+  .store-links {
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .store-links a img {
+    height: 26px;
+  }
+
+  .tpfooter_widget_social_icons {
+    justify-content: center;
+  }
+
+  .tpfooter__widget-newsletter form {
+    width: 100%;
+  }
+
+  .tpfooter__widget-newsletter form input {
+    font-size: 13px;
+    padding: 5px 100px 5px 40px;
+  }
+
+  .tp-news-btn {
+    font-size: 12px;
+    padding: 10px 20px;
+  }
+
+  .tpfooter__copyright-text {
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .tpfooter__copyright-thumb {
+    margin-top: 10px;
+    text-align: center;
+  }
+}

@@ -1,22 +1,28 @@
-<nav class="navbar-modern">
+<nav class="navbar-modern" [class.search-active]="isMobileSearchActive">
   <div class="container-fluid">
-    <div class="navbar-logo">
-      <a routerLink="/">
-        <img src="assets/LOGO_ori.png" alt="Country Meat Logo" />
-      </a>
-    </div>
-
-    <div class="navbar-location">
-      <i class="fa fa-map-marker location-icon"></i>
-      <div class="location-details">
-        <span class="location-city">
-          Bangalore <i class="fa fa-chevron-down"></i>
-        </span>
-        <span class="location-address">Bengaluru, Karnataka 560049, India</span>
+    <div class="navbar-left">
+      <div class="navbar-logo">
+        <a routerLink="/">
+          <img src="assets/LOGO_ori.png" alt="Country Meat Logo" />
+        </a>
+      </div>
+      <div class="navbar-location">
+        <i class="fa fa-map-marker location-icon"></i>
+        <div class="location-details">
+          <span class="location-city">
+            Bangalore <i class="fa fa-chevron-down"></i
+          ></span>
+          <span class="location-address"
+            >Bengaluru, Karnataka 560049, India</span
+          >
+        </div>
       </div>
     </div>
 
     <div class="navbar-search">
+      <button class="close-search-btn" (click)="toggleMobileSearch()">
+        <i class="fa fa-arrow-left"></i>
+      </button>
       <div class="search-bar">
         <input
           type="text"
@@ -37,7 +43,7 @@
             alt="Categories Icon"
             class="action-icon-img"
           />
-          <span class="lato-text">Categories</span>
+          <span>Categories</span>
         </a>
         <div class="dropdown-menu" [class.show]="isCategoriesDropdownOpen">
           <a
@@ -46,6 +52,7 @@
             (click)="closeCategoriesDropdown()"
           >
             <img
+<<<<<<< HEAD
               src="assets/images/products/ck/country-king-0.png"
               alt="Chicken"
               class="dropdown-item-icon"
@@ -77,11 +84,31 @@
 
           <a routerLink="/products/eggs" class="dropdown-item" (click)="closeCategoriesDropdown()">
             <img src="assets/images/products/eggs/egg-1.png" alt="Eggs" class="dropdown-item-icon">
+=======
+              src="assets/images/chicken.jpg"
+              alt="Chicken"
+              class="dropdown-item-icon"
+            />
+>>>>>>> updates
             <div class="dropdown-item-content">
-              <span class="dropdown-item-title">Country Eggs</span>
-              <span class="dropdown-item-desc">Fresh organic eggs daily</span>
+              <span class="dropdown-item-title">Country Chicken</span>
             </div>
           </a>
+          <a
+            routerLink="/products/eggs"
+            class="dropdown-item"
+            (click)="closeCategoriesDropdown()"
+          >
+            <img
+              src="assets/images/products/eggs/egg-1.png"
+              alt="Eggs"
+              class="dropdown-item-icon"
+            />
+            <div class="dropdown-item-content">
+              <span class="dropdown-item-title">Country Eggs</span>
+            </div>
+          </a>
+<<<<<<< HEAD
           <div class="dropdown-item coming-soon">
             <img
               src="assets/images/categories/mutton.jpg"
@@ -121,9 +148,10 @@
   </div>
   <span class="coming-soon-badge">Coming Soon</span>
 </div>
+=======
+>>>>>>> updates
         </div>
       </div>
-
       <a href="#" class="action-link">
         <img
           src="assets/icon/store.png"
@@ -158,3 +186,26 @@
     </div>
   </div>
 </nav>
+
+<div class="bottom-nav">
+    <a routerLink="/" class="bottom-nav-link">
+    <i class="fa fa-home"></i>
+    <span>Home</span>
+  </a>
+  <a routerLink="/about" class="bottom-nav-link">
+    <i class="fa fa-info-circle"></i>
+    <span>About Us</span>
+  </a>
+  <a class="bottom-nav-link" (click)="toggleMobileSearch()">
+    <i class="fa fa-search"></i>
+    <span>Search</span>
+  </a>
+  <a routerLink="/login" class="bottom-nav-link">
+    <img src="assets/icon/user.png" alt="Account Icon" />
+    <span>Account</span>
+  </a>
+  <a routerLink="/cart" class="bottom-nav-link">
+    <i class="fa fa-shopping-cart"></i>
+    <span>Cart</span>
+  </a>
+</div>

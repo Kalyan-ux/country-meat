@@ -635,6 +635,7 @@
         margin-bottom: 0;
       }
     }
+    
 
     .value-icon {
       background: linear-gradient(45deg, #ec2c34, #d12129);
@@ -652,6 +653,7 @@
         font-size: 1.5rem;
       }
     }
+    
 
     .value-content {
       .value-title {
@@ -1058,6 +1060,8 @@
       align-items: center;
       justify-content: center;
       margin: 0 auto 20px;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
 
       i {
         font-size: 1.5rem;
@@ -1192,5 +1196,20 @@
   .mission-vision-section .mission-card,
   .mission-vision-section .vision-card {
     padding: 30px 20px;
+  }
+}
+@media (max-width: 991px) {
+  /* This targets the specific card and forces the correct mobile layout */
+  .values-section .value-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  /* This forces the icon to have the correct spacing on mobile */
+  .values-section .value-card .value-icon {
+    margin-right: 9rem !important;
+    margin-bottom: 1.5rem !important;
   }
 }
