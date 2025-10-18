@@ -1,6 +1,5 @@
 <nav class="navbar-modern" [class.search-active]="isMobileSearchActive">
   <div class="container-fluid">
-
     <div class="navbar-left">
       <div class="navbar-logo">
         <a routerLink="/">
@@ -10,8 +9,12 @@
       <div class="navbar-location">
         <i class="fa fa-map-marker location-icon"></i>
         <div class="location-details">
-          <span class="location-city"> Bangalore <i class="fa fa-chevron-down"></i></span>
-          <span class="location-address">Bengaluru, Karnataka 560049, India</span>
+          <span class="location-city">
+            Bangalore <i class="fa fa-chevron-down"></i
+          ></span>
+          <span class="location-address"
+            >Bengaluru, Karnataka 560049, India</span
+          >
         </div>
       </div>
     </div>
@@ -21,30 +24,52 @@
         <i class="fa fa-arrow-left"></i>
       </button>
       <div class="search-bar">
-        <input type="text" class="search-input" placeholder="Search for products..."/>
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search for products..."
+        />
         <button class="search-button">
           <i class="fa fa-search"></i>
         </button>
       </div>
     </div>
 
-  
-    
     <div class="navbar-actions">
       <div class="action-link-dropdown" #categoriesDropdown>
         <a class="action-link" (click)="toggleCategoriesDropdown($event)">
-          <img src="assets/icon/categories.png" alt="Categories Icon" class="action-icon-img" />
+          <img
+            src="assets/icon/categories.png"
+            alt="Categories Icon"
+            class="action-icon-img"
+          />
           <span>Categories</span>
         </a>
         <div class="dropdown-menu" [class.show]="isCategoriesDropdownOpen">
-          <a routerLink="/products/chicken" class="dropdown-item" (click)="closeCategoriesDropdown()">
-            <img src="assets/images/chicken.jpg" alt="Chicken" class="dropdown-item-icon">
+          <a
+            routerLink="/products/chicken"
+            class="dropdown-item"
+            (click)="closeCategoriesDropdown()"
+          >
+            <img
+              src="assets/images/chicken.jpg"
+              alt="Chicken"
+              class="dropdown-item-icon"
+            />
             <div class="dropdown-item-content">
               <span class="dropdown-item-title">Country Chicken</span>
             </div>
           </a>
-          <a routerLink="/products/eggs" class="dropdown-item" (click)="closeCategoriesDropdown()">
-            <img src="assets/images/products/eggs/egg-1.png" alt="Eggs" class="dropdown-item-icon">
+          <a
+            routerLink="/products/eggs"
+            class="dropdown-item"
+            (click)="closeCategoriesDropdown()"
+          >
+            <img
+              src="assets/images/products/eggs/egg-1.png"
+              alt="Eggs"
+              class="dropdown-item-icon"
+            />
             <div class="dropdown-item-content">
               <span class="dropdown-item-title">Country Eggs</span>
             </div>
@@ -52,11 +77,19 @@
         </div>
       </div>
       <a href="#" class="action-link">
-        <img src="assets/icon/store.png" alt="Stores Icon" class="action-icon-img" />
+        <img
+          src="assets/icon/store.png"
+          alt="Stores Icon"
+          class="action-icon-img"
+        />
         <span>Stores</span>
       </a>
       <a routerLink="/login" class="action-link">
-        <img src="assets/icon/user.png" alt="User Icon" class="action-icon-img" />
+        <img
+          src="assets/icon/user.png"
+          alt="User Icon"
+          class="action-icon-img"
+        />
         <span>Login</span>
       </a>
       <a routerLink="/about" class="action-link" routerLinkActive="active">
@@ -79,6 +112,10 @@
 </nav>
 
 <div class="bottom-nav">
+    <a routerLink="/" class="bottom-nav-link">
+    <i class="fa fa-home"></i>
+    <span>Home</span>
+  </a>
   <a routerLink="/about" class="bottom-nav-link">
     <i class="fa fa-info-circle"></i>
     <span>About Us</span>
