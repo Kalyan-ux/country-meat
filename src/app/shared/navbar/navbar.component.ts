@@ -10,44 +10,27 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-<<<<<<< HEAD
-=======
-  // Property for the desktop categories dropdown
->>>>>>> updates
+  // Dropdown and UI states
   isCategoriesDropdownOpen = false;
-  isMobileMenuOpen = false; // Property for mobile menu state
-
-<<<<<<< HEAD
-  // Element references for closing menus on outside clicks
-=======
-  // Property for the mobile search bar visibility
+  isMobileMenuOpen = false;
   isMobileSearchActive = false;
 
->>>>>>> updates
+  // Element references for dropdown and collapsible areas
   @ViewChild('categoriesDropdown') categoriesDropdown!: ElementRef;
   @ViewChild('navbarCollapse') navbarCollapse!: ElementRef;
   @ViewChild('navbarToggler') navbarToggler!: ElementRef;
 
-<<<<<<< HEAD
-  // Toggles the "Categories" dropdown
-=======
   // Toggles the desktop categories dropdown
->>>>>>> updates
   toggleCategoriesDropdown(event: Event): void {
     event.stopPropagation();
     this.isCategoriesDropdownOpen = !this.isCategoriesDropdownOpen;
   }
 
-<<<<<<< HEAD
-  // Closes the "Categories" dropdown
-=======
   // Closes the desktop categories dropdown
->>>>>>> updates
   closeCategoriesDropdown(): void {
     this.isCategoriesDropdownOpen = false;
   }
 
-<<<<<<< HEAD
   // Toggles the entire mobile navigation menu
   toggleMobileMenu(): void {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
@@ -58,37 +41,34 @@ export class NavbarComponent {
     this.isMobileMenuOpen = false;
   }
 
-  // Listens for clicks on the document to close open menus
-=======
   // Toggles the mobile search bar visibility
   toggleMobileSearch(): void {
     this.isMobileSearchActive = !this.isMobileSearchActive;
   }
 
-  // Listens for clicks on the page to close the categories dropdown
->>>>>>> updates
+  // Closes menus when clicking outside their respective areas
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event): void {
+    const targetElement = event.target as HTMLElement;
+
     // Close categories dropdown if click is outside
     if (
       this.isCategoriesDropdownOpen &&
-      this.categoriesDropdown.nativeElement.contains(event.target)
+      this.categoriesDropdown &&
+      !this.categoriesDropdown.nativeElement.contains(targetElement)
     ) {
       this.closeCategoriesDropdown();
     }
 
-    // Close mobile menu if click is outside the menu and its toggler button
+    // Close mobile menu if click is outside the collapsible area and toggler
     if (
       this.isMobileMenuOpen &&
       this.navbarCollapse &&
-      !this.navbarCollapse.nativeElement.contains(event.target) &&
-      !this.navbarToggler.nativeElement.contains(event.target)
+      this.navbarToggler &&
+      !this.navbarCollapse.nativeElement.contains(targetElement) &&
+      !this.navbarToggler.nativeElement.contains(targetElement)
     ) {
       this.closeMobileMenu();
     }
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> updates
