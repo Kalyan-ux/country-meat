@@ -4,7 +4,7 @@
   margin-top: 0;
 
   @media (max-width: 768px) {
-    padding: 20px 0;
+    padding: 0px 0;
   }
 }
 
@@ -15,7 +15,7 @@
   padding: 0px 0;
 
   @media (max-width: 768px) {
-    padding: 20px 0;
+    padding: 0px 0;
   }
 }
 
@@ -27,7 +27,7 @@
     font-size: 2.5rem;
     font-weight: 700;
     color: #2c3e50;
-    margin: 40px 0 15px;
+    margin: 10px 0 15px; /* MODIFIED: Set top margin to 10px for a tiny bit of space */
     line-height: 1.2;
 
     @media (max-width: 768px) {
@@ -105,12 +105,14 @@
   }
 
   @media (max-width: 768px) {
-    width: 300px;
+    // Original width was 300px, reducing to 240px for smaller mobile screens
+    width: 240px; /* MODIFIED: Reduced width for mobile */
     height: 240px;
   }
 
   @media (max-width: 576px) {
-    width: 250px;
+    // Original width was 250px, reducing to 200px for smallest mobile screens
+    width: 280px; /* MODIFIED: Further reduced width for small mobile */
     height: 200px;
   }
 }
@@ -134,6 +136,8 @@
 
   @media (max-width: 768px) {
     width: 40px;
+    // MODIFIED: Remove the white fade/shadow on mobile screens
+    background: none !important;
   }
 }
 
