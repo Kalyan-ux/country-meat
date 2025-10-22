@@ -209,7 +209,7 @@
 // Responsive Design
 @media (max-width: 992px) {
   .shop-category {
-    padding: 4rem 0;
+    padding: 4rem 0; /* Keep large padding for tablets, but will be overridden below */
   }
 
   .section-header .section-title {
@@ -228,7 +228,7 @@
 
 @media (max-width: 768px) {
   .shop-category {
-    padding: 3rem 0;
+    padding: 1.5rem 0; /* REDUCED PADDING FOR MOBILE (from 3rem 0) */
   }
 
   .section-header {
@@ -427,7 +427,7 @@
 
 @media (max-width: 1199px) {
   .shop-category {
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 50px;
   }
 
@@ -512,5 +512,112 @@
     text-align: center;
     font-weight: bold;
   
+  }
+}
+/* ======================================================== */
+/* === MOBILE RESPONSIVE FIX FOR 4 CATEGORIES IN ONE ROW === */
+/* ======================================================== */
+
+/* Styles for Standard Mobile/Tablet (up to 768px) */
+@media (max-width: 768px) {
+
+  /* Center the section title */
+  .section-header-ecommerce .d-flex {
+    justify-content: center !important;
+  }
+  .section-header-ecommerce .section-titles {
+    text-align: center;
+    font-weight: bold;
+  }
+
+  /* Adjust row margins for gutters */
+  .category-carousel .row { // Target the row within the desktop carousel structure if it exists on mobile DOM
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+
+  /* Target the grid structure if using the *ngIf approach */
+  .mobile-category-grid {
+    display: flex; // Ensure flex is active
+    flex-wrap: wrap; // Allow wrapping (though 4 should fit)
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+
+
+  /* Force 4 columns on the grid items or carousel columns */
+  .category-carousel .col-lg-3,
+  .category-carousel .col-md-6,
+  .category-carousel .col-sm-6,
+  .mobile-grid-item { // Apply to mobile grid items too
+    flex: 0 0 25%;
+    max-width: 25%;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 1rem;
+  }
+
+  /* Size for standard mobile */
+  .category-item { // Apply size changes generally within this media query
+    width: 100%;
+    .category-image {
+      width: 75px; /* Adjust as needed */
+      height: 75px; /* Adjust as needed */
+      margin: 0 auto;
+    }
+    .category-info {
+      padding: 0.5rem 0 0 0;
+      h4 {
+        font-size: 0.75rem; /* Base font size */
+        margin-bottom: 0.2rem;
+        line-height: 1.2;
+      }
+    }
+  }
+
+  /* Container padding */
+  .shop-category .container {
+      padding-left: 5px;
+      padding-right: 5px;
+  }
+}
+
+/* ======================================================== */
+/* === ADJUSTMENTS FOR VERY NARROW SCREENS (e.g., < 360px) === */
+/* ======================================================== */
+@media (max-width: 360px) { /* Target very small phones */
+
+  .category-carousel .row,
+  .mobile-category-grid {
+    margin-left: -3px; /* Even tighter spacing */
+    margin-right: -3px;
+  }
+
+  .category-carousel .col-lg-3,
+  .category-carousel .col-md-6,
+  .category-carousel .col-sm-6,
+  .mobile-grid-item {
+    padding-left: 3px; /* Even tighter spacing */
+    padding-right: 3px;
+  }
+
+  .category-item { // Apply size changes generally
+    .category-image {
+      width: 60px; /* Further reduced size */
+      height: 60px; /* Further reduced size */
+    }
+    .category-info {
+      padding: 0.3rem 0 0 0;
+      h4 {
+        font-size: 0.7rem; /* Further reduced font size */
+      }
+    }
+  }
+
+  .shop-category .container {
+      padding-left: 3px;
+      padding-right: 3px;
   }
 }
