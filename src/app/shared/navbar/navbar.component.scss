@@ -572,10 +572,6 @@
   }
 
   // (Your other mobile styles...)
-
-  /* --- STYLES FOR WHEN SEARCH IS ACTIVE --- */
-
-  // When search is active, hide the logo and location
   .navbar-modern.search-active .navbar-left,
   .navbar-modern.search-active .mobile-search-icon {
     display: none;
