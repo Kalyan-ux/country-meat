@@ -5,20 +5,38 @@
   background-color: #fff; // Matches the section background
 }
 
-// --- TRENDING PRODUCTS SECTION ---
+// --- TRENDING PRODUCTS SECTION (Desktop Base Styles) ---
 .trending-products-section {
   max-width: 1200px;
   margin: 0 auto;
   padding: 32px 16px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 2.5rem;
+  /* Default text alignment is left, which is correct for desktop title */
+  /* Removed the incorrect font-weight/color/size rules from here */
 }
+
+/* Style for the Section Title (Applying black bold) */
+/* Ensure you have a title element like <h2 class="section-title-left">Best Sellers</h2> in your HTML */
+.trending-products-section .section-title-left { // Added specificity
+  font-size: 2.0rem; // Desktop title size
+  margin-bottom: 0.1rem; // Desktop title margin
+  color:#2c3e50;       // Black color
+      // Bold font weight (700 is standard bold, 900 is very heavy)
+  text-align: left;    // Ensure left alignment
+}
+/* Style for the Section Subtitle */
+.trending-products-section .section-subtitle { // Added specificity
+    font-size: 1.2rem;     // Desktop subtitle size
+    font-family: 'Lato', sans-serif; // From your other example
+    color: #6c757d;      // Muted color
+    margin-bottom: 1.5rem; // Add some space below subtitle before cards
+    text-align: left;    // Ensure left alignment
+}
+
 
 .horizontal-scroll-container {
   display: flex;
   overflow-x: auto;
-  gap: 1.5rem;
+  gap: 1.5rem; // Desktop gap
   padding: 1rem 0;
   scroll-behavior: smooth;
   margin-bottom: -20px;
@@ -30,17 +48,18 @@
 }
 
 .trending-item {
-  flex: 0 0 320px;
+  flex: 0 0 320px; // Desktop card width
   cursor: pointer;
 }
 
-// --- CARD STYLES ---
+// --- CARD STYLES (Used for both Desktop and Mobile) ---
 .product-card {
   border: 1px solid #e9ecef;
   border-radius: 20px;
   background: #ffffff;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
+  height: 100%; // Make card fill the height of the column/item
 
   &:hover {
     transform: translateY(-5px);
@@ -53,7 +72,7 @@
   overflow: hidden;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  height: 220px;
+  height: 220px; // Desktop image height
 
   .card-img-top {
     width: 100%;
@@ -64,22 +83,30 @@
   .special-badge {
     position: absolute;
     top: 8px;
-    right: 1px;
-    background-color: transparent;
-    color: rgb(251, 246, 236);
+    right: 8px; // Adjusted slightly
+    background-color: transparent; color: white;
     padding: 4px 10px;
     border-radius: 12px;
-    font-size: 0.65rem;
+    font-size: 0.65rem; // Slightly larger badge text
     font-weight: bold;
   }
 }
 
 .card-body {
-  padding: 1rem 1.25rem;
+  padding: 1rem 1.25rem; // Desktop padding
+  display: flex;
+  flex-direction: column; // Allow use of mt-auto
+  flex-grow: 1; // Ensure card body takes remaining space
+  
+  /* FIX FOR ALIGNMENT: Ensures the product details section grows to push the price container down */
+  /* This targets the <div> inside card-body that contains product name down to weight */
+  & > div:first-child { 
+      flex-grow: 1; 
+  }
 }
 
 .product-name {
-  font-size: 1.2rem;
+  font-size: 1.2rem; // Desktop name size
   font-weight: 600;
   color: #212529;
   margin-bottom: 0.25rem;
@@ -99,12 +126,13 @@
   margin-bottom: 1rem;
 
   .feature-tag {
-    background-color: #c7a533;
+    background-color: #c7a533; // Lighter tag background
     color: #343a40;
     padding: 0.25rem 0.7rem;
     border-radius: 6px;
     font-size: 0.75rem;
     font-weight: 500;
+    border: 1px solid #dee2e6;
   }
 }
 
@@ -115,6 +143,7 @@
   font-size: 0.9rem;
   color: #343a40;
   margin-bottom: 1rem;
+  white-space: nowrap; 
 
   .weight-icon {
     width: 18px;
@@ -122,92 +151,181 @@
   }
 }
 
-// MODIFIED: Replaced .price-section with a new container
 .price-action-container {
+  margin-top: auto; // Pushes this block to the bottom of the card body
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
 
-  .price-details {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
+.price-details {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
 
-  .current-price {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #212529;
-  }
+.current-price {
+  font-size: 1.3rem; // Desktop price size
+  font-weight: 700;
+  color: #212529;
+}
 
-  .original-price {
-    font-size: 0.9rem;
-    color: #b0b0b0;
-    text-decoration: line-through;
-  }
+.original-price {
+  font-size: 0.9rem;
+  color: #b0b0b0;
+  text-decoration: line-through;
+}
 
-  .discount {
-    font-size: 0.9rem;
-    color: #6c757d;
-    font-weight: 500;
-  }
+.discount {
+  font-size: 0.8rem; // Slightly smaller discount text
+  color: #d9232d;   // Use primary color for discount
+  font-weight: 600; // Make discount bold
+  background-color: #fee2e2; // Light red background for discount
+  padding: 2px 6px;
+  border-radius: 4px;
+}
 
-  .btn-add {
-    background-color: #d9232d;
-    color: white;
-    border: none;
-    padding: 0.5rem 1.25rem;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: background-color 0.2s;
+.action-buttons { // Added a wrapper div in HTML for buttons/stepper
+  // Styles for the container if needed, like alignment
+}
 
-    &:hover {
-      background-color: color.adjust(#d9232d, $lightness: -10%);
-    }
-  }
+.btn-add {
+  background-color: #d9232d;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
 
-  // ADDED: Styles for the quantity stepper
-  .quantity-stepper {
-    display: flex;
-    align-items: center;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    overflow: hidden;
-
-    .stepper-btn {
-      background-color: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: #d9232d;
-      line-height: 1;
-
-      &:hover {
-        background-color: #f8f9fa;
-      }
-    }
-
-    .quantity-display {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #212529;
-      padding: 0.5rem 0.5rem;
-      min-width: 30px;
-      text-align: center;
-    }
+  &:hover {
+    background-color: color.adjust(#d9232d, $lightness: -10%);
   }
 }
+
+.quantity-stepper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  overflow: hidden;
+
+  .stepper-btn {
+    background-color: #fff;
+    border: none;
+    padding: 0.5rem 0.8rem; // Adjust padding
+    cursor: pointer;
+    font-size: 1rem; // Adjust size
+    font-weight: bold;
+    color: #d9232d;
+    line-height: 1;
+
+    &:hover {
+      background-color: #f8f9fa;
+    }
+     &:disabled { // Style for disabled state
+        color: #adb5bd;
+        cursor: not-allowed;
+        background-color: #f8f9fa;
+    }
+  }
+
+  .quantity-display {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #212529;
+    padding: 0.5rem 0.5rem;
+    min-width: 30px;
+    text-align: center;
+    border-left: 1px solid #dee2e6; // Add separators
+    border-right: 1px solid #dee2e6;
+  }
+}
+
 /* ======================================================== */
-/* === MOBILE RESPONSIVE FIX FOR TRENDING SECTION TITLE === */
+/* === MOBILE RESPONSIVE STYLES (From Second Code Block) === */
 /* ======================================================== */
 
 @media (max-width: 768px) {
   .trending-products-section {
-    /* This centers all text inside the section, including the title and paragraph */
-    text-align: center;
+    /* Align title/subtitle left on mobile */
+    text-align: left;
+    padding: 24px 16px; 
+  }
+
+  /* Reduced size of Best Sellers title and subtitle */
+  .trending-products-section .section-title-left {
+      font-size: 1.8rem; 
+      text-align: left;
+  }
+  .trending-products-section .section-subtitle {
+      font-size: 1rem; 
+      text-align: left;
+      margin-bottom: 1rem; 
+  }
+
+
+  /* Card width retained, vertical reduction focus */
+  .horizontal-scroll-container {
+    gap: 0.75rem; 
+    padding: 0.5rem 0;
+  }
+
+  .trending-item {
+    flex: 0 0 240px; 
+  }
+
+  /* Focus on reducing card height */
+  .product-card {
+    .card-img-wrapper {
+        height: 120px; 
+    }
+    .card-body {
+      padding: 0.5rem 0.75rem; 
+    }
+    
+    .product-name {
+      font-size: 1rem; 
+      margin-bottom: 0.15rem; 
+    }
+    
+    /* Reduce margin/padding for other elements to save vertical space */
+    .product-subtitle,
+    .product-age {
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem; 
+    }
+
+    .product-features {
+        gap: 0.4rem;
+        margin-bottom: 0.75rem; 
+        .feature-tag {
+            padding: 0.15rem 0.6rem; 
+            font-size: 0.7rem;
+        }
+    }
+    
+    .product-weight {
+        margin-bottom: 0.75rem; 
+    }
+
+    .current-price {
+      font-size: 1.1rem; 
+    }
+    
+    .btn-add {
+        padding: 0.3rem 0.8rem; 
+        font-size: 0.8rem;
+    }
+    .quantity-stepper {
+         border-radius: 6px;
+    }
+    .quantity-stepper .stepper-btn,
+    .quantity-stepper .quantity-display {
+        padding: 0.3rem 0.5rem; 
+        font-size: 0.9rem;
+    }
   }
 }
