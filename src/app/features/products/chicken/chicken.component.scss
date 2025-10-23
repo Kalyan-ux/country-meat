@@ -5,6 +5,22 @@
   justify-content: center;
 }
 
+// ADDED: Wrapper to enable Flexbox centering on mobile
+.product-row-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+// Media query for mobile devices (max-width: 767px)
+@media (max-width: 767px) {
+  .product-row-wrapper {
+    &:has(.col-6:last-child:nth-child(odd)) {
+      justify-content: center;
+    }
+  }
+}
+
 // Hero Section
 .hero-section {
   height: 40vh;
@@ -114,7 +130,8 @@
   overflow: hidden;
   border-top-left-radius: 26px;
   border-top-right-radius: 26px;
-  height: 250px;
+  // REDUCED: Decreased from 250px to 220px
+  height: 220px; 
 
   .card-img-top {
     width: 100%;
@@ -136,11 +153,13 @@
 }
 
 .card-body {
-  padding: 1.25rem;
+  // REDUCED: Decreased from 1.25rem to 1rem
+  padding: 1rem; 
 }
 
 .product-name {
-  font-size: 1.25rem;
+  // REDUCED: Decreased from 1.25rem to 1.1rem
+  font-size: 1.1rem; 
   font-weight: 600;
   color: #212529;
   margin-bottom: 0.25rem;
@@ -149,21 +168,21 @@
 .product-age {
   font-size: 0.8rem;
   color: #6c757d;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem; // Reduced margin
 }
 
 .product-features {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  gap: 0.4rem; // Reduced gap
+  margin-bottom: 0.75rem; // Reduced margin
 
   .feature-tag {
     background-color: #c7a533;
     color: #343a40;
-    padding: 0.25rem 0.6rem;
+    padding: 0.2rem 0.5rem; // Reduced padding
     border-radius: 6px;
-    font-size: 0.7rem;
+    font-size: 0.65rem; // Reduced font size
     font-weight: 500;
   }
 }
@@ -174,31 +193,31 @@
   gap: 0.5rem;
   font-size: 0.9rem;
   color: #343a40;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem; // Reduced margin
 }
 
 .price-section {
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
-  // MODIFIED: Removed bottom margin
   margin-bottom: 0;
   flex-wrap: wrap;
 
   .current-price {
-    font-size: 1.2rem;
+    // REDUCED: Decreased from 1.2rem to 1.1rem
+    font-size: 1.1rem; 
     font-weight: 700;
     color: #212529;
   }
 
   .original-price {
-    font-size: 0.9rem;
+    font-size: 0.8rem; // Reduced font size
     color: #6c757d;
     text-decoration: line-through;
   }
 
   .discount {
-    font-size: 0.9rem;
+    font-size: 0.8rem; // Reduced font size
     color: #28a745;
     font-weight: 500;
   }
@@ -209,10 +228,10 @@
     background-color: #d9232d;
     color: white;
     border: none;
-    padding: 0.6rem 1.2rem;
+    padding: 0.5rem 1rem; // Reduced padding
     border-radius: 6px;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.85rem; // Reduced font size
     transition: background-color 0.2s;
 
     &:hover {
@@ -233,9 +252,9 @@
   .stepper-btn {
     background-color: transparent;
     border: none;
-    padding: 0.6rem 1rem;
+    padding: 0.5rem 0.8rem; // Reduced padding
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1rem; // Reduced font size
     font-weight: bold;
     color: #d9232d;
     line-height: 1;
@@ -246,9 +265,10 @@
   }
 
   .quantity-display {
-    font-size: 1rem;
+    font-size: 0.9rem; // Reduced font size
     font-weight: 600;
     color: #212529;
+    padding: 0 0.2rem;
   }
 }
 
@@ -347,21 +367,21 @@
   }
 
   .premium-card {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem; // Reduced margin
 
     .card-img-wrapper {
-      height: 220px;
+      height: 150px; // Further reduced height for smaller screens
     }
 
     .card-body {
-      padding: 1rem;
+      padding: 0.8rem; // Further reduced padding
 
       .product-name {
-        font-size: 1.1rem;
+        font-size: 1rem;
       }
 
       .price-section .current-price {
-        font-size: 1.5rem;
+        font-size: 1.2rem; // Adjusted price size
       }
     }
   }
@@ -482,5 +502,49 @@
 
   .card-title {
     font-size: 1rem;
+  }
+}
+
+/* ======================================================== */
+/* === MOBILE BREADCRUMB ALIGNMENT - GUARANTEED FIX === */
+/* ======================================================== */
+
+@media (max-width: 768px) {
+  nav[aria-label="breadcrumb"] .breadcrumb {
+    /* 1. Force Flex Row & No Wrapping */
+    display: flex !important;
+    flex-wrap: nowrap !important;
+
+    /* 2. Allow scrolling if needed, hide scrollbar */
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    &::-webkit-scrollbar { display: none !important; }
+
+    /* 3. Reset Bootstrap default padding/margin */
+    padding-left: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  nav[aria-label="breadcrumb"] .breadcrumb .breadcrumb-item {
+    /* 4. Force items to stay inline and not take full width */
+    display: inline-flex !important; /* Use inline-flex */
+    align-items: center; /* Vertically align icon/text if needed */
+    white-space: nowrap !important; /* Prevent text wrapping inside */
+    flex-shrink: 0 !important; /* Prevent shrinking */
+
+    /* 5. Ensure Bootstrap dividers stay inline */
+    &::before {
+      display: inline-block !important; /* Make sure separator is inline */
+      padding-right: 0.5rem !important; /* Adjust space before separator */
+      padding-left: 0.5rem !important; /* Adjust space after separator */
+      color: #6c757d;
+      content: "/" !important; /* Ensure content is set */
+    }
+    /* Remove separator before the first item */
+    &:first-child::before {
+        content: none !important;
+        padding: 0 !important;
+    }
   }
 }
