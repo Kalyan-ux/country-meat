@@ -194,3 +194,118 @@
     }
   }
 }
+
+// --- MOBILE OPTIMIZATIONS (to reduce card size) ---
+@media (max-width: 767.98px) {
+  .card-img-wrapper {
+    height: 150px; /* Further reduced image height */
+  }
+
+  .card-body {
+    padding: 0.75rem; /* Reduced card body padding */
+  }
+
+  .product-name {
+    font-size: 0.95rem; /* Slightly smaller product name */
+  }
+
+  .product-description {
+    font-size: 0.75rem; /* Smaller description text */
+    min-height: 35px; /* Reduced min-height */
+    margin-bottom: 0.4rem; /* Reduced bottom margin */
+  }
+
+  .product-features {
+    margin-bottom: 0.6rem; /* Reduced margin */
+    gap: 0.4rem;
+
+    .feature-tag {
+      padding: 0.15rem 0.4rem; /* Smaller tag padding */
+      font-size: 0.6rem; /* Smaller tag font size */
+    }
+  }
+  
+  .product-pack-selector {
+    margin-bottom: 0.6rem; /* Reduced margin */
+
+    .form-select {
+      padding: 0.25rem 1.75rem 0.25rem 0.5rem; /* Reduced dropdown padding */
+      font-size: 0.75rem; /* Reduced dropdown font size */
+    }
+  }
+
+  .price-action-container {
+    padding-top: 0.6rem; /* Reduced top padding */
+
+    .current-price {
+      font-size: 1rem; /* Smaller price */
+    }
+
+    .original-price, .discount {
+      font-size: 0.75rem; /* Smaller original price/discount */
+    }
+
+    .btn-add {
+      padding: 0.3rem 0.7rem; /* Smaller button padding */
+      font-size: 0.8rem; /* Smaller button font size */
+    }
+
+    .quantity-stepper {
+      .stepper-btn {
+        padding: 0.3rem 0.7rem; /* Smaller stepper button padding */
+        font-size: 0.9rem;
+      }
+      .quantity-display {
+        font-size: 0.85rem; /* Smaller quantity display font size */
+        min-width: 20px;
+      }
+    }
+  }
+}
+
+/* ======================================================== */
+/* === MOBILE BREADCRUMB ALIGNMENT - GUARANTEED FIX === */
+/* ======================================================== */
+
+@media (max-width: 768px) {
+  nav[aria-label="breadcrumb"] .breadcrumb {
+    /* 1. Force Flex Row & No Wrapping */
+    display: flex !important;
+    flex-wrap: nowrap !important;
+
+    /* 2. Allow scrolling if needed, hide scrollbar */
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    &::-webkit-scrollbar { display: none !important; }
+
+    /* 3. Reset Bootstrap default padding */
+    padding-left: 0 !important;
+    margin-bottom: 0 !important; /* Remove bottom margin if Bootstrap adds it */
+  }
+
+  nav[aria-label="breadcrumb"] .breadcrumb .breadcrumb-item {
+    /* 4. Force items to stay inline and not take full width */
+    display: inline-flex !important; /* Use inline-flex */
+    align-items: center; /* Vertically align icon and text */
+    white-space: nowrap !important; /* Prevent text wrapping inside */
+    flex-shrink: 0 !important; /* Prevent shrinking */
+
+    /* 5. Ensure Bootstrap dividers don't cause breaks */
+    &::before {
+      display: inline-block !important; /* Make sure separator is inline */
+      padding-right: 0.5rem !important; /* Adjust space before separator */
+      padding-left: 0.5rem !important; /* Adjust space after separator */
+      color: #6c757d;
+      content: "/" !important;
+    }
+    &:first-child::before {
+        content: none !important; /* No separator before the first item */
+    }
+  }
+
+  /* Adjust link style if needed */
+  // nav[aria-label="breadcrumb"] .breadcrumb .breadcrumb-item a {
+  //   display: inline-block; // Ensure link behaves correctly
+  // }
+}
