@@ -1,15 +1,23 @@
 // Full-screen standalone styling
-#section-login {
+
+ #section-login {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #d44033 0%, #b8362a 100%);
+  // --- UPDATED STYLES FOR BLURRED BACKGROUND ---
+  // Set background to a dark, semi-transparent overlay
+  background: rgba(0, 0, 0, 0.7);
+  // Apply a blur filter to the content behind the element
+  backdrop-filter: blur(10px);
+  // Vendor prefix for better browser compatibility (especially older Safari/Chrome)
+  -webkit-backdrop-filter: blur(10px);
+  // ---------------------------------------------
   z-index: 9999;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center;
 
   .login-section {
     width: 100%;
@@ -21,9 +29,12 @@
 }
 
 .tptrack__content {
+ background: rgba(255, 255, 255, 0.2); /* Translucent White/Grey */
+  backdrop-filter: blur(10px); /* Apply the blur effect */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  border-radius: 10px; 
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Optional: subtle border */
   padding: 50px;
-  border-radius: 10px;
-
 .mt-30 {
   margin-top: 30px;
 }
@@ -181,4 +192,68 @@ input[type=number] {
 
 .tptrack__item-icon.icon-mobile{
   font-size: 22px;
+}
+/* ... existing styles ... */
+
+.otp-container {
+  text-align: center;
+}
+
+.otp-inputs {
+  display: flex;
+  justify-content: center; /* Center the boxes horizontally */
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.otp-inputs input {
+  width: 40px; /* Adjusted width for 6 boxes */
+  height: 50px;
+  font-size: 24px;
+  text-align: center;
+  border: 1px solid #e0e6f0;
+  border-radius: 6px;
+  background: #ffffff;
+  outline: none;
+}
+
+.otp-inputs input:focus {
+  border-color: var(--cm-global-color-primary);
+}
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  background-color: var(--cm-global-color-primary); // ✅ use variable directly
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  i {
+    font-size: 14px;
+  }
+
+  &:hover {
+    filter: brightness(0.9); // slightly darken on hover
+  }
+}
+.message-box {
+  font-size: 14px;
+  margin-top: 5px;
+  text-align: center;
+
+  &.success {
+    color: green;
+  }
+
+  &.error {
+    color: red;
+  }
 }

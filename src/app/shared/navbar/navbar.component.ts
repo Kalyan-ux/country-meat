@@ -1,6 +1,7 @@
-import { Component, ViewChild, HostListener, ElementRef } from '@angular/core';
+import { Component, ViewChild, HostListener, ElementRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'cm-navbar',
@@ -9,49 +10,91 @@ import { RouterModule } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent {
-  // Dropdown and UI states
+export class NavbarComponent implements OnInit {
   isCategoriesDropdownOpen = false;
   isMobileMenuOpen = false;
   isMobileSearchActive = false;
 
-  // Element references for dropdown and collapsible areas
+  isLoggedIn = false;
+  userName: string = 'User'; // Default
+
+  showUserDropdown = false;
+  showBottomUserDropdown = false;
+
   @ViewChild('categoriesDropdown') categoriesDropdown!: ElementRef;
   @ViewChild('navbarCollapse') navbarCollapse!: ElementRef;
   @ViewChild('navbarToggler') navbarToggler!: ElementRef;
+  @ViewChild('userDropdown') userDropdown!: ElementRef;
+  @ViewChild('bottomUserDropdown') bottomUserDropdown!: ElementRef;
 
-  // Toggles the desktop categories dropdown
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    // ✅ Load from localStorage on refresh or page load
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    if (currentUser && currentUser.name) {
+      this.userName = currentUser.name;
+      this.isLoggedIn = true;
+    }
+
+    // ✅ Sync with AuthService (when user logs in/out)
+    this.authService.isLoggedIn$.subscribe((state) => {
+      this.isLoggedIn = state;
+
+      // Also refresh user info dynamically
+      const updatedUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      this.userName = updatedUser?.name || 'User';
+    });
+
+    this.authService.userName$.subscribe((name) => {
+      this.userName = name || 'User';
+    });
+  }
+
   toggleCategoriesDropdown(event: Event): void {
     event.stopPropagation();
     this.isCategoriesDropdownOpen = !this.isCategoriesDropdownOpen;
   }
 
-  // Closes the desktop categories dropdown
+  toggleUserDropdown(event: Event): void {
+    event.stopPropagation();
+    this.showUserDropdown = !this.showUserDropdown;
+  }
+
+  toggleBottomUserDropdown(event: Event): void {
+    event.stopPropagation();
+    this.showBottomUserDropdown = !this.showBottomUserDropdown;
+  }
+
   closeCategoriesDropdown(): void {
     this.isCategoriesDropdownOpen = false;
   }
 
-  // Toggles the entire mobile navigation menu
   toggleMobileMenu(): void {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
-  // Closes the mobile menu (used when a link is clicked)
   closeMobileMenu(): void {
     this.isMobileMenuOpen = false;
   }
 
-  // Toggles the mobile search bar visibility
   toggleMobileSearch(): void {
     this.isMobileSearchActive = !this.isMobileSearchActive;
   }
 
-  // Closes menus when clicking outside their respective areas
+  logout(): void {
+    this.authService.logoutUser();
+    localStorage.removeItem('currentUser');
+    this.userName = 'User';
+    this.isLoggedIn = false;
+    this.showUserDropdown = false;
+    this.showBottomUserDropdown = false;
+  }
+
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event): void {
     const targetElement = event.target as HTMLElement;
 
-    // Close categories dropdown if click is outside
     if (
       this.isCategoriesDropdownOpen &&
       this.categoriesDropdown &&
@@ -60,7 +103,6 @@ export class NavbarComponent {
       this.closeCategoriesDropdown();
     }
 
-    // Close mobile menu if click is outside the collapsible area and toggler
     if (
       this.isMobileMenuOpen &&
       this.navbarCollapse &&
@@ -69,6 +111,22 @@ export class NavbarComponent {
       !this.navbarToggler.nativeElement.contains(targetElement)
     ) {
       this.closeMobileMenu();
+    }
+
+    if (
+      this.showUserDropdown &&
+      this.userDropdown &&
+      !this.userDropdown.nativeElement.contains(targetElement)
+    ) {
+      this.showUserDropdown = false;
+    }
+
+    if (
+      this.showBottomUserDropdown &&
+      this.bottomUserDropdown &&
+      !this.bottomUserDropdown.nativeElement.contains(targetElement)
+    ) {
+      this.showBottomUserDropdown = false;
     }
   }
 }

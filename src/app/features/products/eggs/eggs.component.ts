@@ -27,6 +27,7 @@ export class EggsComponent implements OnInit {
       packOptions: [
         { label: 'Pack of 6', price: 180 },
         { label: 'Pack of 12', price: 360 },
+      
       ],
       image: 'assets/images/products/eggs/egg-2.png',
       features: [

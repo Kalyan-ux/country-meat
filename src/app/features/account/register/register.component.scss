@@ -1,184 +1,218 @@
 // Full-screen standalone styling
-#section-login {
+#section-login, #section-register { /* Targeting both components if they share this styling */
+  
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #d44033 0%, #b8362a 100%);
+  // --- UPDATED STYLES FOR BLURRED BACKGROUND ---
+  // Set background to a dark, semi-transparent overlay
+  background: rgba(0, 0, 0, 0.7);
+  // Apply a blur filter to the content behind the element
+  backdrop-filter: blur(10px);
+  // Vendor prefix for better browser compatibility (especially older Safari/Chrome)
+  -webkit-backdrop-filter: blur(10px);
+  // ---------------------------------------------
   z-index: 9999;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center;
 
-  .login-section {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    .login-section, .register-section {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
+/* --- GLASSMORPHISM/BLUR EFFECT APPLIED HERE --- */
 .tptrack__content {
-  padding: 50px;
-  border-radius: 10px;
+    /* 1. Make the background translucent */
+    background: rgba(255, 255, 255, 0.2); 
+    /* 2. Apply the blur filter */
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); /* For Safari support */
+    /* 3. Add a subtle border for definition */
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+
+    padding: 50px;
+    border-radius: 10px;
 }
+
+/* 4. Ensure any 'grey-bg' utility class doesn't override the translucent background */
+.grey-bg {
+    background: var(--cm-global-color-grey);
+}
+/* ----------------------------------------------- */
+
 
 .mt-30 {
-  margin-top: 30px;
-}
-
-.grey-bg {
-  background: var(--cm-global-color-grey);
+    margin-top: 30px;
 }
 
 .d-flex {
-  display: flex !important;
+    display: flex !important;
 }
 
 .tptrack__item-icon {
-  flex: 0 0 auto;
-  height: 50px;
-  width: 50px;
-  text-align: center;
-  line-height: 50px;
-  background-color: #ffffff;
-  border-radius: 6px;
-  margin-right: 20px;
-  font-size: 18px;
+    flex: 0 0 auto;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.tptrack__item-icon.icon-mobile {
+    font-size: 22px;
 }
 
 .tptrack__item-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--cm-global-color-primary);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--cm-global-color-primary);
 }
 
 .tptrack__item-content p {
-  font-size: 14px;
-  color: #4d5574;
-  line-height: 24px;
-  margin-bottom: 0;
+    font-size: 14px;
+    color: #4d5574;
+    line-height: 24px;
+    margin-bottom: 0;
 }
 
-.tptrack__mobile .tpsign__input, .tptrack__id .tpsign__input {
-  position: relative;
+.tptrack__mobile .tpsign__input, .tptrack__id .tpsign__input, .tptrack__input .tpsign__input {
+    position: relative;
 }
 
-.tptrack__mobile span, .tptrack__id span {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 30px;
-  font-size: 16px;
+.tptrack__mobile span, .tptrack__id span, .tptrack__input span {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 30px;
+    font-size: 16px;
 }
 
 .tptrack__id span i {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 .tptrack__mobile span i {
-  font-size: 20px;
+    font-size: 20px;
 }
 
-.tptrack__mobile .tpsign__input input, .tptrack__id .tpsign__input input {
-  width: 100%;
-  height: 60px;
-  border: none;
-  background-color: #ffffff;
-  padding: 10px 60px;
-  border-radius: 6px;
+.tptrack__mobile .tpsign__input input, 
+.tptrack__id .tpsign__input input,
+.tptrack__input .tpsign__input input {
+    width: 100%;
+    height: 60px;
+    border: none;
+    background-color: #ffffff;
+    padding: 10px 60px;
+    border-radius: 6px;
 }
 
-.tptrack__submition {
-  background: var(--cm-global-color-primary);
-  border-radius: 6px;
-  color: #ffffff;
-  display: inline-block;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1;
-  margin-bottom: 0;
-  padding: 18px 50px;
-  text-align: center;
-  touch-action: manipulation;
-  transition: all .3s ease 0s;
-  vertical-align: middle;
-  white-space: nowrap;
-  width: 100%;
+.tptrack__submition, .verify-btn {
+    background: var(--cm-global-color-primary);
+    border-radius: 6px;
+    color: #ffffff;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0;
+    padding: 18px 50px;
+    text-align: center;
+    touch-action: manipulation;
+    transition: all .3s ease 0s;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 100%;
+    border: none; /* Ensure buttons have no default border */
 }
 
-.tptrack__submition i {
-  margin-left: 20px;
+.tptrack__submition i, .verify-btn i {
+    margin-left: 20px;
+}
+
+.verify-btn:hover {
+    background-color: var(--cm-global-color-primary);
 }
 
 input[type=number] {
-  appearance: textfield;
-  -moz-appearance: textfield;
+    appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 .gap-3 {
-  gap: 0.75rem;
+    gap: 0.75rem;
 }
 
 .justify-center {
-  justify-content: center;
+    justify-content: center;
 }
 
 .items-center {
-  align-items: center;
+    align-items: center;
 }
 
 
 .otp-container {
-  text-align: center;
+    text-align: center;
 }
 
 .otp-inputs {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 .otp-inputs input {
-  width: 50px;
-  height: 50px;
-  font-size: 24px;
-  text-align: center;
-  border: 1px solid #e0e6f0;
-  border-radius: 6px;
-  background: #ffffff;
-  outline: none;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    text-align: center;
+    border: 1px solid #e0e6f0;
+    border-radius: 6px;
+    background: #ffffff;
+    outline: none;
 }
-
-.otp-inputs input:focus {
-  border-color: var(--cm-global-color-primary);
-}
-
-.verify-btn {
-  background: var(--cm-global-color-primary);
-  border-radius: 6px;
-  color: #ffffff;
-  display: inline-block;
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  background-color: var(--cm-global-color-primary); // ✅ use variable directly
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
   font-size: 16px;
-  font-weight: 600;
-  line-height: 1;
-  margin-bottom: 0;
-  padding: 18px 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  i {
+    font-size: 14px;
+  }
+
+  &:hover {
+    filter: brightness(0.9); // slightly darken on hover
+  }
+}
+.message-box {
+  font-size: 14px;
+  margin-top: 5px;
   text-align: center;
-  touch-action: manipulation;
-  transition: all 0.3s ease 0s;
-  vertical-align: middle;
-  white-space: nowrap;
-  width: 100%;
-}
 
-.verify-btn:hover {
-  background-color: var(--cm-global-color-primary);
-}
-
-.tptrack__item-icon.icon-mobile{
-  font-size: 22px;
+  &.success {
+    color: green;
+  }
 }

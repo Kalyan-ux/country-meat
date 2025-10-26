@@ -1,5 +1,6 @@
 <nav class="navbar-modern" [class.search-active]="isMobileSearchActive">
   <div class="container-fluid">
+    <!-- LEFT: Logo -->
     <div class="navbar-left">
       <div class="navbar-logo">
         <a routerLink="/">
@@ -7,7 +8,8 @@
         </a>
       </div>
     </div>
-    
+
+    <!-- LOCATION -->
     <div class="navbar-location">
       <i class="fa fa-map-marker location-icon"></i>
       <div class="location-details">
@@ -20,6 +22,7 @@
       </div>
     </div>
 
+    <!-- SEARCH BAR -->
     <div class="navbar-search">
       <button class="close-search-btn" (click)="toggleMobileSearch()">
         <i class="fa fa-arrow-left"></i>
@@ -36,7 +39,9 @@
       </div>
     </div>
 
+    <!-- ACTION LINKS -->
     <div class="navbar-actions">
+      <!-- CATEGORIES DROPDOWN -->
       <div class="action-link-dropdown" #categoriesDropdown>
         <a class="action-link" (click)="toggleCategoriesDropdown($event)">
           <img
@@ -108,6 +113,7 @@
         </div>
       </div>
 
+      <!-- STORES LINK -->
       <a href="#" class="action-link">
         <img
           src="assets/icon/store.png"
@@ -117,20 +123,43 @@
         <span>Stores</span>
       </a>
 
-      <a routerLink="/login" class="action-link">
-        <img
-          src="assets/icon/user.png"
-          alt="User Icon"
-          class="action-icon-img"
-        />
-        <span>Login</span>
-      </a>
+      <!-- LOGIN / LOGGED-IN -->
+      <ng-container *ngIf="!isLoggedIn; else loggedInUser">
+        <a routerLink="/login" class="action-link">
+          <img
+            src="assets/icon/user.png"
+            alt="User Icon"
+            class="action-icon-img"
+          />
+          <span>Login</span>
+        </a>
+      </ng-container>
+
+      <!-- ✅ LOGGED-IN USER -->
+      <ng-template #loggedInUser>
+        <div class="user-greeting-dropdown action-link-dropdown" #userDropdown>
+          <a class="action-link" (click)="toggleUserDropdown($event)">
+            <img
+              src="assets/icon/user.png"
+              alt="User Icon"
+              class="action-icon-img"
+            />
+            <span>Hi, {{ userName }}</span>
+          </a>
+          <div class="dropdown-menu" [class.show]="showUserDropdown">
+            <button class="dropdown-item logout-btn" (click)="logout()">
+              Logout
+            </button>
+          </div>
+        </div>
+      </ng-template>
 
       <a routerLink="/about" class="action-link" routerLinkActive="active">
         About Us
       </a>
     </div>
 
+    <!-- CART -->
     <div class="navbar-cart">
       <a routerLink="/cart" class="cart-button">
         <div class="cart-icon-wrapper">
@@ -145,23 +174,43 @@
   </div>
 </nav>
 
+<!-- ✅ BOTTOM NAV -->
 <div class="bottom-nav">
   <a routerLink="/" class="bottom-nav-link">
     <i class="fa fa-home"></i>
     <span>Home</span>
   </a>
+
   <a routerLink="/about" class="bottom-nav-link">
     <i class="fa fa-info-circle"></i>
     <span>About Us</span>
   </a>
+
   <a class="bottom-nav-link" (click)="toggleMobileSearch()">
     <i class="fa fa-search"></i>
     <span>Search</span>
   </a>
-  <a routerLink="/login" class="bottom-nav-link">
-    <img src="assets/icon/user.png" alt="Account Icon" />
-    <span>Account</span>
-  </a>
+
+  <!-- ✅ ACCOUNT SECTION -->
+  <ng-container *ngIf="!isLoggedIn; else bottomLoggedIn">
+    <a routerLink="/login" class="bottom-nav-link">
+      <img src="assets/icon/user.png" alt="Account Icon" />
+      <span>Account</span>
+    </a>
+  </ng-container>
+
+  <ng-template #bottomLoggedIn>
+    <div class="bottom-nav-link user-menu" #bottomUserDropdown>
+      <a (click)="toggleBottomUserDropdown($event)">
+        <img src="assets/icon/user.png" alt="User Icon" />
+        <span>{{ userName }}</span>
+      </a>
+      <div class="user-dropdown" [class.show]="showBottomUserDropdown">
+        <button (click)="logout()">Logout</button>
+      </div>
+    </div>
+  </ng-template>
+
   <a routerLink="/cart" class="bottom-nav-link">
     <i class="fa fa-shopping-cart"></i>
     <span>Cart</span>
