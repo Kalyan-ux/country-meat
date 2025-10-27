@@ -1,3 +1,5 @@
+/* footer.component.scss */
+
 /* feature area css */
 
 .mainfeature__bg {
@@ -11,7 +13,7 @@
 .bulk-order-link {
   display: flex !important;
   align-items: center;
-  gap: 2px; /* Space between icon and text */
+  gap: 5px; /* MODIFIED: Increased space between icon and text from 2px to 5px */
 
   .whatsapp-icon {
     display: inline-flex;
@@ -72,6 +74,16 @@
 
 /* footer css */
 
+/* --- ADDED FOR DESKTOP/MOBILE LINK TOGGLING (Desktop Default) --- */
+/* By default, hide the mobile links and show the desktop links */
+.mobile-only-links {
+  display: none;
+}
+.desktop-only-links {
+  display: block;
+}
+/* --- END ADDED FOR DESKTOP/MOBILE LINK TOGGLING --- */
+
 .theme-bg-2 {
   background-color: var(--cm-global-color-primary);
 }
@@ -126,7 +138,7 @@
 .tpfooter__widget-social-row {
   display: flex;
   align-items: center;
-  gap: 32px; /* Set desired horizontal spacing between social and store sections */
+  gap: 20px; /* Reduced for desktop/wider screens */
 }
 
 /* Updated styles for the app stores section */
@@ -134,8 +146,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 65px; /* No longer needed */
-  margin-left: 48px;
+  margin-top: 70px; /* REDUCED margin-top from 65px to 25px for wider screen/tablet */
+  margin-left: 0; /* REMOVED margin-left for wider screen/tablet */
 }
 
 .app-stores p {
@@ -343,6 +355,12 @@ i {
   margin-top: 45px; /* This was moved from the HTML to the parent wrapper */
 }
 
+/* Reverting general text-align left as it caused issues for other elements */
+.tpfooter__widget {
+  /* text-align: left; */
+}
+/* End general text-align revert */
+
 @media (max-width: 767px),
   only screen and (min-width: 576px) and (max-width: 767px),
   only screen and (min-width: 768px) and (max-width: 991px),
@@ -383,9 +401,9 @@ i {
     text-align: center !important;
   }
 }
-/* 🌐 Responsive Additions for Feature + Footer Sections */
+/* 💡 Responsive Additions for Feature + Footer Sections */
 
-/* 📱 Tablet Devices (≤1024px) */
+/* ➡️ Tablet Devices (<=1024px) */
 @media (max-width: 1024px) {
   .pb-40 {
     padding-bottom: 60px;
@@ -415,105 +433,276 @@ i {
   }
 }
 
-/* 📱 Small Devices (≤768px) */
+/* ➡️ Small Devices (<=768px) */
 @media (max-width: 768px) {
-  /* Feature Area */
-  .mainfeature__border {
+  /* --- MOBILE/DESKTOP TOGGLE: Hide desktop, show mobile structure --- */
+  .desktop-only-links {
+    display: none !important;
+  }
+  .mobile-only-links {
+    display: block !important;
+  }
+  /* --- END TOGGLE --- */
+
+  /* CRITICAL: Use flexbox to reorganize the main row */
+  .tpfooter__top .container > .row {
+    display: flex !important;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0 !important;
+  }
+
+  /* Make Let Us Help You full width */
+  .tpfooter__top .col-xl-3:nth-child(1) { /* Let Us Help You (footer-col-1) */
+    width: 100% !important;
+    padding: 0 15px !important;
+    order: 1; /* First element */
+  }
+
+  /* **FIXED CODE: Target only the "Let Us Help You" text block (footer-col-1)** */
+  .footer-col-1 .tpfooter__widget-title,
+  .footer-col-1 p {
+    text-align: left !important;
+  }
+  /* **END FIXED CODE** */
+
+
+  /* 💡 MODIFICATION START: Align Social Media and App Stores horizontally and CENTER content for mobile */
+  .tpfooter__widget-social-row {
+    flex-direction: row !important; /* Force horizontal alignment */
+    justify-content: space-around; /* CHANGED: Use space-around to center blocks within the row */
+    align-items: flex-start; /* Align content to the top of the row */
+    gap: 15px;
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  .tpfooter__widget-social-title {
+    margin-top: 0 !important;
+  }
+
+  .tpfooter__widget-social {
+    align-items: center !important; /* CHANGED: Center Social Media content */
+  }
+
+  .tpfooter_widget_social_icons {
+    justify-content: center; /* ADDED: Center the row of icons */
+    width: 100%; /* ADDED: To enable centering of icons */
+  }
+
+  .app-stores {
+    margin-top: 0 !important;
+    align-items: center !important; /* CHANGED: Center "Available on" content */
+  }
+
+  .store-links {
+    justify-content: center; /* ADDED: Center the app store logos */
+    width: 100%; /* ADDED: To enable centering of logos */
+  }
+  /* 💡 MODIFICATION END */
+
+  /* CRITICAL: Make Newsletter full width and position it LAST */
+  .tpfooter__top .col-xl-4:nth-child(4) { /* Newsletter (footer-col-4) */
+    display: block !important; /* Ensure visibility */
+    width: 100% !important; /* Make it full width */
+    padding: 0 15px !important; /* Add padding for content inside */
+    order: 4; /* Place it last, after Categories/Links */
+  }
+
+  /* **FIXED CODE: Target only the Newsletter text block (footer-col-4)** */
+  .footer-col-4 .tpfooter__widget-title,
+  .footer-col-4 p,
+  .footer-col-4 .tpfooter__widget-newsletter-check {
+    text-align: left !important;
+  }
+
+  /* Align the text inside the checkbox label left */
+  .footer-col-4 .form-check-label {
+    text-align: left !important;
+    display: block;
+  }
+
+  /* **MODIFIED CODE: Increase space between checkbox and text** */
+  .tpfooter__widget-newsletter-check .form-check-label {
+    /* Made less negative to shift text right */
+    margin-left: -0.5em !important;
+  }
+  /* **END MODIFIED CODE** */
+
+  /* Ensure the input span (the icon) is positioned correctly */
+  .tpfooter__widget-newsletter form span {
+    left: 20px;
+  }
+  /* **END FIXED CODE** */
+
+  /* ADDED: 10px padding top to the newsletter component (footer-col-4) */
+  .col-xl-4:nth-child(4) {
+    padding-top: 10px !important;
+  }
+
+  /* CRITICAL: Make Categories and Useful Links columns 50% width and remove padding/margins */
+  .tpfooter__top .col-xl-3:nth-child(2), /* Categories (footer-col-2) */
+  .tpfooter__top .col-xl-2:nth-child(3) { /* Useful Links (footer-col-3) */
+    width: 50% !important;
+    padding: 0 !important;
+    order: 3; /* Place them before Newsletter (order 4) */
+  }
+
+  /* HIDE THE FEATURE AREA ON MOBILE */
+  .feature-area {
+    display: none;
+  }
+
+  /* PUSH FOOTER CONTENT DOWN & REDUCE PADDING */
+  .tpfooter__top {
+    padding-top: 50px;
+    padding-bottom: 5px;
     border: none;
   }
 
-  .mainfeature__icon img {
-    height: 22px;
-    width: 22px;
+  /* BACKGROUND IMAGE FOR MOBILE FOOTER */
+  .tpfooter__area.theme-bg-2 {
+    background-image: url('../../../assets/images/footer-background.png');
+    background-color: transparent;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
   }
 
-  .mainfeature__title {
-    font-size: 11px;
+  /* REMOVE ALL MARGINS ON CHECKBOX CONTAINER FOR TIGHT FIT */
+  .tpfooter__widget-newsletter-check {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
   }
 
-  .mainfeature__content p {
-    font-size: 13px;
+  /* *** CRITICAL CHANGE FOR CHECKBOX SPACING (Kept for necessary padding/margin resets) *** */
+  .tpfooter__widget-newsletter-check .form-check {
+    padding-left: 0 !important; /* Remove container padding entirely */
+    padding-right: 0 !important;
   }
 
-  .bulk-order-link {
-    flex-wrap: wrap;
-    font-size: 14px;
+  .tpfooter__widget-newsletter-check .form-check-input {
+      margin-left: 0.5em !important; /* Push checkbox slightly right for inner padding */
+  }
+
+
+  .form-check {
+    margin-bottom: 0 !important;
+  }
+
+  /* REDUCE TOP GAP & ADD SPACE FOR FIXED MOBILE NAV BAR */
+  .tpfooter___bottom {
+    padding-top: 0px;
+    padding-bottom: 60px;
+  }
+
+  /* FINAL TWEAK: Remove paragraph margin inside copyright section */
+  .tpfooter___bottom p {
+    margin: 0 !important;
   }
 
   /* Footer Layout Adjustments */
-  .tpfooter__top {
-    border: none;
-  }
-
   .tpfooter__widget-title {
     font-size: 13px;
   }
 
-  .tpfooter__widget p,
-  .tpfooter__widget-links ul li a,
-  .tpfooter__widget-time-info span {
+  /* OVERRIDE: Reduce gap between 'Let Us Help You' content and Social Media title */
+  .tpfooter__widget-social-title {
+    /* Removed margin-top: 20px !important; to use the new alignment */
+  }
+
+  /* --- CRITICAL STYLES FOR MOBILE 2-COLUMN LAYOUT (Screenshot Match) --- */
+
+  /* Apply the background to the entire Categories block */
+  .footer-col-2,
+  .footer-col-3 {
+    text-align: center !important;
+    /* background-color: #e62020 !important; <--- REMOVED */
+    margin-bottom: 0 !important;
+    padding: 0 !important; /* Remove inner column padding */
+    /* REMOVED: border-bottom to eliminate the line between links/categories and newsletter */
+    border-bottom: none;
+  }
+
+  /* Add border separation between the two main blocks */
+  .footer-col-2 {
+    /* REMOVED: Vertical border to match background */
+    border-right: none;
+  }
+
+  /* Title styling */
+  .footer-col-2 .tpfooter__widget-title,
+  .footer-col-3 .tpfooter__widget-title {
+    padding-left: 0 !important;
+    text-align: center !important;
+    margin-bottom: 0 !important;
+    padding-top: 15px !important;
+    padding-bottom: 10px !important;
+    /* REMOVED: Border under title to match background */
+    border-bottom: none;
+  }
+
+  /* Hide the desktop list's link container padding */
+  .footer-col-2 .tpfooter__widget-links,
+  .footer-col-3 .tpfooter__widget-links {
+    padding: 0 !important;
+  }
+
+  /* Style for the new STACKED link elements */
+  .mobile-only-links .stacked-link {
+    display: block !important; /* Force vertical stacking */
+    width: 100%;
+    padding: 10px 10px;
+    font-size: 13px;
+    color: #ffffff;
+    text-transform: capitalize;
+    text-align: center !important; /* Center the link text (this ensures Useful Links are centered) */
+    /* background-color: #e62020 !important; <--- REMOVED */
+    border-bottom: none;
+  }
+
+  /* Remove bottom border from the last regular link in each column */
+  .footer-col-2 .mobile-only-links .stacked-link:last-of-type {
+    border-bottom: none !important;
+  }
+  .footer-col-3 .mobile-only-links .stacked-link:last-of-type {
+    /* Target the last link in the list of links (excluding bulk order which is outside) */
+    border-bottom: none !important;
+  }
+
+  /* STYLES FOR CENTERED BULK ORDER LINK (Now spans across both 50% columns) */
+  .footer-col-3 .mobile-only-links.bulk-order-mobile-link {
+    width: 200% !important; /* Span across both 50% columns (100% + 100%) */
+    margin-left: -100% !important; /* Shift left to start at the left edge of footer-col-2 */
+
+    display: flex !important; /* Use flex to align icon and text */
+    justify-content: center;
+    padding: 10px 15px !important;
+    
+    /* MODIFIED: Increased gap between the icon and text in the mobile bulk order link */
+    gap: 5px; 
+
+    /* ADDED: Margin bottom to increase space before Newsletter */
+    margin-bottom: 15px;
+
+    /* Ensure the color of the link text itself is white */
+    color: #ffffff !important;
+  }
+
+  .footer-col-3 .mobile-only-links .bulk-order-mobile-link span {
+    color: #ffffff !important; /* Ensure span text remains white */
     font-size: 13px;
   }
+  /* --- END CRITICAL STYLES --- */
+}
 
-  .tpfooter__widget-social-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-  }
-
-  .app-stores {
-    margin: 0;
-    align-items: flex-start;
-  }
-
-  .footer-contact-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
-
-  .tpfooter_widget_social_icons {
-    gap: 10px;
-  }
-
-  .tpfooter_widget_social_icons a {
-    width: 28px;
-    height: 28px;
-  }
-
-  .footer-col-2,
-  .footer-col-3,
-  .footer-col-4 {
-    margin-left: 0 !important;
-  }
-
-  .footer-col-4:before {
+/* ➡️ Extra Small Devices (<=480px) */
+@media (max-width: 480px) {
+  /* Feature Section - Already hidden by the wider 768px media query, but keeping this for safety */
+  .feature-area {
     display: none;
   }
 
-  .tpfooter__widget-newsletter form input {
-    height: 45px;
-    padding: 5px 110px 5px 45px;
-  }
-
-  .tpfooter__widget-newsletter-submit {
-    right: 5px;
-  }
-
-  .tpfooter__copyright-text {
-    text-align: center;
-    font-size: 14px;
-  }
-
-  .tpfooter__copyright-thumb {
-    text-align: center;
-    margin-top: 10px;
-  }
-}
-
-/* 📱 Extra Small Devices (≤480px) */
-@media (max-width: 480px) {
-  /* Feature Section */
   .pb-40,
   .pt-50 {
     padding: 30px 0;
@@ -535,31 +724,114 @@ i {
   .bulk-order-link {
     font-size: 13px;
     justify-content: center;
+    gap: 5px; /* MODIFIED: Increased gap for the bulk order link */
+  }
+
+  /* REMOVE ALL MARGINS ON CHECKBOX CONTAINER FOR TIGHT FIT */
+  .tpfooter__widget-newsletter-check {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* *** CRITICAL CHANGE FOR CHECKBOX SPACING (Kept for necessary padding/margin resets) *** */
+  .tpfooter__widget-newsletter-check .form-check {
+    padding-left: 0 !important; /* Remove container padding entirely */
+    padding-right: 0 !important;
+  }
+
+  .tpfooter__widget-newsletter-check .form-check-input {
+      margin-left: 0.5em !important; /* Push checkbox slightly right for inner padding */
+  }
+
+  /* **MODIFIED CODE: Increase space between checkbox and text** */
+  .tpfooter__widget-newsletter-check .form-check-label {
+    /* Made less negative to shift text right */
+    margin-left: 2em !important;
+  }
+  /* **END MODIFIED CODE** */
+
+  .form-check {
+    margin-bottom: 0 !important;
+  }
+
+  /* REDUCE TOP GAP & ADD SPACE FOR FIXED MOBILE NAV BAR */
+  .tpfooter___bottom {
+    padding-top: 0px; /* Remove top padding entirely */
+    padding-bottom: 60px; /* IMPORTANT: Keeps space for fixed mobile nav bar */
+  }
+
+  /* FINAL TWEAK: Remove paragraph margin inside copyright section */
+  .tpfooter___bottom p {
+    margin: 0 !important;
   }
 
   /* Footer Section */
   .tpfooter__widget {
-    text-align: center;
+    /* text-align: center; Reverted to center for all widgets in this tiny screen size */
     margin-bottom: 25px;
   }
 
-  .tpfooter__widget-social {
-    align-items: center;
+  /* **FIXED CODE: Target only the "Let Us Help You" text block (footer-col-1)** */
+  .footer-col-1 .tpfooter__widget-title,
+  .footer-col-1 p {
+    text-align: left !important;
+  }
+  /* **END FIXED CODE** */
+
+  /* **FIXED CODE: Target only the Newsletter text block (footer-col-4)** */
+  .footer-col-4 .tpfooter__widget-title,
+  .footer-col-4 p,
+  .footer-col-4 .tpfooter__widget-newsletter-check {
+    text-align: left !important;
   }
 
+  /* Align the text inside the checkbox label left */
+  .footer-col-4 .form-check-label {
+    text-align: left !important;
+    display: block;
+  }
+
+  /* Ensure the input span (the icon) is positioned correctly */
+  .tpfooter__widget-newsletter form span {
+    left: 20px;
+  }
+
+  /* 💡 MODIFICATION START: Align Social Media and App Stores horizontally and **CENTER** content for tiny screens */
   .tpfooter__widget-social-row {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row !important; /* Keep horizontal */
+    justify-content: space-around; /* CHANGED: Use space-around to center blocks within the row */
+    align-items: flex-start; /* Vertically align them to the top */
     gap: 15px;
+    width: 100%;
+    margin-top: 15px !important;
+  }
+
+  .tpfooter__widget-social-title {
+    margin-top: 0 !important;
+  }
+
+  .tpfooter__widget-social {
+    align-items: center !important; /* CHANGED: Center Social Media content */
+  }
+
+  .tpfooter_widget_social_icons {
+    justify-content: center; /* ADDED: Center the row of icons */
+    width: 100%; /* ADDED: To enable centering of icons */
   }
 
   .app-stores {
-    align-items: center;
-    margin-left: 0;
+    align-items: center !important; /* CHANGED: Center "Available on" content */
+    margin-top: 0 !important;
   }
 
   .store-links {
-    justify-content: center;
+    justify-content: center; /* ADDED: Center the app store logos */
+    width: 100%; /* ADDED: To enable centering of logos */
+  }
+  /* 💡 MODIFICATION END */
+
+  .store-links {
+    /* Removed justify-content: center; */
     gap: 8px;
   }
 
@@ -568,7 +840,7 @@ i {
   }
 
   .tpfooter_widget_social_icons {
-    justify-content: center;
+    /* Removed justify-content: center; */
   }
 
   .tpfooter__widget-newsletter form {
@@ -591,7 +863,6 @@ i {
   }
 
   .tpfooter__copyright-thumb {
-    margin-top: 10px;
     text-align: center;
   }
 }
