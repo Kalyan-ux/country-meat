@@ -77,7 +77,7 @@ export class TrendingProductsComponent {
   }
 
   onProductClick(productId: number) {
-    this.router.navigate(['products/product-details'], {
+    this.router.navigate(['products/product-details-eggs'], {
       queryParams: { id: productId },
     });
   }
