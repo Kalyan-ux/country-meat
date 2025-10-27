@@ -7,42 +7,39 @@
 
 // --- TRENDING PRODUCTS SECTION (Desktop Base Styles) ---
 .trending-products-section {
-  max-width: 1200px;
+  max-width: 1200px; 
   margin: 0 auto;
-  padding: 32px 16px;
-  /* Default text alignment is left, which is correct for desktop title */
-  /* Removed the incorrect font-weight/color/size rules from here */
+  padding: 32px 16px; // Desktop padding
 }
 
 /* Style for the Section Title (Applying black bold) */
-/* Ensure you have a title element like <h2 class="section-title-left">Best Sellers</h2> in your HTML */
-.trending-products-section .section-title-left { // Added specificity
-  font-size: 2.0rem; // Desktop title size
-  margin-bottom: 0.1rem; // Desktop title margin
-  color:#2c3e50;       // Black color
-      // Bold font weight (700 is standard bold, 900 is very heavy)
-  text-align: left;    // Ensure left alignment
+.trending-products-section .section-title-left { 
+  font-size: 2.0rem; 
+  margin-bottom: 0.1rem; 
+  color:#2c3e50;       
+  text-align: left;    
 }
 /* Style for the Section Subtitle */
-.trending-products-section .section-subtitle { // Added specificity
-    font-size: 1.2rem;     // Desktop subtitle size
-    font-family: 'Lato', sans-serif; // From your other example
-    color: #6c757d;      // Muted color
-    margin-bottom: 1.5rem; // Add some space below subtitle before cards
-    text-align: left;    // Ensure left alignment
+.trending-products-section .section-subtitle { 
+    font-size: 1.2rem;     
+    font-family: 'Lato', sans-serif; 
+    color: #6c757d;      
+    margin-bottom: 1.5rem; 
+    text-align: left;    
 }
 
-
+// **This container enables the manual horizontal scrolling**
 .horizontal-scroll-container {
   display: flex;
-  overflow-x: auto;
+  overflow-x: auto !important; // CRUCIAL: Added !important to force scrolling
+  flex-wrap: nowrap; // <--- ADDED: Forces all items onto one line
   gap: 1.5rem; // Desktop gap
-  padding: 1rem 0;
+  padding: 1rem 0; // Padding 0 on sides for desktop
   scroll-behavior: smooth;
   margin-bottom: -20px;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  &::-webkit-scrollbar {
+  scrollbar-width: none; // Firefox scrollbar hide
+  -ms-overflow-style: none; // IE/Edge scrollbar hide
+  &::-webkit-scrollbar { // Chrome/Safari scrollbar hide
     display: none;
   }
 }
@@ -59,7 +56,7 @@
   background: #ffffff;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
-  height: 100%; // Make card fill the height of the column/item
+  height: 100%; 
 
   &:hover {
     transform: translateY(-5px);
@@ -72,7 +69,7 @@
   overflow: hidden;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  height: 220px; // Desktop image height
+  height: 220px; 
 
   .card-img-top {
     width: 100%;
@@ -83,30 +80,32 @@
   .special-badge {
     position: absolute;
     top: 8px;
-    right: 8px; // Adjusted slightly
+    right: 8px; 
     background-color: transparent; color: white;
     padding: 4px 10px;
     border-radius: 12px;
-    font-size: 0.65rem; // Slightly larger badge text
+    font-size: 0.65rem; 
     font-weight: bold;
   }
 }
 
 .card-body {
-  padding: 1rem 1.25rem; // Desktop padding
+  padding: 1rem 1.25rem; 
   display: flex;
-  flex-direction: column; // Allow use of mt-auto
-  flex-grow: 1; // Ensure card body takes remaining space
+  flex-direction: column; 
+  flex-grow: 1; 
   
-  /* FIX FOR ALIGNMENT: Ensures the product details section grows to push the price container down */
-  /* This targets the <div> inside card-body that contains product name down to weight */
-  & > div:first-child { 
-      flex-grow: 1; 
-  }
+  /* REMOVED: & > div:first-child { flex-grow: 1; } */
 }
 
+/* NEW RULE: This container takes up all remaining space */
+.product-info-top {
+    flex-grow: 1; 
+}
+
+
 .product-name {
-  font-size: 1.2rem; // Desktop name size
+  font-size: 1.2rem; 
   font-weight: 600;
   color: #212529;
   margin-bottom: 0.25rem;
@@ -126,7 +125,7 @@
   margin-bottom: 1rem;
 
   .feature-tag {
-    background-color: #c7a533; // Lighter tag background
+    background-color: #c7a533; 
     color: #343a40;
     padding: 0.25rem 0.7rem;
     border-radius: 6px;
@@ -152,7 +151,7 @@
 }
 
 .price-action-container {
-  margin-top: auto; // Pushes this block to the bottom of the card body
+  margin-top: auto; 
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -166,7 +165,7 @@
 }
 
 .current-price {
-  font-size: 1.3rem; // Desktop price size
+  font-size: 1.3rem; 
   font-weight: 700;
   color: #212529;
 }
@@ -178,16 +177,16 @@
 }
 
 .discount {
-  font-size: 0.8rem; // Slightly smaller discount text
-  color: #d9232d;   // Use primary color for discount
-  font-weight: 600; // Make discount bold
-  background-color: #fee2e2; // Light red background for discount
+  font-size: 0.8rem; 
+  color: #d9232d;   
+  font-weight: 600; 
+  background-color: #fee2e2; 
   padding: 2px 6px;
   border-radius: 4px;
 }
 
-.action-buttons { // Added a wrapper div in HTML for buttons/stepper
-  // Styles for the container if needed, like alignment
+.action-buttons {
+  // Styles for the container if needed
 }
 
 .btn-add {
@@ -215,9 +214,9 @@
   .stepper-btn {
     background-color: #fff;
     border: none;
-    padding: 0.5rem 0.8rem; // Adjust padding
+    padding: 0.5rem 0.8rem; 
     cursor: pointer;
-    font-size: 1rem; // Adjust size
+    font-size: 1rem; 
     font-weight: bold;
     color: #d9232d;
     line-height: 1;
@@ -225,7 +224,7 @@
     &:hover {
       background-color: #f8f9fa;
     }
-     &:disabled { // Style for disabled state
+     &:disabled { 
         color: #adb5bd;
         cursor: not-allowed;
         background-color: #f8f9fa;
@@ -239,45 +238,51 @@
     padding: 0.5rem 0.5rem;
     min-width: 30px;
     text-align: center;
-    border-left: 1px solid #dee2e6; // Add separators
+    border-left: 1px solid #dee2e6; 
     border-right: 1px solid #dee2e6;
   }
 }
 
 /* ======================================================== */
-/* === MOBILE RESPONSIVE STYLES (From Second Code Block) === */
+/* === MOBILE RESPONSIVE STYLES (max-width: 768px) === */
 /* ======================================================== */
 
 @media (max-width: 768px) {
+  
+  .full-section {
+    /* Ensures the outermost wrapper doesn't cause issues */
+    overflow-x: hidden; 
+  }
+  
   .trending-products-section {
-    /* Align title/subtitle left on mobile */
+    /* Set to 100% width and remove side padding to allow horizontal-scroll-container to use full width */
+    max-width: none; 
+    width: 100%;
     text-align: left;
-    padding: 24px 16px; 
+    padding: 24px 0; /* Removed left/right padding */
   }
 
-  /* Reduced size of Best Sellers title and subtitle */
   .trending-products-section .section-title-left {
       font-size: 1.8rem; 
       text-align: left;
+      margin-left: 16px; /* Re-apply padding to title/subtitle */
   }
   .trending-products-section .section-subtitle {
       font-size: 1rem; 
       text-align: left;
       margin-bottom: 1rem; 
+      margin-left: 16px; /* Re-apply padding to title/subtitle */
   }
 
-
-  /* Card width retained, vertical reduction focus */
   .horizontal-scroll-container {
     gap: 0.75rem; 
-    padding: 0.5rem 0;
+    padding: 0.5rem 16px; /* KEY: Add side padding here instead of the section wrapper */
   }
 
   .trending-item {
-    flex: 0 0 240px; 
+    flex: 0 0 240px; // Mobile card width is reduced but fixed
   }
 
-  /* Focus on reducing card height */
   .product-card {
     .card-img-wrapper {
         height: 120px; 
@@ -291,7 +296,6 @@
       margin-bottom: 0.15rem; 
     }
     
-    /* Reduce margin/padding for other elements to save vertical space */
     .product-subtitle,
     .product-age {
         font-size: 0.85rem;
