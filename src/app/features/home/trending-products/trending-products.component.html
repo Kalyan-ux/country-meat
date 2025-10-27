@@ -6,7 +6,7 @@
       <div class="trending-item" *ngFor="let product of TrendingProducts">
         <div
           class="card product-card h-100"
-          (click)="onProductClick(product.id)"
+          (click)="onProductClick(product.id, product.productType)"
         >
           <div class="card-img-wrapper">
             <img
