@@ -10,11 +10,12 @@ import {
   HostListener,
 } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms'; // ⬅️ ADDED: Import FormsModule
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule], // ⬅️ MODIFIED: Added FormsModule
   templateUrl: './product-details-eggs.component.html',
   styleUrl: './product-details-eggs.component.scss',
 })
@@ -33,6 +34,7 @@ export class ProductDetailsComponentEggs implements OnInit, AfterViewInit {
 
   allImages: string[] = [];
   selectedImage!: string;
+  selectedPackPrice!: number; // ADDED: Property to track selected pack price
 
   sharedHealthBenefits = [
     'Contains vital nutrients – Vitamins A, B5, B12 and E, including phosphorus and iodine, helps to improve good cholesterol levels and aids weight management',
@@ -52,13 +54,17 @@ export class ProductDetailsComponentEggs implements OnInit, AfterViewInit {
         'Low-fat',
         'Packed with Vitamins & minerals',
       ],
-      packSize: '6',
       price: 180,
-      image: 'assets/images/products/eggs/egg-1.png', // Ensure this path is correct
+      originalPrice: 180, 
+      packOptions: [
+        { label: 'Pack of 6', price: 180, packSize: 6, originalPrice: 180 },
+        { label: 'Pack of 12', price: 360, packSize: 12, originalPrice: 360 },
+      ], 
+      image: 'assets/images/products/eggs/egg-1.png', 
     },
     {
       id: 2,
-      name: 'Free Range Country Chicken Eggs', // UPDATED NAME based on initial image
+      name: 'Free Range Country Chicken Eggs', 
       subtitle: 'Rare variety of high-protein eggs that come cleaned',
       description:'These Country Eggs are laid by breeds like sonali raised in open free-range farms. Pure, wholesome, and rich in nutrition, just the way nature intended.',
       features: [
@@ -68,13 +74,17 @@ export class ProductDetailsComponentEggs implements OnInit, AfterViewInit {
         'Omega-3', 
         'Free-Range'
       ],
-      packSize: '6',
-      price: 119, // UPDATED PRICE based on initial image
-      image: 'assets/images/products/eggs/egg-2.png', // Ensure this path is correct
+      price: 119, 
+      originalPrice: 119, 
+      packOptions: [
+        { label: 'Pack of 6', price: 119, packSize: 6, originalPrice: 119 },
+        { label: 'Pack of 12', price: 239, packSize: 12, originalPrice: 239 },
+        { label: 'Pack of 30', price: 594, packSize: 30, originalPrice: 594 },
+      ],
+      image: 'assets/images/products/eggs/egg-2.png', 
     },
     {
       id: 3,
-      // FIX: Updated name and details to match the missing "Cage Free Country Chicken Eggs" card
       name: 'Cage Free Country Chicken Eggs',
       subtitle: 'These Country Eggs are laid by breeds like sonali & Aseel raised out of battery cages. Known for their balanced nutrition and authentic taste.',
       description:'These Country Eggs are laid by breeds like sonali & Aseel raised out of battery cages. Known for their balanced nutrition and authentic taste, they’re a wholesome choice for the whole family.',
@@ -84,15 +94,19 @@ export class ProductDetailsComponentEggs implements OnInit, AfterViewInit {
         'Chemical-free', 
         'Better fat profile'
       ],
-      packSize: '6',
-      price: 99, // UPDATED PRICE
-      image: 'assets/images/products/eggs/egg-3.png', // Using a placeholder image path
+      price: 99, 
+      originalPrice: 99, 
+      packOptions: [
+        { label: 'Pack of 6', price: 99, packSize: 6, originalPrice: 99 },
+        { label: 'Pack of 12', price: 195, packSize: 12, originalPrice: 195 },
+        { label: 'Pack of 30', price: 489, packSize: 30, originalPrice: 489 },
+      ],
+      image: 'assets/images/products/eggs/egg-3.png', 
     },
   ];
 
   constructor(private route: ActivatedRoute) {}
 
-  // ADDED ngOnInit to fetch product data on component load
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.productQuantity = 0;
@@ -102,10 +116,18 @@ export class ProductDetailsComponentEggs implements OnInit, AfterViewInit {
       const foundProduct = this.products.find((p) => p.id === this.productId);
 
       if (foundProduct) {
+        // Initialize with first pack option details
+        const initialPack = foundProduct.packOptions[0];
+        
         this.product = {
           ...foundProduct,
+          price: initialPack.price, // Set initial price
+          originalPrice: initialPack.originalPrice, // Set initial originalPrice
+          packSize: initialPack.packSize.toString(), // Set initial packSize for info badge
           healthBenefits: this.sharedHealthBenefits,
         };
+        
+        this.selectedPackPrice = initialPack.price; // Set initial selected price
         
         this.relatedProducts = this.products.filter(
           (p) => p.id !== this.productId
@@ -184,7 +206,7 @@ export class ProductDetailsComponentEggs implements OnInit, AfterViewInit {
   }
 
   getDiscount(originalPrice: number, currentPrice: number): number {
-    if (!originalPrice || !currentPrice) return 0;
+    if (!originalPrice || !currentPrice || originalPrice <= currentPrice) return 0;
     return Math.round(((originalPrice - currentPrice) / originalPrice) * 100);
   }
 
@@ -199,6 +221,24 @@ export class ProductDetailsComponentEggs implements OnInit, AfterViewInit {
   decreaseQuantity(): void {
     if (this.productQuantity > 0) {
       this.productQuantity--;
+    }
+  }
+  
+  // ADDED: Handler for pack change event
+  onPackChange(event: Event): void {
+    const selectedPrice = Number((event.target as HTMLSelectElement).value);
+    this.selectedPackPrice = selectedPrice;
+    
+    // Find the selected pack option to update product details
+    const selectedPack = this.product.packOptions.find(
+      (pack: any) => pack.price === selectedPrice
+    );
+
+    if (selectedPack) {
+      // Update the product's price, originalPrice, and packSize for display
+      this.product.price = selectedPack.price;
+      this.product.originalPrice = selectedPack.originalPrice;
+      this.product.packSize = selectedPack.packSize.toString();
     }
   }
 }
