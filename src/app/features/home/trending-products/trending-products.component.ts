@@ -17,6 +17,7 @@ export class TrendingProductsComponent {
       name: 'Country King',
       subtitle: 'Original Nati Hunja/Punju/Seval/Desi rooster',
       age: 'Age: 7-10 months',
+      productType: 'chicken', // ADDED: Identifier for routing
       price: 2000,
       originalPrice: 2000,
       weight: '1100 – 1250 g',
@@ -34,6 +35,7 @@ export class TrendingProductsComponent {
       name: 'Country Queen',
       subtitle: 'Original Nati Yate / Petta / Potte Koli / Desi hen',
       age: 'Age: 6-8 months',
+      productType: 'chicken', // ADDED: Identifier for routing
       price: 2000,
       originalPrice: 2000,
       weight: '1000 – 1150 g',
@@ -51,6 +53,7 @@ export class TrendingProductsComponent {
       name: 'Country Eggs',
       subtitle: 'Fresh Eggs',
       age: 'Daily Collection',
+      productType: 'eggs', // ADDED: Identifier for routing
       price: 180,
       originalPrice: 180,
       weight: '6 Pieces',
@@ -76,11 +79,21 @@ export class TrendingProductsComponent {
     }));
   }
 
-  onProductClick(productId: number) {
-    this.router.navigate(['products/product-details-eggs'], {
+  // MODIFIED: Navigate to the correct component based on productType
+  onProductClick(productId: number, productType: string) {
+    let routePath = '';
+    if (productType === 'eggs') {
+        routePath = 'products/product-details-eggs';
+    } else {
+        // Default to the main product details for chicken/meat
+        routePath = 'products/product-details';
+    }
+
+    this.router.navigate([routePath], {
       queryParams: { id: productId },
     });
   }
+  
   // Helper function to calculate discount
   getDiscount(originalPrice: number, currentPrice: number): number {
     if (!originalPrice || !currentPrice || originalPrice <= currentPrice)
