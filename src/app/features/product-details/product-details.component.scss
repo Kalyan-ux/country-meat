@@ -28,9 +28,10 @@
   gap: 1rem;
 }
 
+// DEFAULT/DESKTOP STYLES (Thumbnails wrap to the next line)
 .thumbnail-column {
   display: flex;
-  flex-direction: row; /* MODIFIED: Lays out thumbnails horizontally */
+  flex-direction: row; 
   justify-content: center; /* ADDED: Centers the thumbnails horizontally */
   flex-wrap: wrap; /* ADDED: Allows thumbnails to wrap to the next line if needed */
   gap: 0.75rem;
@@ -41,7 +42,7 @@
   height: 80px;
   object-fit: cover;
   border: 2px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 0; /* MODIFIED: Removed border radius */
   cursor: pointer;
   transition: border-color 0.2s ease;
 
@@ -56,15 +57,46 @@
 
 .main-image-container {
   position: relative;
-  height: 400px; // Fixed height for the main image container
+  height: 400px; // Fixed height for the main image container (Desktop default)
 
   .main-image {
     width: 100%;
     height: 100%;
     object-fit: contain;
     border-radius: 12px;
+    padding-top: 20px;
   }
 }
+
+// ------------------------------------------------------------------
+// --- MOBILE-SPECIFIC STYLES (Screen size up to 767px) ---
+// ------------------------------------------------------------------
+@media (max-width: 767px) {
+  /* 1. REDUCE MAIN IMAGE SIZE */
+  .main-image-container {
+    height: 300px; /* Reduced height from 400px for mobile to save space */
+  }
+
+  /* 2. FORCE HORIZONTAL SCROLLING FOR THUMBNAILS */
+  .thumbnail-column {
+    justify-content: flex-start; /* Aligns images to the start for scrolling */
+    flex-wrap: nowrap; /* Forces images onto a single line */
+    overflow-x: auto; /* Enables horizontal scrolling for mobile */
+    padding-bottom: 5px; /* Added for scrollbar space */
+
+    /* Hide the scrollbar but keep the scrolling functionality */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .thumbnail-item {
+    flex: 0 0 auto; /* Prevents thumbnails from shrinking or growing */
+    border-radius: 8px; /* Added slight radius for better mobile look */
+  }
+}
+// ------------------------------------------------------------------
+
 
 // --- PRODUCT DETAILS ---
 .product-title {
@@ -326,18 +358,34 @@
 .related-card {
   transition: all 0.3s ease;
   border: 1px solid #eee;
-  border-radius: 8px;
-  overflow: hidden;
-
+  border-radius: 8px; /* MODIFIED: Set a consistent border radius */
+  overflow: hidden; /* ADDED: Ensures content (like the image) and box-shadow is clipped to the border-radius */
+  
+  /* Subtle permanent shadow is retained */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.05); 
+  
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.08);
   }
+}
 
-  img {
-    height: 200px;
-    object-fit: cover;
-  }
+/* Enforce square corners on the inner card and image */
+.related-product-card .card {
+  border-radius: 8px; /* MODIFIED: Set a consistent border radius */
+  border: none; /* Remove default bootstrap border */
+  box-shadow: none; /* Remove any default bootstrap shadow, rely on .related-card */
+}
+
+.related-product-card .card-img-top {
+  border-top-left-radius: 30px; /* MODIFIED: Apply radius to top-left */
+  border-top-right-radius: 30px; /* MODIFIED: Apply radius to top-right */
+}
+
+
+.related-card img {
+  height: 200px;
+  object-fit: cover;
 }
 
 .card-subtitle {
