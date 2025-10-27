@@ -84,6 +84,11 @@
 }
 /* --- END ADDED FOR DESKTOP/MOBILE LINK TOGGLING --- */
 
+/* ADDED: Hide the dedicated social/app store column on desktop */
+.mobile-social-col {
+  display: none;
+}
+
 .theme-bg-2 {
   background-color: var(--cm-global-color-primary);
 }
@@ -435,6 +440,11 @@ i {
 
 /* ➡️ Small Devices (<=768px) */
 @media (max-width: 768px) {
+  /* CRITICAL: Hide the original social media row on mobile */
+  .desktop-social-row {
+    display: none !important;
+  }
+  
   /* --- MOBILE/DESKTOP TOGGLE: Hide desktop, show mobile structure --- */
   .desktop-only-links {
     display: none !important;
@@ -456,7 +466,7 @@ i {
   .tpfooter__top .col-xl-3:nth-child(1) { /* Let Us Help You (footer-col-1) */
     width: 100% !important;
     padding: 0 15px !important;
-    order: 1; /* First element */
+    order: 1; /* First element: Let Us Help You text */
   }
 
   /* **FIXED CODE: Target only the "Let Us Help You" text block (footer-col-1)** */
@@ -467,86 +477,68 @@ i {
   /* **END FIXED CODE** */
 
 
-  /* 💡 MODIFICATION START: Align Social Media and App Stores horizontally and CENTER content for mobile */
-  .tpfooter__widget-social-row {
+  /* 💡 MODIFICATION START: Styles for the newly moved social/app store content */
+  .mobile-footer-social-wrapper .tpfooter__widget-social-row {
     flex-direction: row !important; /* Force horizontal alignment */
-    justify-content: space-around; /* CHANGED: Use space-around to center blocks within the row */
+    justify-content: center !important; /* CHANGED: Center content */
     align-items: flex-start; /* Align content to the top of the row */
     gap: 15px;
     margin-top: 15px;
     width: 100%;
+    margin-right: 15px; 
+    padding-right: 0;
+    padding-left: 0;
   }
 
-  .tpfooter__widget-social-title {
+  .mobile-footer-social-wrapper .tpfooter__widget-social-title {
     margin-top: 0 !important;
   }
 
-  .tpfooter__widget-social {
-    align-items: center !important; /* CHANGED: Center Social Media content */
+  .mobile-footer-social-wrapper .tpfooter__widget-social {
+    align-items: center !important; /* CHANGED: Center Social Media content within its block */
   }
 
-  .tpfooter_widget_social_icons {
-    justify-content: center; /* ADDED: Center the row of icons */
-    width: 100%; /* ADDED: To enable centering of icons */
+  .mobile-footer-social-wrapper .tpfooter_widget_social_icons {
+    justify-content: center !important; /* CHANGED: Center the row of icons */
+    width: 100%;
   }
 
-  .app-stores {
+  .mobile-footer-social-wrapper .app-stores {
     margin-top: 0 !important;
-    align-items: center !important; /* CHANGED: Center "Available on" content */
+    align-items: center !important; /* CHANGED: Center "Available on" content within its block */
   }
 
-  .store-links {
-    justify-content: center; /* ADDED: Center the app store logos */
-    width: 100%; /* ADDED: To enable centering of logos */
+  .mobile-footer-social-wrapper .store-links {
+    justify-content: center !important; /* CHANGED: Center the app store logos */
+    width: 100%;
   }
   /* 💡 MODIFICATION END */
 
-  /* CRITICAL: Make Newsletter full width and position it LAST */
-  .tpfooter__top .col-xl-4:nth-child(4) { /* Newsletter (footer-col-4) */
-    display: block !important; /* Ensure visibility */
-    width: 100% !important; /* Make it full width */
-    padding: 0 15px !important; /* Add padding for content inside */
-    order: 4; /* Place it last, after Categories/Links */
-  }
-
-  /* **FIXED CODE: Target only the Newsletter text block (footer-col-4)** */
-  .footer-col-4 .tpfooter__widget-title,
-  .footer-col-4 p,
-  .footer-col-4 .tpfooter__widget-newsletter-check {
-    text-align: left !important;
-  }
-
-  /* Align the text inside the checkbox label left */
-  .footer-col-4 .form-check-label {
-    text-align: left !important;
-    display: block;
-  }
-
-  /* **MODIFIED CODE: Increase space between checkbox and text** */
-  .tpfooter__widget-newsletter-check .form-check-label {
-    /* Made less negative to shift text right */
-    margin-left: -0.5em !important;
-  }
-  /* **END MODIFIED CODE** */
-
-  /* Ensure the input span (the icon) is positioned correctly */
-  .tpfooter__widget-newsletter form span {
-    left: 20px;
-  }
-  /* **END FIXED CODE** */
-
-  /* ADDED: 10px padding top to the newsletter component (footer-col-4) */
-  .col-xl-4:nth-child(4) {
-    padding-top: 10px !important;
-  }
-
-  /* CRITICAL: Make Categories and Useful Links columns 50% width and remove padding/margins */
+  /* CRITICAL: Make Categories and Useful Links columns 50% width (Order 3) */
   .tpfooter__top .col-xl-3:nth-child(2), /* Categories (footer-col-2) */
   .tpfooter__top .col-xl-2:nth-child(3) { /* Useful Links (footer-col-3) */
     width: 50% !important;
     padding: 0 !important;
-    order: 3; /* Place them before Newsletter (order 4) */
+    order: 3; /* Place them after Let Us Help You (order 1) */
   }
+  
+  /* NEW: Show the social media column and give it the next order (4) */
+  .mobile-social-col {
+    display: block !important; /* Show the new column */
+    width: 100% !important; /* Make it full width */
+    padding: 0 15px !important; /* Add padding for content inside */
+    order: 4; /* Place it after Bulk Order/Useful Links (order 3) */
+    margin-bottom: 20px; /* Add some space before newsletter */
+  }
+
+  /* CRITICAL: Make Newsletter full width and position it LAST (Order 5) */
+  .tpfooter__top .col-xl-4:nth-child(4) { /* Newsletter (footer-col-4) */
+    display: block !important; /* Ensure visibility */
+    width: 100% !important; /* Make it full width */
+    padding: 0 15px !important; /* Add padding for content inside */
+    order: 5; /* Place it last, after the new social column (order 4) */
+  }
+
 
   /* HIDE THE FEATURE AREA ON MOBILE */
   .feature-area {
@@ -562,7 +554,7 @@ i {
 
   /* BACKGROUND IMAGE FOR MOBILE FOOTER */
   .tpfooter__area.theme-bg-2 {
-    background-image: url('../../../assets/images/footer-background.png');
+    /* REMOVED: background-image: url('../../../assets/images/footer-background.png'); */
     background-color: transparent;
     background-size: cover;
     background-position: center center;
@@ -796,37 +788,40 @@ i {
     left: 20px;
   }
 
-  /* 💡 MODIFICATION START: Align Social Media and App Stores horizontally and **CENTER** content for tiny screens */
-  .tpfooter__widget-social-row {
+  /* 💡 MODIFICATION START: Align Social Media and App Stores horizontally and SLIGHTLY RIGHT (space-around) content for tiny screens */
+  .mobile-footer-social-wrapper .tpfooter__widget-social-row { /* CHANGED TARGET */
     flex-direction: row !important; /* Keep horizontal */
-    justify-content: space-around; /* CHANGED: Use space-around to center blocks within the row */
-    align-items: flex-start; /* Vertically align them to the top */
+    justify-content: center !important; /* CHANGED: Center content */
+    align-items: flex-start;
     gap: 15px;
     width: 100%;
-    margin-top: 15px !important;
+    margin-top: 0px !important;
+    margin-right: 15px;
+    padding-right: 0;
+    padding-left: 0;
   }
 
-  .tpfooter__widget-social-title {
+  .mobile-footer-social-wrapper .tpfooter__widget-social-title { /* CHANGED TARGET */
     margin-top: 0 !important;
   }
 
-  .tpfooter__widget-social {
-    align-items: center !important; /* CHANGED: Center Social Media content */
+  .mobile-footer-social-wrapper .tpfooter__widget-social { /* CHANGED TARGET */
+    align-items: center !important; /* CHANGED: Center Social Media content within its block */
   }
 
-  .tpfooter_widget_social_icons {
-    justify-content: center; /* ADDED: Center the row of icons */
-    width: 100%; /* ADDED: To enable centering of icons */
+  .mobile-footer-social-wrapper .tpfooter_widget_social_icons { /* CHANGED TARGET */
+    justify-content: center !important; /* CHANGED: Center the row of icons */
+    width: 100%;
   }
 
-  .app-stores {
-    align-items: center !important; /* CHANGED: Center "Available on" content */
+  .mobile-footer-social-wrapper .app-stores { /* CHANGED TARGET */
+    align-items: center !important; /* CHANGED: Center "Available on" content within its block */
     margin-top: 0 !important;
   }
 
-  .store-links {
-    justify-content: center; /* ADDED: Center the app store logos */
-    width: 100%; /* ADDED: To enable centering of logos */
+  .mobile-footer-social-wrapper .store-links { /* CHANGED TARGET */
+    justify-content: center !important; /* CHANGED: Center the app store logos */
+    width: 100%;
   }
   /* 💡 MODIFICATION END */
 
