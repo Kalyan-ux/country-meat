@@ -10,6 +10,9 @@ import { RouterModule } from '@angular/router';
   imports: [RouterModule],
 })
 export class FooterComponent implements OnInit, OnDestroy {
+  // Public property to hold the footer background image path for mobile view
+  public footerBgImage: string = 'url(\'assets/images/footer-background.png\')';
+
   ngOnInit(): void {}
   ngOnDestroy(): void {}
 }
