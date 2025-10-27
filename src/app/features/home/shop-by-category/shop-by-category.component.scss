@@ -17,14 +17,40 @@
   margin-bottom: -45px;
 }
 
+// ------------------------------------------------
+// --- MODIFIED DESKTOP STYLES (FROM TRENDING) ---
+// ------------------------------------------------
+.section-header-ecommerce .section-titles {
+  
+  /* Shop by Category - Heading */
+  .section-title-left { // Targeting the specific class used in the HTML
+    font-size: 2.0rem; // Desktop title size (from trending)
+    margin-bottom: 0.1rem; // Desktop title margin (from trending)
+    color:#2c3e50;       // Black color (from trending)
+    text-align: left;    // Ensure left alignment (from trending)
+  }
+  
+  /* Discover our premium selection... - Subheading */
+  .section-subtitle-left { // Targeting the specific class used in the HTML
+    font-size: 1.2rem;     // Desktop subtitle size (from trending)
+    font-family: 'Lato', sans-serif; // From trending
+    color: #6c757d;      // Muted color (from trending)
+    margin-bottom: 1.5rem; // Use trending's margin-bottom
+    text-align: left;    // Ensure left alignment (from trending)
+  }
+}
+// ------------------------------------------------
+// ------------------------------------------------
+
+
+// Original .section-header styles (kept for reference or other uses)
 .section-header {
   .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 0.1rem;
-  
-    
+  font-size: 2.0rem; // Desktop title size
+  margin-bottom: 0.1rem; // Desktop title margin
+  color:#2c3e50;       // Black color
+      // Bold font weight (700 is standard bold, 900 is very heavy)
+  text-align: left;
   }
   
 
