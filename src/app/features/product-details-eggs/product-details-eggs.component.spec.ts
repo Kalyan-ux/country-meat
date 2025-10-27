@@ -1,18 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProductDetailsEggsComponent } from './product-details-eggs.component';
+// FIX: Corrected the component name from 'ProductDetailsEggsComponent' to 'ProductDetailsComponentEggs'
+import { ProductDetailsComponentEggs } from './product-details-eggs.component'; 
 
-describe('ProductDetailsEggsComponent', () => {
-  let component: ProductDetailsEggsComponent;
-  let fixture: ComponentFixture<ProductDetailsEggsComponent>;
+// FIX: Corrected the component name in the describe block
+describe('ProductDetailsComponentEggs', () => {
+  // FIX: Corrected the type definition
+  let component: ProductDetailsComponentEggs;
+  // FIX: Corrected the type definition
+  let fixture: ComponentFixture<ProductDetailsComponentEggs>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProductDetailsEggsComponent]
+      // FIX: Corrected the component name in imports
+      imports: [ProductDetailsComponentEggs]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ProductDetailsEggsComponent);
+    // FIX: Corrected the component name in createComponent
+    fixture = TestBed.createComponent(ProductDetailsComponentEggs);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
