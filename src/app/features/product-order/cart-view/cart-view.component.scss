@@ -503,12 +503,20 @@
           .coupon-name {
             font-weight: 500;
             color: #166534;
+            // Ensure single line with ellipsis
+            max-width: 50%; 
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
 
           .coupon-discount {
             font-weight: 600;
             color: #16a34a;
-            padding-left: 200px;
+            // Removed large padding to ensure single line display
+            padding-left: 0; 
+            margin-left: auto; // Pushes discount to the right
+            white-space: nowrap; // Ensures price stays on one line
           }
 
           .remove-coupon {
@@ -548,6 +556,8 @@
             font-weight: 600;
             color: #d44033;
             font-size: 0.75rem;
+            flex-shrink: 0; // Don't shrink the code
+            white-space: nowrap;
           }
 
           .offer-desc {
@@ -555,6 +565,11 @@
             margin: 0 0.75rem;
             font-size: 0.75rem;
             color: #64748b;
+            // CRITICAL: Force text into a single line with ellipsis
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis; 
+            min-width: 0; 
           }
 
           .apply-offer {
@@ -566,6 +581,7 @@
             font-size: 0.75rem;
             cursor: pointer;
             transition: all 0.2s ease;
+            flex-shrink: 0; // Don't shrink the button
 
             &:hover {
               background: #d44033;
