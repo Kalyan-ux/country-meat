@@ -13,51 +13,77 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class HomeSliderComponent implements OnInit, OnDestroy {
   
-  // FIX: Declare and initialize the stable image path array property
   imageFullSrcs: string[] = [
     'assets/images/banner/banner-1.jpg',
     'assets/images/banner/banner-2.jpg',
     'assets/images/banner/banner-3.jpg',
   ];
 
+  private autoplayTimeoutRef: any; 
+
   constructor() {}
 
-  customOptions: OwlOptions = {
+  // 💡 FIX 1: Removed complex fade-in/out animations for smoother manual swiping.
+  // 💡 FIX 2: Reduced smartSpeed further to 300ms for snappier response.
+  customOptions: OwlOptions = ({
     items: 1,
     loop: true,
     margin: 0,
     autoplay: true,
     autoplayTimeout: 8000,
     autoplayHoverPause: false,
-    dots: true, // show dots
+    dots: true,
     nav: false,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
     freeDrag: false,
-    smartSpeed: 1500,
-    animateOut: 'fadeOut',
-    animateIn: 'fadeIn',
+    smartSpeed: 300, // Reduced from 500ms for maximum responsiveness
+    // Removed: animateOut: 'fadeOut',
+    // Removed: animateIn: 'fadeIn',
     lazyLoad: true,
+    onDrag: this.onDragStart.bind(this),
+    onDragged: this.onDragEnd.bind(this),
     responsive: {
       0: { items: 1 },
       600: { items: 1 },
       1000: { items: 1 },
     },
-  };
+  } as OwlOptions) as any;
 
   ngOnInit(): void {
-    // Initial check to load the correct image on startup
     this.checkScreenSize();
   }
   
-  // Listen for window resize events to swap images dynamically
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.checkScreenSize();
   }
+  
+  onDragStart() {
+    // Clear pending timeout and stop autoplay immediately
+    if (this.autoplayTimeoutRef) {
+      clearTimeout(this.autoplayTimeoutRef);
+    }
+    // Set the options object to stop autoplay
+    this.customOptions = { ...this.customOptions, autoplay: false } as any; 
+  }
 
-  // Logic to determine and set the full image paths
+  onDragEnd() {
+    // Wait a short duration (e.g., 5 seconds) before resuming autoplay
+    const delayBeforeResume = 5000; 
+
+    // Clear any previous timeout
+    if (this.autoplayTimeoutRef) {
+      clearTimeout(this.autoplayTimeoutRef);
+    }
+
+    this.autoplayTimeoutRef = setTimeout(() => {
+      // Re-enable autoplay after the delay
+      this.customOptions = { ...this.customOptions, autoplay: true } as any; 
+    }, delayBeforeResume);
+  }
+
   checkScreenSize() {
     const isMobile = window.innerWidth <= 768;
 
@@ -76,5 +102,10 @@ export class HomeSliderComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    // Clean up the timeout
+    if (this.autoplayTimeoutRef) {
+      clearTimeout(this.autoplayTimeoutRef);
+    }
+  }
 }
