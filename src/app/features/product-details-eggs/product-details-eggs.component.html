@@ -37,10 +37,26 @@
         </span>
       </div>
 
-      <div class="info-badges">
-         <span class="badge-item">
-            <i class="fas fa-box-open"></i> Pack of {{ product.packSize }}
-         </span>
+      <div class="info-badges mb-3">
+        <div class="badge-item" style="padding: 0; background-color: transparent;"> 
+          <i class="fas fa-box-open" style="color: #d9232d;"></i>
+          <select
+            (change)="onPackChange($event)"
+            [ngModel]="selectedPackPrice" 
+            class="form-select"
+            style="width: 200px;"
+          >
+            <option
+              *ngFor="let pack of product.packOptions"
+              [value]="pack.price"
+            >
+              {{ pack.label }} 
+              <span *ngIf="pack.originalPrice > pack.price">
+                  (<s>₹{{ pack.originalPrice }}</s>)
+              </span>
+            </option>
+          </select>
+        </div>
       </div>
       
       <p class="product-description" *ngIf="product.note">
