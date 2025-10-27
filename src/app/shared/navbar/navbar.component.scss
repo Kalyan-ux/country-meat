@@ -243,7 +243,7 @@
   cursor: not-allowed;
 
   .coming-soon-badge {
-    position: absolute;
+    position: relative;
     top: 5px;
     right: 5px;
     background: #ffc107;
@@ -648,5 +648,3 @@
   white-space: nowrap;
   display: inline-block;
 }
-
-
