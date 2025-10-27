@@ -1,3 +1,5 @@
+// product-details-eggs.component.ts
+
 import { CommonModule } from '@angular/common';
 import {
   Component,
@@ -56,35 +58,35 @@ export class ProductDetailsComponentEggs implements OnInit, AfterViewInit {
     },
     {
       id: 2,
-      name: 'Free Range Original Country Chicken Eggs',
+      name: 'Free Range Country Chicken Eggs', // UPDATED NAME based on initial image
       subtitle: 'Rare variety of high-protein eggs that come cleaned',
       description:'These Country Eggs are laid by breeds like sonali raised in open free-range farms. Pure, wholesome, and rich in nutrition, just the way nature intended.',
       features: [
-        'Protein rich',
-        'Free-Range',
-        'High Omega-3',
-        'Low-fat',
-        'Packed with Vitamins & minerals',
+        'Protein Rich', 
+        'Nutritious', 
+        'Chemical-free', 
+        'Omega-3', 
+        'Free-Range'
       ],
       packSize: '6',
-      price: 180,
+      price: 119, // UPDATED PRICE based on initial image
       image: 'assets/images/products/eggs/egg-2.png', // Ensure this path is correct
     },
     {
       id: 3,
-      name: 'Free Range Original Country Chicken Eggs',
-      subtitle: 'Rare variety of high-protein eggs that come cleaned',
+      // FIX: Updated name and details to match the missing "Cage Free Country Chicken Eggs" card
+      name: 'Cage Free Country Chicken Eggs',
+      subtitle: 'These Country Eggs are laid by breeds like sonali & Aseel raised out of battery cages. Known for their balanced nutrition and authentic taste.',
       description:'These Country Eggs are laid by breeds like sonali & Aseel raised out of battery cages. Known for their balanced nutrition and authentic taste, they’re a wholesome choice for the whole family.',
       features: [
-        'Protein rich',
-        'Free-Range',
-        'High Omega-3',
-        'Low-fat',
-        'Packed with Vitamins & minerals',
+        'Protein Rich', 
+        'Nutritious', 
+        'Chemical-free', 
+        'Better fat profile'
       ],
       packSize: '6',
-      price: 180,
-      image: 'assets/images/products/eggs/egg-1.png', // Ensure this path is correct
+      price: 99, // UPDATED PRICE
+      image: 'assets/images/products/eggs/egg-3.png', // Using a placeholder image path
     },
   ];
 
@@ -104,22 +106,27 @@ export class ProductDetailsComponentEggs implements OnInit, AfterViewInit {
           ...foundProduct,
           healthBenefits: this.sharedHealthBenefits,
         };
-
-        this.allImages = [this.product.images, ...this.product.imageGallery];
-        this.selectedImage = this.allImages[0];
-
-        // Populate related products, excluding the current one
+        
         this.relatedProducts = this.products.filter(
           (p) => p.id !== this.productId
         );
       } else {
-        this.product = null; // Handle case where product isn't found
+        this.product = null;
+      }
+      
+      // Ensure arrow visibility is updated after relatedProducts are loaded
+      if (this.relatedProducts.length > 0) {
+          // A slight delay is needed to ensure the DOM elements are rendered
+          setTimeout(() => {
+            if (this.relatedProductsContainer) {
+                this.updateArrowVisibility();
+            }
+          }, 0);
       }
     });
   }
 
   ngAfterViewInit(): void {
-    // Check if the container exists before updating arrows
     if (this.relatedProductsContainer) {
       this.updateArrowVisibility();
     }
@@ -144,6 +151,13 @@ export class ProductDetailsComponentEggs implements OnInit, AfterViewInit {
     const container = this.relatedProductsContainer.nativeElement;
     const scrollLeft = container.scrollLeft;
     const maxScrollLeft = container.scrollWidth - container.clientWidth;
+    
+    // Check if scroll is necessary
+    if (container.scrollWidth <= container.clientWidth) {
+      this.showLeftArrow = false;
+      this.showRightArrow = false;
+      return;
+    }
 
     this.showLeftArrow = scrollLeft > 5;
     this.showRightArrow = scrollLeft < maxScrollLeft - 5;
