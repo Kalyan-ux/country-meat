@@ -1,22 +1,25 @@
 <div class="container py-5">
-  <div class="row mb-4">
-    <div class="col-12">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a routerLink="/"><i class="fas fa-home"></i> Home</a>
-          </li>
-          <!-- "Products" link has been removed -->
-          <li class="breadcrumb-item active" aria-current="page">Eggs</li>
-        </ol>
-      </nav>
+  <div style="display: block !important; visibility: visible !important; width: 100% !important;">
+    <div class="row mb-4">
+      <div class="col-12">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a routerLink="/"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Eggs</li>
+          </ol>
+        </nav>
+      </div>
     </div>
   </div>
 
   <div class="row" *ngIf="eggProducts.length > 0">
-    <div
-      class="col-lg-4 col-md-6 col-sm-12 mb-4"
-      *ngFor="let product of eggProducts"
+    
+    <div 
+      class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4 d-none d-md-flex" 
+      *ngFor="let product of eggProducts; let isLast = last"
+      [ngClass]="{'mx-auto': isLast && (eggProducts.length % 3 !== 0)}"
     >
       <div class="card product-card h-100" (click)="onProductClick(product.id)">
         <div class="card-img-wrapper">
@@ -31,7 +34,7 @@
         <div class="card-body d-flex flex-column">
           <div>
             <h5 class="product-name">{{ product.name }}</h5>
-            <p class="product-description">{{ product.description }}</p>
+            <h6 class="product-description">{{ product.description }}</h6>
             <div class="product-features">
               <span
                 class="feature-tag"
@@ -99,7 +102,105 @@
         </div>
       </div>
     </div>
-  </div>
+
+
+    <div
+      class="col-12 mb-3 d-flex d-md-none product-list-item-wrapper"
+      *ngFor="let product of eggProducts; let i = index"
+    >
+      <div class="card product-card horizontal-card w-100" (click)="onProductClick(product.id)">
+        <div class="row g-0 h-100">
+          <div class="col-4 product-image-col">
+            <div class="card-img-wrapper horizontal-img-wrapper h-100">
+              <img
+                [src]="product.image"
+                class="card-img-top horizontal-img"
+                [alt]="product.name"
+                onerror="this.src='assets/images/products/eggs/egg-1.png'"
+              />
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="card-body d-flex flex-column h-100 p-3">
+              <div class="product-info-top">
+                <h5 class="product-name">{{ product.name }}</h5>
+                <h6 class="product-description">
+                  {{ i === 0 || i === eggProducts.length - 2
+                    ? 'Rare variety of high-protein eggs that come cleaned' 
+                    : i === 3
+                      ? 'These Country Eggs are laid by breeds like sonali & Aseel raised out of battery cages. Known for their balanced nutrition and authentic taste.' 
+                      : product.description 
+                  }}
+                </h6>
+                <div class="product-features mb-2">
+                  <span
+                    class="feature-tag"
+                    *ngFor="let feature of product.features"
+                    >{{ feature }}</span
+                  >
+                </div>
+              </div>
+
+              <div class="product-pack-selector horizontal-pack-info mb-1">
+                <i class="fas fa-box-open d-none"></i> <select
+                  (change)="onPackChange(product, $event)"
+                  (click)="$event.stopPropagation()"
+                  class="form-select"
+                >
+                  <option
+                    *ngFor="let pack of product.packOptions"
+                    [value]="pack.price"
+                  >
+                    {{ pack.label }}
+                  </option>
+                </select>
+              </div>
+              <div class="mt-auto price-action-container horizontal-view pt-2">
+                <div class="price-details">
+                  <span class="current-price">Rs.{{ product.price }}</span>
+                  <span
+                    class="original-price"
+                    *ngIf="getDiscount(product.originalPrice, product.price) > 0"
+                    >Rs.{{ product.originalPrice }}</span
+                  >
+                  <span
+                    class="discount"
+                    *ngIf="getDiscount(product.originalPrice, product.price) > 0"
+                  >
+                    {{ getDiscount(product.originalPrice, product.price) }}% off
+                  </span>
+                </div>
+                <div class="action-buttons">
+                  <button
+                    *ngIf="product.quantity === 0"
+                    class="btn btn-add"
+                    (click)="addToCart(product, $event)"
+                  >
+                    Add +
+                  </button>
+                  <div *ngIf="product.quantity > 0" class="quantity-stepper">
+                    <button
+                      class="stepper-btn"
+                      (click)="decreaseQuantity(product, $event)"
+                    >
+                      &ndash;
+                    </button>
+                    <span class="quantity-display">{{ product.quantity }}</span>
+                    <button
+                      class="stepper-btn"
+                      (click)="increaseQuantity(product, $event)"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
 
   <div class="row" *ngIf="eggProducts.length === 0">
     <div class="col-12 text-center">
