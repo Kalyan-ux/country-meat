@@ -5,19 +5,14 @@
   justify-content: center;
 }
 
-// ADDED: Wrapper to enable Flexbox centering on mobile
-.product-row-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-
-// Media query for mobile devices (max-width: 767px)
-@media (max-width: 767px) {
-  .product-row-wrapper {
-    &:has(.col-6:last-child:nth-child(odd)) {
-      justify-content: center;
-    }
+// Media query for mobile devices (max-width: 767.98px for sm breakpoint)
+@media (max-width: 767.98px) {
+  /* Fix: Simplified centering logic for the last card when total count is odd. */
+  /* This targets the last .col-6 (2nd item of row) if it's the last child in the parent .row, */
+  /* and sets margins to auto to center it, overriding the default left-alignment. */
+  .row > .col-6:last-child:nth-child(odd) {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -187,20 +182,22 @@
   }
 }
 
+// MODIFIED: Removed margin-bottom
 .product-weight {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 0.9rem;
   color: #343a40;
-  margin-bottom: 0.75rem; // Reduced margin
+  // margin-bottom: 0.75rem; // Removed margin-bottom
 }
 
+// MODIFIED: Removed margin-bottom
 .price-section {
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
-  margin-bottom: 0;
+  // margin-bottom: 0; // Removed margin-bottom
   flex-wrap: wrap;
 
   .current-price {
@@ -272,7 +269,7 @@
   }
 }
 
-// Button Styles
+// Button Styles (omitted for brevity)
 .btn-premium {
   background: linear-gradient(45deg, #ec2c34, #d12129);
   border: none;
@@ -342,7 +339,7 @@
   }
 }
 
-// Responsive Design
+// Responsive Design (Applies to all cards initially)
 @media (max-width: 768px) {
   .hero-section {
     height: 40vh;
@@ -385,7 +382,174 @@
       }
     }
   }
+  
+  // ========================================================
+  // === HORIZONTAL CARD STYLES (MOBILE LIST VIEW) - START ===
+  // ========================================================
+  
+  .product-card.horizontal-card {
+    height: 180px; // Fixed height for a uniform list item
+    border-radius: 12px; 
+    box-shadow: none; 
+    border: 1px solid #e9ecef; 
+    margin-bottom: 0.75rem; 
+    
+    &:hover {
+        transform: none; 
+    }
+
+    .product-image-col {
+      height: 100%; 
+      overflow: hidden; 
+    }
+
+    .card-img-wrapper {
+      height: 100%; 
+      border-radius: 0; 
+      .horizontal-img {
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+        border-top-right-radius: 0;
+      }
+      .special-badge {
+          font-size: 0.6rem; // AGGRESSIVE FIX: Reduced font size from 0.7rem to 0.6rem
+          padding: 3px 6px; 
+          right: 3px; 
+          top: 3px;
+          color: white; 
+      }
+    }
+    
+    .card-body {
+      padding: 0.2rem 0.75rem; // *** AGGRESSIVE FIX: Reduced vertical padding to minimum (0.2rem top/bottom) ***
+      justify-content: space-between;
+      overflow: hidden; 
+      white-space: normal;
+    }
+
+    .product-info-top {
+        // *** FIX: Zero margin on the top content block ***
+        margin-bottom: 0; 
+    }
+
+    .product-name {
+      font-size: 1.05rem; 
+      margin-bottom: 0; // *** FIX: Zero margin on the product name ***
+      white-space: nowrap; 
+      overflow: hidden;
+      text-overflow: ellipsis; 
+    }
+    
+    .product-subtitle, .product-age {
+        font-size: 0.75rem; 
+        margin-bottom: 0; // *** FIX: Zero margin on subtitle/age ***
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis; 
+    }
+
+    .product-features {
+        margin-bottom: 0.2rem; // *** FIX: Minimal margin after features ***
+        .feature-tag {
+            padding: 0.1rem 0.3rem; 
+            font-size: 0.6rem; 
+        }
+    }
+    
+    .product-weight {
+      font-size: 0.85rem; 
+      margin-bottom: 0.2rem !important; // *** FIX: Minimal margin for weight ***
+    }
+
+    // Price & Action Container for horizontal view
+    .horizontal-price-action {
+      display: flex !important; 
+      justify-content: space-between;
+      align-items: center; 
+      
+      .price-section {
+        flex-wrap: wrap; 
+        gap: 0.2rem; 
+        align-items: baseline; 
+        
+        .current-price {
+          font-size: 1.1rem; 
+          white-space: nowrap;
+        }
+        
+        .original-price, .discount {
+          font-size: 0.75rem; 
+          white-space: nowrap; 
+        }
+      }
+
+      .btn-mobile-add { 
+        padding: 0.15rem 0.5rem; // *** AGGRESSIVE FIX: Minimal button padding ***
+        font-size: 0.8rem;
+        font-weight: 500;
+        border-radius: 6px;
+        height: 25px; // *** AGGRESSIVE FIX: Reduced height ***
+      }
+      
+      .quantity-stepper {
+        border-radius: 6px;
+        height: 25px; // *** AGGRESSIVE FIX: Reduced height ***
+
+        .stepper-btn {
+          padding: 0.15rem 0.5rem; // *** AGGRESSIVE FIX: Minimal stepper padding ***
+          font-size: 0.9rem;
+        }
+        .quantity-display {
+          font-size: 0.85rem; 
+          min-width: 20px;
+        }
+      }
+    }
+  }
+  // ========================================================
+  // === HORIZONTAL CARD STYLES (MOBILE LIST VIEW) - END ===
+  // ========================================================
+
+  // Breadcrumb fix styles... (omitted for brevity)
+  nav[aria-label="breadcrumb"] .breadcrumb {
+    /* 1. Force Flex Row & No Wrapping */
+    display: flex !important;
+    flex-wrap: nowrap !important;
+
+    /* 2. Allow scrolling if needed, hide scrollbar */
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    &::-webkit-scrollbar { display: none !important; }
+
+    /* 3. Reset Bootstrap default padding/margin */
+    padding-left: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  nav[aria-label="breadcrumb"] .breadcrumb .breadcrumb-item {
+    /* 4. Force items to stay inline and not take full width */
+    display: inline-flex !important; /* Use inline-flex */
+    align-items: center; /* Vertically align icon/text if needed */
+    white-space: nowrap !important; /* Prevent text wrapping inside */
+    flex-shrink: 0 !important; /* Prevent shrinking */
+
+    /* 5. Ensure Bootstrap dividers stay inline */
+    &::before {
+      display: inline-block !important; /* Make sure separator is inline */
+      padding-right: 0.5rem !important; /* Adjust space before separator */
+      padding-left: 0.5rem !important; /* Adjust space after separator */
+      color: #6c757d;
+      content: "/" !important; /* Ensure content is set */
+    }
+    /* Remove separator before the first item */
+    &:first-child::before {
+        content: none !important;
+        padding: 0 !important;
+    }
+  }
 }
+
 
 // Animation Keyframes
 @keyframes fadeInUp {
@@ -490,7 +654,7 @@
   }
 }
 
-// Responsive adjustments
+// Responsive adjustments (Non-horizontal card related)
 @media (max-width: 768px) {
   .product-card {
     margin-bottom: 1rem;
@@ -502,49 +666,5 @@
 
   .card-title {
     font-size: 1rem;
-  }
-}
-
-/* ======================================================== */
-/* === MOBILE BREADCRUMB ALIGNMENT - GUARANTEED FIX === */
-/* ======================================================== */
-
-@media (max-width: 768px) {
-  nav[aria-label="breadcrumb"] .breadcrumb {
-    /* 1. Force Flex Row & No Wrapping */
-    display: flex !important;
-    flex-wrap: nowrap !important;
-
-    /* 2. Allow scrolling if needed, hide scrollbar */
-    overflow-x: auto !important;
-    scrollbar-width: none !important;
-    -ms-overflow-style: none !important;
-    &::-webkit-scrollbar { display: none !important; }
-
-    /* 3. Reset Bootstrap default padding/margin */
-    padding-left: 0 !important;
-    margin-bottom: 0 !important;
-  }
-
-  nav[aria-label="breadcrumb"] .breadcrumb .breadcrumb-item {
-    /* 4. Force items to stay inline and not take full width */
-    display: inline-flex !important; /* Use inline-flex */
-    align-items: center; /* Vertically align icon/text if needed */
-    white-space: nowrap !important; /* Prevent text wrapping inside */
-    flex-shrink: 0 !important; /* Prevent shrinking */
-
-    /* 5. Ensure Bootstrap dividers stay inline */
-    &::before {
-      display: inline-block !important; /* Make sure separator is inline */
-      padding-right: 0.5rem !important; /* Adjust space before separator */
-      padding-left: 0.5rem !important; /* Adjust space after separator */
-      color: #6c757d;
-      content: "/" !important; /* Ensure content is set */
-    }
-    /* Remove separator before the first item */
-    &:first-child::before {
-        content: none !important;
-        padding: 0 !important;
-    }
   }
 }
