@@ -1,335 +1,498 @@
 @use "sass:color";
 
-.full-section {
-  width: 100%;
-  background-color: #fff; // Matches the section background
-}
-
-// --- TRENDING PRODUCTS SECTION (Desktop Base Styles) ---
-.trending-products-section {
-  max-width: 1200px; 
-  margin: 0 auto;
-  padding: 32px 16px; // Desktop padding
-}
-
-/* Style for the Section Title (Applying black bold) */
-.trending-products-section .section-title-left { 
-  font-size: 2.0rem; 
-  margin-bottom: 0.1rem; 
-  color:#2c3e50;       
-  text-align: left;    
-}
-/* Style for the Section Subtitle */
-.trending-products-section .section-subtitle { 
-    font-size: 1.2rem;     
-    font-family: 'Lato', sans-serif; 
-    color: #6c757d;      
-    margin-bottom: 1.5rem; 
-    text-align: left;    
-}
-
-// **This container enables the manual horizontal scrolling**
-.horizontal-scroll-container {
-  display: flex;
-  overflow-x: auto !important; // CRUCIAL: Added !important to force scrolling
-  flex-wrap: nowrap; // <--- ADDED: Forces all items onto one line
-  gap: 1.5rem; // Desktop gap
-  padding: 1rem 0; // Padding 0 on sides for desktop
-  scroll-behavior: smooth;
-  margin-bottom: -20px;
-  scrollbar-width: none; // Firefox scrollbar hide
-  -ms-overflow-style: none; // IE/Edge scrollbar hide
-  &::-webkit-scrollbar { // Chrome/Safari scrollbar hide
-    display: none;
+// --- BREADCRUMB ---
+.breadcrumb {
+  background: none;
+  padding: 0;
+  font-size: 0.9rem;
+  .breadcrumb-item {
+    a {
+      color: #d9232d;
+      text-decoration: none;
+    }
+    &.active {
+      color: #343a40;
+    }
+    & + .breadcrumb-item::before {
+      content: "/";
+      padding: 0 0.5rem;
+      color: #6c757d;
+    }
   }
 }
 
-.trending-item {
-  flex: 0 0 320px; // Desktop card width
+// --- NEW IMAGE GALLERY STYLES ---
+.product-image-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+// DEFAULT/DESKTOP STYLES (Thumbnails wrap to the next line)
+.thumbnail-column {
+  display: flex;
+  flex-direction: row; 
+  justify-content: center; /* ADDED: Centers the thumbnails horizontally */
+  flex-wrap: wrap; /* ADDED: Allows thumbnails to wrap to the next line if needed */
+  gap: 0.75rem;
+}
+
+.thumbnail-item {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 2px solid #e0e0e0;
+  border-radius: 0; /* MODIFIED: Removed border radius */
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: #a0a0a0;
+  }
+
+  &.active {
+    border-color: #d9232d; // Active state border color
+  }
+}
+
+.main-image-container {
+  position: relative;
+  height: 400px; // Fixed height for the main image container (Desktop default)
+
+  .main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 12px;
+    padding-top: 20px;
+  }
+}
+
+// ------------------------------------------------------------------
+// --- MOBILE-SPECIFIC STYLES (Screen size up to 767px) ---
+// ------------------------------------------------------------------
+@media (max-width: 767px) {
+  /* 1. REDUCE MAIN IMAGE SIZE */
+  .main-image-container {
+    height: 300px; /* Reduced height from 400px for mobile to save space */
+  }
+
+  /* 2. FORCE HORIZONTAL SCROLLING FOR THUMBNAILS */
+  .thumbnail-column {
+    justify-content: flex-start; /* Aligns images to the start for scrolling */
+    flex-wrap: nowrap; /* Forces images onto a single line */
+    overflow-x: auto; /* Enables horizontal scrolling for mobile */
+    padding-bottom: 5px; /* Added for scrollbar space */
+
+    /* Hide the scrollbar but keep the scrolling functionality */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .thumbnail-item {
+    flex: 0 0 auto; /* Prevents thumbnails from shrinking or growing */
+    border-radius: 8px; /* Added slight radius for better mobile look */
+  }
+}
+// ------------------------------------------------------------------
+
+
+// --- PRODUCT DETAILS ---
+.product-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #212529;
+  .special-note {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #495057;
+  }
+}
+.product-subtitle {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-top: -5px;
+  margin-bottom: 1rem;
+}
+.product-description {
+  font-size: 0.95rem;
+  color: #495057;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+
+  
+  .read-more-link {
+    color: #d9232d;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.info-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0rem;
+  .badge-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #343a40;
+    i {
+      color: #d9232d;
+    }
+  }
+}
+
+.price-section {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  .current-price {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #212529;
+  }
+  .discount {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
+.mrp-text {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-top: -5px;
+  margin-bottom: 2rem;
+}
+
+// --- ADD THIS SCSS FOR THE NEW MRP STYLE ---
+
+.mrp-block-no-discount {
+  margin-top: -5px;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  font-size: 0.9rem;
+  color: #6c757d;
+
+  .mrp-main-text {
+    font-size: 1rem; // Makes "MRP: ₹899" slightly larger
+    color: #343a40;
+
+    strong {
+      font-weight: 700; // Ensures the price is bold
+    }
+  }
+
+  .mrp-subtext {
+    display: block; // Puts "(incl. of all taxes)" on a new line
+  }
+}
+
+// --- ACTION BUTTONS ---
+.action-section {
+  .btn-add {
+    background-color: #d9232d;
+    color: white;
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    &:hover {
+      background-color: color.adjust(#d9232d, $lightness: -10%);
+    }
+  }
+
+  // ADDED: Styles for the quantity stepper
+  .quantity-stepper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    overflow: hidden;
+
+    .stepper-btn {
+      background-color: #fff;
+      border: none;
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #d9232d;
+      line-height: 1;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #f8f9fa;
+      }
+    }
+
+    .quantity-display {
+      background-color: #f1f3f5;
+      padding: 0.6rem 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #212529;
+      border-left: 1px solid #dee2e6;
+      border-right: 1px solid #dee2e6;
+      min-width: 45px;
+      text-align: center;
+    }
+  }
+
+  .delivery-info {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    .delivery-icon {
+      width: 28px;
+    }
+  }
+
+  .out-of-stock-section {
+    display: flex; /* ADDED: To align button and message */
+    flex-direction: column; /* ADDED: Stack them vertically */
+    align-items: center; /* ADDED: Center both items */
+
+    .btn-notify {
+      background-color: #fff;
+      color: #d9232d;
+      border: 1px solid #d9232d;
+      font-weight: 600;
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      &:hover {
+        background-color: #f8f9fa;
+      }
+    }
+
+    /* NEW: Styling for the message moved inline */
+    .out-of-stock-message-inline {
+      margin-top: 0.5rem; 
+      text-align: center; 
+      .out-of-stock-text-inline {
+        color: #212529; // MODIFIED: Changed color from #d9232d (red) to #212529 (black)
+        font-weight: 500;
+        font-size: 0.9rem;
+        margin-bottom: 0; /* Remove default paragraph margin */
+      }
+    }
+
+    .or-separator {
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+  }
+}
+
+/* REMOVED/DEPRECATED: The old out-of-stock-section-message-style
+.out-of-stock-section-message {
+  .out-of-stock-text {
+    color: #d9232d;
+    font-weight: 500;
+    margin-top: 0.5rem;
+  }
+}
+*/
+
+// Info lines at the bottom
+.info-lines {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  margin-top: auto; // Pushes this block to the bottom
+
+  .info-line-safe a {
+    color: #e63946;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .info-line-delivery {
+    font-size: 0.9rem;
+
+    i {
+      color: #ff9f1c;
+      margin-right: 0.3rem;
+    }
+  }
+}
+
+// Styling for the new tab component
+.features-benefits-tabs {
+  margin-top: 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #dee2e6;
+}
+
+.tabs-nav {
+  background-color: #f8f9fa;
+  justify-content: center;
+}
+
+.tab-btn {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6c757d;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  background-color: transparent;
+  transition: color 0.2s, border-color 0.2s;
+
+  &.active {
+    color: #e63946;
+    border-bottom-color: #e63946;
+    background-color: #fff;
+  }
+
+  &:hover:not(.active) {
+    color: #e63946;
+  }
+}
+
+.tabs-content {
+  background-color: #fff;
+
+  li {
+    font-size: 1rem;
+    color: #333;
+
+    i {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+// Styling for the related products cards
+.related-card {
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+  border-radius: 8px; /* MODIFIED: Set a consistent border radius */
+  overflow: hidden; /* ADDED: Ensures content (like the image) and box-shadow is clipped to the border-radius */
+  
+  /* Subtle permanent shadow is retained */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.05); 
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* Enforce square corners on the inner card and image */
+.related-product-card .card {
+  border-radius: 8px; /* MODIFIED: Set a consistent border radius */
+  border: none; /* Remove default bootstrap border */
+  box-shadow: none; /* Remove any default bootstrap shadow, rely on .related-card */
+}
+
+.related-product-card .card-img-top {
+  border-top-left-radius: 30px; /* MODIFIED: Apply radius to top-left */
+  border-top-right-radius: 30px; /* MODIFIED: Apply radius to top-right */
+}
+
+
+.related-card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-subtitle {
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-top: -3px;
+  margin-bottom: 0.5rem;
+}
+
+.related-products-section {
+  position: relative;
+  padding: 0 45px;
+}
+
+.related-products-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.related-products-container {
+  display: flex;
+  flex-wrap: nowrap;
+  /* Prevents wrapping to the next line */
+  overflow-x: auto;
+  /* Enables horizontal scrolling */
+  -webkit-overflow-scrolling: touch;
+  /* For smoother scrolling on iOS */
+  gap: 20px;
+  /* Space between cards */
+  padding-bottom: 1rem;
+  /* Add padding to prevent scrollbar from hiding content */
+  width: 100%;
+}
+
+/* Hide the scrollbar but keep functionality */
+.related-products-container::-webkit-scrollbar {
+  display: none;
+}
+
+.related-product-card {
+  flex: 0 0 auto;
+  /* Ensures cards don't grow or shrink and maintain their width */
+  width: 300px;
+  /* Fixed width for each card */
+  min-width: 250px;
+  /* Minimum width for smaller screens */
+}
+
+/* Optional: Add a subtle hover effect to the cards */
+.related-product-card .card {
+  transition: transform 0.2s ease-in-out;
   cursor: pointer;
 }
 
-// --- CARD STYLES (Used for both Desktop and Mobile) ---
-.product-card {
-  border: 1px solid #e9ecef;
-  border-radius: 20px;
-  background: #ffffff;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-  height: 100%; 
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  }
+.related-product-card .card:hover {
+  transform: translateY(-5px);
 }
 
-.card-img-wrapper {
-  position: relative;
-  overflow: hidden;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  height: 220px; 
-
-  .card-img-top {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .special-badge {
-    position: absolute;
-    top: 8px;
-    right: 8px; 
-    background-color: transparent; color: white;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 0.65rem; 
-    font-weight: bold;
-  }
-}
-
-.card-body {
-  padding: 1rem 1.25rem; 
-  display: flex;
-  flex-direction: column; 
-  flex-grow: 1; 
-  
-  /* REMOVED: & > div:first-child { flex-grow: 1; } */
-}
-
-/* NEW RULE: This container takes up all remaining space */
-.product-info-top {
-    flex-grow: 1; 
-}
-
-
-.product-name {
-  font-size: 1.2rem; 
-  font-weight: 600;
-  color: #212529;
-  margin-bottom: 0.25rem;
-}
-
-.product-subtitle,
-.product-age {
-  font-size: 0.9rem;
-  color: #6c757d;
-  margin-bottom: 0.75rem;
-}
-
-.product-features {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-
-  .feature-tag {
-    background-color: #c7a533; 
-    color: #343a40;
-    padding: 0.25rem 0.7rem;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    border: 1px solid #dee2e6;
-  }
-}
-
-.product-weight {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  color: #343a40;
-  margin-bottom: 1rem;
-  white-space: nowrap; 
-
-  .weight-icon {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-.price-action-container {
-  margin-top: auto; 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.price-details {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.current-price {
-  font-size: 1.3rem; 
-  font-weight: 700;
-  color: #212529;
-}
-
-.original-price {
-  font-size: 0.9rem;
-  color: #b0b0b0;
-  text-decoration: line-through;
-}
-
-.discount {
-  font-size: 0.8rem; 
-  color: #d9232d;   
-  font-weight: 600; 
-  background-color: #fee2e2; 
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.action-buttons {
-  // Styles for the container if needed
-}
-
-.btn-add {
-  background-color: #d9232d;
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #e63946;
   color: white;
   border: none;
-  padding: 0.5rem 1.25rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: color.adjust(#d9232d, $lightness: -10%);
-  }
-}
-
-.quantity-stepper {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  z-index: 10;
   display: flex;
   align-items: center;
-  border: 1px solid #dee2e6;
-  border-radius: 8px;
-  overflow: hidden;
-
-  .stepper-btn {
-    background-color: #fff;
-    border: none;
-    padding: 0.5rem 0.8rem; 
-    cursor: pointer;
-    font-size: 1rem; 
-    font-weight: bold;
-    color: #d9232d;
-    line-height: 1;
-
-    &:hover {
-      background-color: #f8f9fa;
-    }
-     &:disabled { 
-        color: #adb5bd;
-        cursor: not-allowed;
-        background-color: #f8f9fa;
-    }
-  }
-
-  .quantity-display {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #212529;
-    padding: 0.5rem 0.5rem;
-    min-width: 30px;
-    text-align: center;
-    border-left: 1px solid #dee2e6; 
-    border-right: 1px solid #dee2e6;
-  }
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+.scroll-btn.left-btn {
+  left: 0;
+  right: auto;
 }
 
-/* ======================================================== */
-/* === MOBILE RESPONSIVE STYLES (max-width: 768px) === */
-/* ======================================================== */
-
-@media (max-width: 768px) {
-  
-  .full-section {
-    /* Ensures the outermost wrapper doesn't cause issues */
-    overflow-x: hidden; 
-  }
-  
-  .trending-products-section {
-    /* Set to 100% width and remove side padding to allow horizontal-scroll-container to use full width */
-    max-width: none; 
-    width: 100%;
-    text-align: left;
-    padding: 24px 0; /* Removed left/right padding */
-  }
-
-  .trending-products-section .section-title-left {
-      font-size: 1.8rem; 
-      text-align: left;
-      margin-left: 16px; /* Re-apply padding to title/subtitle */
-  }
-  .trending-products-section .section-subtitle {
-      font-size: 1rem; 
-      text-align: left;
-      margin-bottom: 1rem; 
-      margin-left: 16px; /* Re-apply padding to title/subtitle */
-  }
-
-  .horizontal-scroll-container {
-    gap: 0.75rem; 
-    padding: 0.5rem 16px; /* KEY: Add side padding here instead of the section wrapper */
-  }
-
-  .trending-item {
-    flex: 0 0 240px; // Mobile card width is reduced but fixed
-  }
-
-  .product-card {
-    .card-img-wrapper {
-        height: 120px; 
-    }
-    .card-body {
-      padding: 0.5rem 0.75rem; 
-    }
-    
-    .product-name {
-      font-size: 1rem; 
-      margin-bottom: 0.15rem; 
-    }
-    
-    .product-subtitle,
-    .product-age {
-        font-size: 0.85rem;
-        margin-bottom: 0.5rem; 
-    }
-
-    .product-features {
-        gap: 0.4rem;
-        margin-bottom: 0.75rem; 
-        .feature-tag {
-            padding: 0.15rem 0.6rem; 
-            font-size: 0.7rem;
-        }
-    }
-    
-    .product-weight {
-        margin-bottom: 0.75rem; 
-    }
-
-    .current-price {
-      font-size: 1.1rem; 
-    }
-    
-    .btn-add {
-        padding: 0.3rem 0.8rem; 
-        font-size: 0.8rem;
-    }
-    .quantity-stepper {
-         border-radius: 6px;
-    }
-    .quantity-stepper .stepper-btn,
-    .quantity-stepper .quantity-display {
-        padding: 0.3rem 0.5rem; 
-        font-size: 0.9rem;
-    }
-  }
+.scroll-btn.right-btn {
+  right: 0;
+  left: auto;
+}
+.scroll-btn:hover {
+  background-color: #d62839;
 }
