@@ -1,7 +1,5 @@
-<!-- Shopping Cart Page -->
 <div class="cart-page">
   <div class="container">
-    <!-- Page Header -->
     <div class="page-header">
       <div class="breadcrumb-nav">
         <nav aria-label="breadcrumb">
@@ -22,18 +20,16 @@
       </h1>
     </div>
 
-    <!-- Cart Content -->
     <div class="cart-content" *ngIf="cartItems.length > 0; else emptyCart">
           <div class="cart-items-section">
             <div class="section-header">
               <h3>Cart Items ({{ cartItems.length }})</h3>
               <button class="clear-cart-btn" (click)="clearCart()">
-                <i class="fa fa-trash-alt"></i>
+                <i class="fa fa-trash"></i>
                 Clear Cart
               </button>
             </div>
 
-            <!-- Cart Items List -->
             <div class="cart-items-list">
               <div
                 class="cart-item"
@@ -73,7 +69,6 @@
                 </div>
 
                 <div class="item-controls">
-                  <!-- Quantity Controls -->
                   <div class="quantity-control">
                     <label class="quantity-label">Quantity:</label>
                     <div class="quantity-input-group">
@@ -102,7 +97,6 @@
                     </div>
                   </div>
 
-                  <!-- Price Section -->
                   <div class="item-pricing">
                     <div class="price-breakdown">
                       <span
@@ -124,7 +118,6 @@
                     </div>
                   </div>
 
-                  <!-- Action Buttons -->
                   <div class="item-actions">
                     <button
                       class="action-btn save-later"
@@ -138,14 +131,13 @@
                       (click)="removeItem(item)"
                       title="Remove Item"
                     >
-                      <i class="fa fa-trash-alt"></i>
+                      <i class="fa fa-trash"></i>
                     </button>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Continue Shopping -->
             <div class="continue-shopping">
               <a routerLink="/products" class="continue-btn">
                 <i class="fa fa-arrow-left"></i>
@@ -154,12 +146,10 @@
             </div>
           </div>
 
-          <!-- Cart Summary Section -->
           <div class="col-lg-4">
             <div class="cart-summary">
               <h3 class="summary-title">Order Summary</h3>
 
-              <!-- Coupon Code Section -->
               <div class="coupon-section">
                 <h4>Apply Coupon</h4>
                 <div class="coupon-input-group">
@@ -201,7 +191,6 @@
               </div>
             </div>
 
-            <!-- Price Calculation -->
             <div class="price-calculation">
               <div class="calculation-row">
                 <span class="label"
@@ -236,7 +225,6 @@
               </div>
             </div>
 
-            <!-- Delivery Information -->
             <div class="delivery-info">
               <h4>Delivery Information</h4>
               <div class="delivery-option">
@@ -255,7 +243,6 @@
               </div>
             </div>
 
-            <!-- Proceed to Checkout -->
             <div class="checkout-section">
               <button
                 class="checkout-btn"
@@ -277,7 +264,6 @@
     </div>
   </div>
 
-    <!-- Empty Cart State -->
     <ng-template #emptyCart>
       <div class="empty-cart">
         <div class="empty-cart-icon">
@@ -294,4 +280,3 @@
         </a>
       </div>
     </ng-template>
-
