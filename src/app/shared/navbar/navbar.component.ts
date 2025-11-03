@@ -28,7 +28,8 @@ export class NavbarComponent implements OnInit {
   @ViewChild('categoriesDropdown') categoriesDropdown!: ElementRef;
   @ViewChild('userSidebar') userSidebar!: ElementRef;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  // ✅ Make router public (to use it in HTML)
+  constructor(private authService: AuthService, public router: Router) {}
 
   ngOnInit(): void {
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
@@ -63,15 +64,22 @@ export class NavbarComponent implements OnInit {
   toggleMobileSearch(): void {
     this.isMobileSearchActive = !this.isMobileSearchActive;
   }
-  
+
+  // ✅ Helper for sidebar navigation
+  navigateTo(path: string): void {
+    this.router.navigate([path]);
+    this.isSidebarOpen = false;
+  }
 
   logout(): void {
-    this.authService.logoutUser();
-    localStorage.removeItem('currentUser');
-    this.isSidebarOpen = false;
-    this.isLoggedIn = false;
-    this.userName = 'User';
-    this.router.navigate(['/']);
+    if (confirm('Are you sure you want to log out?')) {
+      this.authService.logoutUser();
+      localStorage.removeItem('currentUser');
+      this.isSidebarOpen = false;
+      this.isLoggedIn = false;
+      this.userName = 'User';
+      this.router.navigate(['/']);
+    }
   }
 
   @HostListener('document:click', ['$event'])

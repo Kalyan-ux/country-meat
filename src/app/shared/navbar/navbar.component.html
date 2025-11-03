@@ -143,10 +143,9 @@
             alt="User Icon"
             class="navbar-user-icon"
           />
-         <span class="user-name" [title]="userName">
-  {{ userName.length > 8? (userName | slice:0:8) + '…' : userName }}
-</span>
-
+          <span class="user-name" [title]="userName">
+            {{ userName.length > 8 ? (userName | slice: 0:8) + '…' : userName }}
+          </span>
         </div>
       </ng-template>
 
@@ -189,15 +188,22 @@
   </div>
 
   <ul class="sidebar-menu">
-   <li routerLink="/order-confirmation"><i class="fa fa-shopping-bag"></i> Orders</li>
-  <li routerLink="/terms-and-conditions"><i class="fa fa-file-contract"></i> Terms & Conditions</li>
-  <li routerLink="/faq"><i class="fa fa-question-circle"></i> FAQ</li>
-  <li routerLink="/privacy-policy"><i class="fa fa-shield-alt"></i> Privacy Policy</li>
-  <li class="logout" (click)="logout()">
-    <i class="fa fa-sign-out-alt"></i> Logout
-  </li>
-</ul>
-
+    <li (click)="router.navigate(['/order-confirmation']); toggleSidebar()">
+      <i class="fa fa-shopping-bag"></i> Orders
+    </li>
+    <li (click)="router.navigate(['/terms-and-conditions']); toggleSidebar()">
+      <i class="fa fa-file-contract"></i> Terms & Conditions
+    </li>
+    <li (click)="router.navigate(['/faq']); toggleSidebar()">
+      <i class="fa fa-question-circle"></i> FAQ
+    </li>
+    <li (click)="router.navigate(['/privacy-policy']); toggleSidebar()">
+      <i class="fa fa-shield-alt"></i> Privacy Policy
+    </li>
+    <li class="logout" (click)="logout()">
+      <i class="fa fa-sign-out-alt"></i> Logout
+    </li>
+  </ul>
 </div>
 
 <!-- ✅ BOTTOM NAV -->
@@ -209,7 +215,7 @@
 
   <a routerLink="/about" class="bottom-nav-link">
     <i class="fa fa-info-circle"></i>
-    <span>About Us</span>
+    <span>About</span>
   </a>
 
   <a class="bottom-nav-link" (click)="toggleMobileSearch()">
@@ -220,21 +226,24 @@
   <!-- ACCOUNT SECTION -->
   <ng-container *ngIf="!isLoggedIn; else bottomLoggedIn">
     <a routerLink="/login" class="bottom-nav-link user-btn">
-      <img src="assets/icon/user.png" alt="Account Icon" />
+      <img
+        src="assets/icon/user.png"
+        alt="Account Icon"
+        class="bottom-user-icon"
+      />
       <span>Account</span>
     </a>
   </ng-container>
 
   <ng-template #bottomLoggedIn>
-    <div class="bottom-nav-link user-menu user-btn">
-      <a (click)="toggleSidebar()">
-        <img src="assets/icon/profile.png" alt="User Icon" />
-      <span class="user-name" [title]="userName">
-  {{ userName.length > 8? (userName | slice:0:8) + '…' : userName }}
-</span>
-
-      </a>
-    </div>
+    <a class="bottom-nav-link user-btn" (click)="toggleSidebar()">
+      <img
+        src="assets/icon/profile.png"
+        alt="User Icon"
+        class="bottom-user-icon"
+      />
+      <span>{{ userName.length > 8 ? (userName | slice: 0:8) + '…' : userName }}</span>
+    </a>
   </ng-template>
 
   <a routerLink="/cart" class="bottom-nav-link">
