@@ -243,7 +243,7 @@
   cursor: not-allowed;
 
   .coming-soon-badge {
-    position: relative;
+    position: absolute;
     top: 5px;
     right: 5px;
     background: #ffc107;
@@ -566,11 +566,14 @@
   bottom: 0;
   left: 0;
   width: 100%;
+   justify-content: space-evenly; // tighter spacing
+  gap: 6px; // reduce space further
+  padding: 5px 0; // smaller padding
   height: 65px; // Fixed height for the bar
   background-color: white;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
   z-index: 1000;
-  justify-content: space-around;
+   font-size: 20px;
   align-items: center;
 
   @media (max-width: 992px) {
@@ -647,4 +650,443 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   display: inline-block;
+}
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 998;
+}
+
+.user-sidebar {
+  position: fixed;
+  top: 0;
+  right: -35%;
+  width: 35%;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: right 0.4s ease;
+  z-index: 999;
+  overflow-y: auto;
+
+  &.open {
+    right: 0;
+  }
+
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+
+    .user-icon {
+      font-size: 45px;
+      margin-right: 15px;
+      color: #333;
+    }
+
+    .user-info h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .user-info p {
+      color: #666;
+      font-size: 14px;
+    }
+  }
+
+  .sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      border-bottom: 1px solid #f1f1f1;
+      cursor: pointer;
+
+      i {
+        width: 25px;
+        margin-right: 10px;
+        color: #444;
+      }
+
+      &:hover {
+        background: #f9f9f9;
+      }
+
+      &.logout {
+        color: #d9232d;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+/* Responsive Sidebar */
+@media (max-width: 768px) {
+  .user-sidebar {
+    width: 100%;
+  }
+}
+.user-sidebar {
+  position: fixed;
+  top: 0;
+  right: -35%;
+  width: 35%;
+  height: 100%;
+  background: #fff;
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease-in-out;
+  z-index: 1001;
+  overflow-y: auto;
+}
+
+.user-sidebar.open {
+  right: 0;
+}
+
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+/* Sidebar logo section */
+.sidebar-logo {
+  text-align: center;
+  padding: 25px 0;
+  border-bottom: 1px solid #eee;
+
+  img {
+    width: 140px;
+    height: auto;
+  }
+}
+
+/* User info below logo */
+.sidebar-user-info {
+  display: flex;
+  align-items: center;
+  background-color: white; /* Keep it clean and consistent */
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.user-icon-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 12px;
+  object-fit: cover;
+}
+
+.user-details h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #000;
+  font-weight: 600;
+}
+
+.user-details p {
+  margin: 2px 0 0;
+  font-size: 14px;
+  color: #555;
+}
+
+
+  h3 {
+    margin: 10px 0 5px;
+    font-weight: bold;
+  }
+
+  p {
+    color: #777;
+    font-size: 0.9rem;
+  }
+
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0 20px;
+  margin-top: 10px;
+
+  li {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333;
+    cursor: pointer;
+    font-size: 1rem;
+    border-bottom: 1px solid #f1f1f1;
+
+    &:hover {
+      color: #d9232d;
+    }
+
+    &.logout {
+      color: #d9232d;
+      font-weight: bold;
+      border: none;
+      margin-top: 5px;
+    }
+  }
+}
+.action-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #333;
+  cursor: pointer;
+
+  &:hover {
+    color: #d9232d; // optional hover color
+  }
+
+  .action-icon-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+
+  .navbar-user-icon {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+  }
+
+  span {
+    font-weight: 500;
+  }
+}
+
+
+/* 🔹 Sidebar/Slider Responsive Design - for all screen sizes below desktop */
+@media (max-width: 1200px) {
+  .sidebar,
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;              /* full screen width */
+    height: 100vh;             /* full screen height */
+    background-color: #fff;    /* white background */
+    z-index: 9999;
+    overflow-y: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%); /* initially hidden */
+    transition: transform 0.35s ease-in-out;
+  }
+
+  .sidebar.open,
+  .mobile-menu.open {
+    transform: translateX(0); /* slide in from right */
+  }
+}
+
+/* 🔹 For extra-large desktops (keep as 35% panel) */
+@media (min-width: 1201px) {
+  .sidebar {
+    width: 35%;                /* only 35% for large desktop */
+    right: 0;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    background-color: #fff;
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.35s ease-in-out;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}
+
+.user-name {
+  max-width: 120px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  color: var(--text-color-dark);
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.user-name:hover {
+  color: var(--primary-color);
+}
+/* Sidebar base */
+.user-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 360px;
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.15);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+/* When open */
+.user-sidebar.open {
+  transform: translateX(0);
+}
+
+/* Backdrop */
+.sidebar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* Sidebar content styling */
+.sidebar-logo {
+  text-align: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.sidebar-user-info {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.sidebar-user-info img.user-icon-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.sidebar-user-info .user-details h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+
+.sidebar-user-info .user-details p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 1rem;
+}
+
+.sidebar-menu li {
+  padding: 0.8rem 0;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-menu li i {
+  width: 25px;
+  margin-right: 8px;
+  color: #444;
+}
+
+.sidebar-menu li.logout {
+  color: #d9232d;
+}
+
+/* ✅ Responsive Fix: for all devices (S, M, L) */
+@media (max-width: 1024px) {
+  .user-sidebar {
+    width: 100vw; /* Cover full width on mobile/tablet */
+    height: 100vh; /* Full screen height */
+    border-radius: 0;
+  }
+}
+
+/* For extra small phones */
+@media (max-width: 480px) {
+  .user-sidebar {
+    padding: 1rem;
+  }
+  .sidebar-user-info img.user-icon-img {
+    width: 50px;
+    height: 50px;
+  }
+  .sidebar-user-info .user-details h3 {
+    font-size: 1rem;
+  }
+  .sidebar-menu li {
+    font-size: 0.95rem;
+  }
+}
+.sidebar-menu li.active {
+  background: #f1f1f1;
+  color: #2c7a7b; // or your theme color
+  border-left: 4px solid #2c7a7b;
+}
+
+.sidebar-menu li {
+  cursor: pointer;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+}
+
+.sidebar-menu li i {
+  width: 20px;
+}
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+
+  li {
+    padding: 10px 15px;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+
+    &:hover {
+      color: #2c7a7b;
+    }
+  }
+
+  li.active a {
+    color: #2c7a7b;
+    font-weight: 600;
+  }
 }

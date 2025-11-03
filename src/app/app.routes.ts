@@ -31,7 +31,8 @@ export const routes: Routes = [
   { path: 'products/product-details-eggs', component: ProductDetailsComponentEggs },
   { path: 'products/eggs', component: EggsComponent },
   { path: 'products/:category', component: ProductListingComponent },
-  { path: 'terms', component: TermsAndConditionsComponent },
+ { path: 'terms-and-conditions', component: TermsAndConditionsComponent },
+
   { path: 'faq', component: FaqComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'order-cancellation', component: OrderCancellationComponent },

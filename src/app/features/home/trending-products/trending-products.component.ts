@@ -115,7 +115,7 @@ increaseQuantity(product: any, event: Event) {
   decreaseQuantity(product: any, event: Event) {
     event.stopPropagation();
     if (product.quantity > 0) {
-      product.quantity --;
-    }
-  }
+      product.quantity --;
+    }
+  }
 }

@@ -41,7 +41,7 @@
 
     <!-- ACTION LINKS -->
     <div class="navbar-actions">
-      <!-- CATEGORIES DROPDOWN -->
+      <!-- CATEGORIES -->
       <div class="action-link-dropdown" #categoriesDropdown>
         <a class="action-link" (click)="toggleCategoriesDropdown($event)">
           <img
@@ -56,7 +56,7 @@
           <a
             routerLink="/products/chicken"
             class="dropdown-item"
-            (click)="closeCategoriesDropdown()"
+            (click)="isCategoriesDropdownOpen=false"
           >
             <img
               src="assets/images/products/ck/country-king-0.png"
@@ -72,7 +72,7 @@
           <a
             routerLink="/products/eggs"
             class="dropdown-item"
-            (click)="closeCategoriesDropdown()"
+            (click)="isCategoriesDropdownOpen=false"
           >
             <img
               src="assets/images/products/eggs/egg-1.png"
@@ -123,9 +123,9 @@
         <span>Stores</span>
       </a>
 
-      <!-- LOGIN / LOGGED-IN -->
+      <!-- 👤 LOGIN / LOGGED-IN -->
       <ng-container *ngIf="!isLoggedIn; else loggedInUser">
-        <a routerLink="/login" class="action-link">
+        <a routerLink="/login" class="action-link user-btn">
           <img
             src="assets/icon/user.png"
             alt="User Icon"
@@ -137,20 +137,16 @@
 
       <!-- ✅ LOGGED-IN USER -->
       <ng-template #loggedInUser>
-        <div class="user-greeting-dropdown action-link-dropdown" #userDropdown>
-          <a class="action-link" (click)="toggleUserDropdown($event)">
-            <img
-              src="assets/icon/user.png"
-              alt="User Icon"
-              class="action-icon-img"
-            />
-            <span>Hi, {{ userName }}</span>
-          </a>
-          <div class="dropdown-menu" [class.show]="showUserDropdown">
-            <button class="dropdown-item logout-btn" (click)="logout()">
-              Logout
-            </button>
-          </div>
+        <div class="navbar-user user-btn" (click)="toggleSidebar()">
+          <img
+            src="assets/icon/user.png"
+            alt="User Icon"
+            class="navbar-user-icon"
+          />
+         <span class="user-name" [title]="userName">
+  {{ userName.length > 8? (userName | slice:0:8) + '…' : userName }}
+</span>
+
         </div>
       </ng-template>
 
@@ -174,6 +170,36 @@
   </div>
 </nav>
 
+<!-- ✅ SIDEBAR BACKDROP -->
+<div class="sidebar-backdrop" *ngIf="isSidebarOpen" (click)="toggleSidebar()"></div>
+
+<!-- ✅ RIGHT SLIDER (Sidebar) -->
+<div class="user-sidebar" #userSidebar [class.open]="isSidebarOpen">
+  <!-- Sidebar Header with Logo -->
+  <div class="sidebar-logo">
+    <img src="assets/LOGO_ori.png" alt="Sidebar Logo" />
+  </div>
+
+  <div class="sidebar-user-info">
+    <img src="assets/icon/profile.png" alt="User Icon" class="user-icon-img" />
+    <div class="user-details">
+      <h3>{{ userName }}</h3>
+      <p *ngIf="userPhone">+91 {{ userPhone }}</p>
+    </div>
+  </div>
+
+  <ul class="sidebar-menu">
+   <li routerLink="/order-confirmation"><i class="fa fa-shopping-bag"></i> Orders</li>
+  <li routerLink="/terms-and-conditions"><i class="fa fa-file-contract"></i> Terms & Conditions</li>
+  <li routerLink="/faq"><i class="fa fa-question-circle"></i> FAQ</li>
+  <li routerLink="/privacy-policy"><i class="fa fa-shield-alt"></i> Privacy Policy</li>
+  <li class="logout" (click)="logout()">
+    <i class="fa fa-sign-out-alt"></i> Logout
+  </li>
+</ul>
+
+</div>
+
 <!-- ✅ BOTTOM NAV -->
 <div class="bottom-nav">
   <a routerLink="/" class="bottom-nav-link">
@@ -191,23 +217,23 @@
     <span>Search</span>
   </a>
 
-  <!-- ✅ ACCOUNT SECTION -->
+  <!-- ACCOUNT SECTION -->
   <ng-container *ngIf="!isLoggedIn; else bottomLoggedIn">
-    <a routerLink="/login" class="bottom-nav-link">
+    <a routerLink="/login" class="bottom-nav-link user-btn">
       <img src="assets/icon/user.png" alt="Account Icon" />
       <span>Account</span>
     </a>
   </ng-container>
 
   <ng-template #bottomLoggedIn>
-    <div class="bottom-nav-link user-menu" #bottomUserDropdown>
-      <a (click)="toggleBottomUserDropdown($event)">
-        <img src="assets/icon/user.png" alt="User Icon" />
-        <span>{{ userName }}</span>
+    <div class="bottom-nav-link user-menu user-btn">
+      <a (click)="toggleSidebar()">
+        <img src="assets/icon/profile.png" alt="User Icon" />
+      <span class="user-name" [title]="userName">
+  {{ userName.length > 8? (userName | slice:0:8) + '…' : userName }}
+</span>
+
       </a>
-      <div class="user-dropdown" [class.show]="showBottomUserDropdown">
-        <button (click)="logout()">Logout</button>
-      </div>
     </div>
   </ng-template>
 
