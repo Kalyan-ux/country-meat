@@ -17,7 +17,9 @@ import { OrderCancellationComponent } from './shared/order-cancellation/order-ca
 import { FaqComponent } from './shared/faq/faq.component';
 import { PrivacyPolicyComponent } from './shared/privacy-policy/privacy-policy.component';
 import { TermsAndConditionsComponent } from './shared/terms-and-conditions/terms-and-conditions.component';
-
+import { RewardsComponent } from './features/rewards/rewards.component';
+import { AddressComponent } from './features/address/address.component';
+import { WalletComponent } from './features/wallet/wallet.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', redirectTo: '', pathMatch: 'full' },
@@ -32,8 +34,10 @@ export const routes: Routes = [
   { path: 'products/eggs', component: EggsComponent },
   { path: 'products/:category', component: ProductListingComponent },
  { path: 'terms-and-conditions', component: TermsAndConditionsComponent },
-
+   { path: 'rewards', component: RewardsComponent },
+   { path: 'address', component: AddressComponent },
   { path: 'faq', component: FaqComponent },
+   { path: 'wallet', component: WalletComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'order-cancellation', component: OrderCancellationComponent },
   { path: 'cart', component: CartViewComponent },

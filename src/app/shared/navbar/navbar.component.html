@@ -188,9 +188,20 @@
   </div>
 
   <ul class="sidebar-menu">
+    <li (click)="router.navigate(['/rewards']); toggleSidebar()">
+  <i class="fa fa-trophy"></i> Rewards
+  <!-- <small class="wallet-info">Complete milestone and win exciting rewards </small> -->
+</li>
+
     <li (click)="router.navigate(['/order-confirmation']); toggleSidebar()">
       <i class="fa fa-shopping-bag"></i> Orders
     </li>
+    <li (click)="navigateTo('/address')">
+  <i class="fa fa-map-marker-alt"></i> Addresses
+</li>
+<li (click)="router.navigate(['/wallet']); toggleSidebar()">
+  <i class="fa fa-wallet"></i> Country Meat Wallet
+</li>
     <li (click)="router.navigate(['/terms-and-conditions']); toggleSidebar()">
       <i class="fa fa-file-contract"></i> Terms & Conditions
     </li>
@@ -250,4 +261,15 @@
     <i class="fa fa-shopping-cart"></i>
     <span>Cart</span>
   </a>
+</div>
+<!-- ✅ Logout Confirmation Popup -->
+<div class="logout-modal-backdrop" *ngIf="showLogoutConfirm">
+  <div class="logout-modal">
+    <h2>Logout ?</h2>
+    <p>Are you sure you want to logout !</p>
+    <div class="logout-buttons">
+      <button class="yes-btn" (click)="confirmLogout()">Yes</button>
+      <button class="cancel-btn" (click)="cancelLogout()">Cancel</button>
+    </div>
+  </div>
 </div>

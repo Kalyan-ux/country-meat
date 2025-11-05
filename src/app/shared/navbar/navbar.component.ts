@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
   isCategoriesDropdownOpen = false;
   isMobileSearchActive = false;
   isSidebarOpen = false;
+  showLogoutConfirm = false; // ✅ Added for modal toggle
 
   isLoggedIn = false;
   userName: string = 'User';
@@ -28,7 +29,6 @@ export class NavbarComponent implements OnInit {
   @ViewChild('categoriesDropdown') categoriesDropdown!: ElementRef;
   @ViewChild('userSidebar') userSidebar!: ElementRef;
 
-  // ✅ Make router public (to use it in HTML)
   constructor(private authService: AuthService, public router: Router) {}
 
   ngOnInit(): void {
@@ -39,7 +39,6 @@ export class NavbarComponent implements OnInit {
       this.isLoggedIn = true;
     }
 
-    // Update on login/logout
     this.authService.isLoggedIn$.subscribe((state) => {
       this.isLoggedIn = state;
       const updatedUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
@@ -65,28 +64,36 @@ export class NavbarComponent implements OnInit {
     this.isMobileSearchActive = !this.isMobileSearchActive;
   }
 
-  // ✅ Helper for sidebar navigation
   navigateTo(path: string): void {
     this.router.navigate([path]);
     this.isSidebarOpen = false;
   }
 
+  // ✅ Opens confirmation popup instead of direct logout
   logout(): void {
-    if (confirm('Are you sure you want to log out?')) {
-      this.authService.logoutUser();
-      localStorage.removeItem('currentUser');
-      this.isSidebarOpen = false;
-      this.isLoggedIn = false;
-      this.userName = 'User';
-      this.router.navigate(['/']);
-    }
+    this.showLogoutConfirm = true;
+  }
+
+  // ✅ When user clicks "Yes"
+  confirmLogout(): void {
+    this.authService.logoutUser();
+    localStorage.removeItem('currentUser');
+    this.isSidebarOpen = false;
+    this.isLoggedIn = false;
+    this.userName = 'User';
+    this.showLogoutConfirm = false;
+    this.router.navigate(['/']);
+  }
+
+  // ✅ When user clicks "Cancel"
+  cancelLogout(): void {
+    this.showLogoutConfirm = false;
   }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event): void {
     const targetElement = event.target as HTMLElement;
 
-    // Close category dropdown
     if (
       this.isCategoriesDropdownOpen &&
       this.categoriesDropdown &&
@@ -95,7 +102,6 @@ export class NavbarComponent implements OnInit {
       this.isCategoriesDropdownOpen = false;
     }
 
-    // Close sidebar
     if (
       this.isSidebarOpen &&
       this.userSidebar &&
