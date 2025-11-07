@@ -1,1 +1,30 @@
-<p>address works!</p>
+<div class="address-wrapper">
+  <!-- Header -->
+  <div class="address-header">
+    <button class="circle-back-btn" (click)="goBack()">
+      <i class="fa fa-angle-left"></i>
+    </button>
+    <h2>Saved Address</h2>
+  </div>
+
+  <!-- Main Card -->
+  <div class="address-card-container">
+    <div class="address-list">
+      <div class="address-item" *ngFor="let address of addresses">
+        <div class="address-icon">
+          <i [ngClass]="address.icon"></i>
+        </div>
+        <div class="address-content">
+          <h3>{{ address.label }}</h3>
+          <p>{{ address.details }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="add-address-section">
+      <button class="add-address-btn" (click)="addNewAddress()">
+        Add new address
+      </button>
+    </div>
+  </div>
+</div>

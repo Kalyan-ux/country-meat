@@ -20,6 +20,7 @@ import { TermsAndConditionsComponent } from './shared/terms-and-conditions/terms
 import { RewardsComponent } from './features/rewards/rewards.component';
 import { AddressComponent } from './features/address/address.component';
 import { WalletComponent } from './features/wallet/wallet.component';
+import { WalletPaymentComponent } from './features/wallet-payment/wallet-payment.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', redirectTo: '', pathMatch: 'full' },
@@ -38,6 +39,7 @@ export const routes: Routes = [
    { path: 'address', component: AddressComponent },
   { path: 'faq', component: FaqComponent },
    { path: 'wallet', component: WalletComponent },
+    { path: 'wallet/payment', component: WalletPaymentComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'order-cancellation', component: OrderCancellationComponent },
   { path: 'cart', component: CartViewComponent },

@@ -1,1 +1,57 @@
-<p>wallet works!</p>
+<div class="wallet-wrapper">
+  <!-- Header -->
+  <div class="wallet-header">
+    <button class="circle-back-btn" (click)="goBack()">
+      <i class="fa fa-angle-left"></i>
+    </button>
+    <h2>Country Meat Wallet</h2>
+  </div>
+
+  <!-- Wallet Card -->
+  <div class="wallet-card">
+    <div class="wallet-balance">
+      <p>Total balance</p>
+      <h1>₹{{ balance.toFixed(1) }}</h1>
+    </div>
+    <button class="add-money-btn" (click)="openAddMoney()">Add Money +</button>
+  </div>
+
+  <!-- Transaction Section -->
+  <div class="wallet-transactions">
+    <h3>Last 5 Transactions</h3>
+    
+    <div *ngFor="let t of transactions" class="transaction-item">
+      <span>{{ t.date }}</span>
+      <span [class.credit]="t.type === 'credit'" [class.debit]="t.type === 'debit'">
+        {{ t.type === 'credit' ? '+' : '-' }}₹{{ t.amount }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Add Money Bottom Sheet -->
+  <div class="add-money-overlay" *ngIf="isAddMoneyOpen" (click)="closeAddMoney()"></div>
+
+  <div class="add-money-sheet" [class.show]="isAddMoneyOpen">
+    <div class="sheet-header">
+      <h3>Add Money</h3>
+      <button class="close-btn" (click)="closeAddMoney()">×</button>
+    </div>
+
+    <p class="sheet-subtext">Money will be added as Country Meat Wallet cash</p>
+
+    <div class="amount-display">
+      ₹{{ selectedAmount }}
+    </div>
+
+    <div class="amount-options">
+      <button *ngFor="let amount of amounts"
+        (click)="selectAmount(amount)"
+        [class.active]="selectedAmount === amount">
+        ₹{{ amount }}
+      </button>
+    </div>
+
+   <button class="proceed-btn" (click)="proceedToPayment()">Proceed to Add</button>
+
+  </div>
+</div>
