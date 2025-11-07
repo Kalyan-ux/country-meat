@@ -11,7 +11,7 @@
 /* Header Section */
 .address-header {
   width: 100%;
-  max-width: 1250px;
+  max-width: 1150px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -176,5 +176,18 @@
 
   .address-item {
     padding: 10px 12px;
+  }
+}
+@media (max-width: 480px) {
+  .address-header {
+    padding-top: 30px; /* Slightly more gap from top */
+    padding-bottom: 20px;
+    margin-top: 5.5rem;
+  }
+   .address-card-container {
+    max-width: 100%;
+    padding: 15px;
+    margin-top: 35px; /* ✅ Keep consistent visual gap */
+    min-height: 480px;
   }
 }
