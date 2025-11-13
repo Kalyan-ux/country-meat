@@ -444,7 +444,7 @@ i {
   .desktop-social-row {
     display: none !important;
   }
-  
+
   /* --- MOBILE/DESKTOP TOGGLE: Hide desktop, show mobile structure --- */
   .desktop-only-links {
     display: none !important;
@@ -485,7 +485,7 @@ i {
     gap: 15px;
     margin-top: 15px;
     width: 100%;
-    margin-right: 15px; 
+    margin-right: 15px;
     padding-right: 0;
     padding-left: 0;
   }
@@ -521,7 +521,7 @@ i {
     padding: 0 !important;
     order: 3; /* Place them after Let Us Help You (order 1) */
   }
-  
+
   /* NEW: Show the social media column and give it the next order (4) */
   .mobile-social-col {
     display: block !important; /* Show the new column */
@@ -554,13 +554,12 @@ i {
 
   /* BACKGROUND IMAGE FOR MOBILE FOOTER */
   .tpfooter__area.theme-bg-2 {
-    /* REMOVED: background-image: url('../../../assets/images/footer-background.png'); */
+    background-image: url('../../../assets/images/footer/footer-mobile.svg');
     background-color: transparent;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    background-color: #EE3B2D;
-     
+    // background-color: #EE3B2D;
   }
 
   /* REMOVE ALL MARGINS ON CHECKBOX CONTAINER FOR TIGHT FIT */
@@ -578,7 +577,6 @@ i {
   .tpfooter__widget-newsletter-check .form-check-input {
       margin-left: 0.5em !important; /* Push checkbox slightly right for inner padding */
   }
-
 
   .form-check {
     margin-bottom: 0 !important;
@@ -672,9 +670,9 @@ i {
     display: flex !important; /* Use flex to align icon and text */
     justify-content: center;
     padding: 10px 15px !important;
-    
+
     /* MODIFIED: Increased gap between the icon and text in the mobile bulk order link */
-    gap: 5px; 
+    gap: 5px;
 
     /* ADDED: Margin bottom to increase space before Newsletter */
     margin-bottom: 15px;

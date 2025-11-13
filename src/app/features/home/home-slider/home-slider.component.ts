@@ -12,14 +12,14 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
   imports: [CommonModule, RouterModule, CarouselModule],
 })
 export class HomeSliderComponent implements OnInit, OnDestroy {
-  
+
   imageFullSrcs: string[] = [
-    'assets/images/banner/banner-1.jpg',
-    'assets/images/banner/banner-2.jpg',
-    'assets/images/banner/banner-3.jpg',
+    'assets/images/banner/banner-1.webp',
+    'assets/images/banner/banner-2.webp',
+    'assets/images/banner/banner-3.webp',
   ];
 
-  private autoplayTimeoutRef: any; 
+  private autoplayTimeoutRef: any;
 
   constructor() {}
 
@@ -54,24 +54,24 @@ export class HomeSliderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.checkScreenSize();
   }
-  
+
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.checkScreenSize();
   }
-  
+
   onDragStart() {
     // Clear pending timeout and stop autoplay immediately
     if (this.autoplayTimeoutRef) {
       clearTimeout(this.autoplayTimeoutRef);
     }
     // Set the options object to stop autoplay
-    this.customOptions = { ...this.customOptions, autoplay: false } as any; 
+    this.customOptions = { ...this.customOptions, autoplay: false } as any;
   }
 
   onDragEnd() {
     // Wait a short duration (e.g., 5 seconds) before resuming autoplay
-    const delayBeforeResume = 5000; 
+    const delayBeforeResume = 5000;
 
     // Clear any previous timeout
     if (this.autoplayTimeoutRef) {
@@ -80,24 +80,24 @@ export class HomeSliderComponent implements OnInit, OnDestroy {
 
     this.autoplayTimeoutRef = setTimeout(() => {
       // Re-enable autoplay after the delay
-      this.customOptions = { ...this.customOptions, autoplay: true } as any; 
+      this.customOptions = { ...this.customOptions, autoplay: true } as any;
     }, delayBeforeResume);
   }
 
   checkScreenSize() {
     const isMobile = window.innerWidth <= 768;
 
-    if (isMobile) { 
+    if (isMobile) {
       this.imageFullSrcs = [
-        'assets/images/banner/banner-1-mb.png',
-        'assets/images/banner/banner-2-mb.png',
-        'assets/images/banner/banner-3-mb.png',
+        'assets/images/banner/banner-1-mb.webp',
+        'assets/images/banner/banner-2-mb.webp',
+        'assets/images/banner/banner-3-mb.webp',
       ];
     } else {
       this.imageFullSrcs = [
-        'assets/images/banner/banner-1.jpg',
-        'assets/images/banner/banner-2.jpg',
-        'assets/images/banner/banner-3.jpg',
+        'assets/images/banner/banner-1.webp',
+        'assets/images/banner/banner-2.webp',
+        'assets/images/banner/banner-3.webp',
       ];
     }
   }
