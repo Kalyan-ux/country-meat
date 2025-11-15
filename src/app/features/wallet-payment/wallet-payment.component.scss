@@ -83,7 +83,8 @@
   transition: border 0.2s ease, box-shadow 0.3s ease, transform 0.3s ease;
 
    &:hover {
-      border-color: #08138f; /* 💙 Blue border on hover */
+      border-color: #4b58e0; 
+      border-width: 2px;/* 💙 Blue border on hover */
       transform: translateY(-3px);
       box-shadow: 0 8px 20px rgba(0, 123, 255, 0.15);
     }

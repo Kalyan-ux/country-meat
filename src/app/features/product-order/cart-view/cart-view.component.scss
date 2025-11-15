@@ -47,7 +47,7 @@
           }
 
           &:not(:last-child)::after {
-            content: '/';
+           
             margin: 0 0.75rem;
             color: #cbd5e1;
           }

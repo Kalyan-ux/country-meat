@@ -111,4 +111,18 @@ export class NavbarComponent implements OnInit {
       this.isSidebarOpen = false;
     }
   }
+  shareReferralLink() {
+  const referralLink = 'https://countrymeat.com/signup?ref=YOURCODE';
+  if (navigator.share) {
+    navigator.share({
+      title: 'Join Country Meat!',
+      text: 'Get premium fresh meat & poultry delivered to your doorstep. Use my referral link!',
+      url: referralLink,
+    });
+  } else {
+    navigator.clipboard.writeText(referralLink);
+    alert('Referral link copied to clipboard!');
+  }
+}
+
 }

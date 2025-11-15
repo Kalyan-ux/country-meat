@@ -1,1 +1,35 @@
-<p>rewards works!</p>
+<div class="rewards-wrapper">
+  <!-- Header -->
+  <div class="rewards-header">
+    <button class="circle-back-btn" (click)="goBack()">
+      <i class="fa fa-angle-left"></i>
+    </button>
+    <h2>Rewards</h2>
+  </div>
+
+  <!-- Progress Section -->
+  <div class="rewards-progress">
+    <img src="assets/chicken.png" alt="Chicken" class="chicken-icon" />
+    <div class="eggs-track">
+        <div class="egg-line"></div> <!-- the red connecting line -->
+      <img src="assets/icon/egg.png" alt="Egg" *ngFor="let egg of eggs" class="egg-icon" />
+      <i class="fa fa-info-circle info-icon"></i>
+    </div>
+  </div>
+
+  <!-- Greeting Banner -->
+  <div class="rewards-banner">
+    <h3>Hi {{ userName }}</h3>
+    <p>Welcome to my Rewards</p>
+  </div>
+
+  <!-- Empty State -->
+  <div class="rewards-empty">
+    <p class="no-rewards">No rewards yet!</p>
+    <p class="check-back">Check back this space for exciting rewards.</p>
+
+    <button class="terms-btn" (click)="goToTerms()">TERMS AND CONDITION</button>
+
+    <p class="footer-text">Keep ordering and winning big!</p>
+  </div>
+</div>

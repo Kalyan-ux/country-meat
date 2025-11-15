@@ -2,6 +2,9 @@
 .about-page-container {
   background: #ffffff;
   overflow-x: hidden;
+   position: relative;
+  z-index: 1; 
+  
 }
 
 // Premium Hero Section

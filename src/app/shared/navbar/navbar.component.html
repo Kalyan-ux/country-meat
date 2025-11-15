@@ -17,7 +17,7 @@
           Bangalore <i class="fa fa-chevron-down"></i>
         </span>
         <span class="location-address">
-          Bengaluru, Karnataka 560049, India
+          Bengaluru,Karnataka
         </span>
       </div>
     </div>
@@ -153,6 +153,7 @@
         About Us
       </a>
     </div>
+    
 
     <!-- CART -->
     <div class="navbar-cart">
@@ -168,6 +169,9 @@
     </div>
   </div>
 </nav>
+
+
+
 
 <!-- ✅ SIDEBAR BACKDROP -->
 <div class="sidebar-backdrop" *ngIf="isSidebarOpen" (click)="toggleSidebar()"></div>
@@ -202,6 +206,11 @@
 <li (click)="router.navigate(['/wallet']); toggleSidebar()">
   <i class="fa fa-wallet"></i> Country Meat Wallet
 </li>
+<li (click)="router.navigate(['/refer-friend']); toggleSidebar()">
+  <i class="fa fa-gift"></i> Refer a Friend
+</li>
+
+
     <li (click)="router.navigate(['/terms-and-conditions']); toggleSidebar()">
       <i class="fa fa-file-contract"></i> Terms & Conditions
     </li>
@@ -216,6 +225,45 @@
     </li>
   </ul>
 </div>
+<!-- ✅ MOBILE-ONLY NAVBAR -->
+<div class="mobile-navbar">
+  <div class="mobile-top">
+    
+    <!-- LEFT: Delivery To -->
+    <div class="mobile-left">
+    <i class="fa fa-map-marker location-icon"></i>
+
+
+      <div class="mobile-text">
+        <span class="delivery-title">Delivery to</span>
+        <p class="delivery-address">Flat 18,Vijaynagar</p>
+      </div>
+    </div>
+
+    <!-- CENTER: Logo -->
+    <div class="mobile-center">
+      <img src="assets/LOGO_ori.png" class="mobile-logo" />
+    </div>
+
+    <!-- RIGHT: Delivery Day -->
+    <div class="mobile-right">
+<img src="assets/icon/delivery_1.png" alt="Delivery" class="mobile-icon" />
+
+      <div class="mobile-text">
+        <span class="delivery-title">Delivery on</span>
+        <p class="delivery-day">Sunday’s</p>
+      </div>
+    </div>
+  </div>
+   <!-- MOBILE SEARCH BAR -->
+<div class="mobile-search">
+    <i class="fa fa-search search-icon"></i>
+    <input type="text" placeholder="Search for meats and products..." />
+  </div>
+</div>
+
+
+    
 
 <!-- ✅ BOTTOM NAV -->
 <div class="bottom-nav">
@@ -229,10 +277,10 @@
     <span>About</span>
   </a>
 
-  <a class="bottom-nav-link" (click)="toggleMobileSearch()">
+  <!-- <a class="bottom-nav-link" (click)="toggleMobileSearch()">
     <i class="fa fa-search"></i>
     <span>Search</span>
-  </a>
+  </a> -->
 
   <!-- ACCOUNT SECTION -->
   <ng-container *ngIf="!isLoggedIn; else bottomLoggedIn">
@@ -272,4 +320,5 @@
       <button class="cancel-btn" (click)="cancelLogout()">Cancel</button>
     </div>
   </div>
+
 </div>

@@ -1,0 +1,39 @@
+<div class="refer-wrapper">
+  <!-- Header -->
+  <div class="refer-header">
+    <button class="circle-back-btn" (click)="goBack()">
+      <i class="fa fa-angle-left"></i>
+    </button>
+    <h2>Refer a Friend</h2>
+  </div>
+
+  <!-- Main Content -->
+  <div class="refer-card">
+    <img src="assets/icon/refer-friend.svg" alt="Refer Friend" class="refer-illustration" />
+
+    <h3>Hi {{ userName }}!</h3>
+    <p class="refer-subtitle">
+      Share your love for <b>Country Meat</b> and earn rewards for every successful referral.
+    </p>
+
+    <div class="referral-box">
+      <p>Your Referral Code</p>
+      <div class="code-box">
+        <span>{{ referralCode }}</span>
+        <i class="fa fa-copy" (click)="shareReferral()"></i>
+      </div>
+    </div>
+
+    <button class="invite-btn" (click)="shareReferral()">Invite Now</button>
+  </div>
+
+  <!-- Info Section -->
+  <div class="refer-info">
+    <h4>How it works</h4>
+    <ul>
+      <li>Invite your friends using your referral link.</li>
+      <li>They sign up and place their first order.</li>
+      <li>You earn exciting rewards & wallet cash!</li>
+    </ul>
+  </div>
+</div>

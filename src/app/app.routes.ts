@@ -21,6 +21,7 @@ import { RewardsComponent } from './features/rewards/rewards.component';
 import { AddressComponent } from './features/address/address.component';
 import { WalletComponent } from './features/wallet/wallet.component';
 import { WalletPaymentComponent } from './features/wallet-payment/wallet-payment.component';
+import { ReferFriendComponent } from './refer-friend/refer-friend.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', redirectTo: '', pathMatch: 'full' },
@@ -46,6 +47,7 @@ export const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
   { path: 'order-confirmation', component: OrderConfirmationComponent },
   { path: 'order-tracking', component: OrderTrackingComponent },
+  {path: 'refer-friend', component: ReferFriendComponent},
   
   { path: '**', redirectTo: '' },
 ];

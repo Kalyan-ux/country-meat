@@ -1,0 +1,175 @@
+
+.refer-wrapper {
+  min-height: 100vh;
+  background: #fff;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header */
+.refer-header {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  padding: 16px 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  background: #fff;
+
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #222;
+  }
+
+  .circle-back-btn {
+    position: absolute;
+    left: 15px;
+    background: #fff;
+    border: 1.5px solid #ccc;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      background: #f9f9f9;
+    }
+  }
+}
+
+/* Card */
+.refer-card {
+  background: #fff8f8;
+  border: 1.5px solid #d9232d;
+  border-radius: 16px;
+  padding: 20px;
+  width: 85%;
+  text-align: center;
+  margin-top: 30px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+
+  .refer-illustration {
+    width: 30px;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    color: #d9232d;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .refer-subtitle {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  .referral-box {
+    background: #fff;
+    border: 1.5px solid #d9232d;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 20px;
+
+    p {
+      color: #777;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .code-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 18px;
+      color: #222;
+      font-weight: 600;
+
+      i {
+        color: #d9232d;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .invite-btn {
+    background: #d9232d;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      background: #b51e26;
+    }
+  }
+}
+
+/* Info Section */
+.refer-info {
+  margin-top: 25px;
+  width: 85%;
+
+  h4 {
+    font-size: 16px;
+    color: #d9232d;
+    margin-bottom: 10px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 20px;
+
+      &::before {
+        content: "✔";
+        color: #d9232d;
+        position: absolute;
+        left: 0;
+      }
+    }
+  }
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 768px) {
+  .refer-card {
+    width: 90%;
+    padding: 16px;
+    margin-top: 60px;
+
+    .refer-illustration {
+      width: 25px;
+    }
+
+    .invite-btn {
+      width: 100%;
+    }
+  }
+.refer-header  {
+    font-size: 16px;
+    margin-top: 100px;
+  }
+  .refer-info {
+    width: 90%;
+  }
+}

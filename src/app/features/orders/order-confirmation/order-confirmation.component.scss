@@ -269,6 +269,7 @@
     .confirmation-header {
       .confirmation-title {
         font-size: 2rem;
+        margin-top:10px ;
       }
     }
 
@@ -276,6 +277,9 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 10px;
+    }
+    .text-center {
+      margin-top: 45px;
     }
 
     .order-items .item-row {
