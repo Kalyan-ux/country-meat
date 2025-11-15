@@ -111,7 +111,10 @@
 </section>
 
 <footer>
-  <div class="tpfooter__area theme-bg-2" [style.backgroundImage]="footerBgImage">
+  <div
+    class="tpfooter__area theme-bg-2"
+    [style.backgroundImage]="footerBgImage"
+  >
     <div class="tpfooter__top pb-15">
       <div class="container">
         <div class="row">
@@ -177,7 +180,6 @@
             <div class="tpfooter__widget footer-col-2 mb-50">
               <h4 class="tpfooter__widget-title">CATEGORIES</h4>
               <div class="tpfooter__widget-links">
-                
                 <div class="desktop-only-links">
                   <ul>
                     <li><a href="#">Country Chicken</a></li>
@@ -192,20 +194,23 @@
                   <a class="stacked-link" href="#">Mutton</a>
                   <a class="stacked-link" href="#">Sea food</a>
                 </div>
-                </div>
+              </div>
             </div>
           </div>
           <div class="col-xl-2 col-lg-4 col-md-4 col-sm-5">
             <div class="tpfooter__widget footer-col-3 mb-50">
               <h4 class="tpfooter__widget-title">USEFUL LINKS</h4>
               <div class="tpfooter__widget-links">
-
                 <div class="desktop-only-links">
                   <ul>
                     <li><a routerLink="/terms">Terms &amp; Conditions</a></li>
                     <li><a routerLink="/faq">FAQ "s</a></li>
                     <li><a routerLink="/privacy-policy">Privacy Policy</a></li>
-                    <li><a routerLink="/order-cancellation">Cancel &amp; Refund Policy</a></li>
+                    <li>
+                      <a routerLink="/order-cancellation"
+                        >Cancel &amp; Refund Policy</a
+                      >
+                    </li>
                     <li>
                       <a
                         href="https://wa.me/YOUR_PHONE_NUMBER"
@@ -221,11 +226,17 @@
                   </ul>
                 </div>
                 <div class="mobile-only-links footer-stacked-links">
-                  <a class="stacked-link" routerLink="/terms">Terms &amp; Conditions</a>
+                  <a class="stacked-link" routerLink="/terms"
+                    >Terms &amp; Conditions</a
+                  >
                   <a class="stacked-link" routerLink="/faq">FAQ "s</a>
-                  <a class="stacked-link" routerLink="/privacy-policy">Privacy Policy</a>
-                  <a class="stacked-link" routerLink="/order-cancellation">Cancel &amp; Refund Policy</a>
-                  </div>
+                  <a class="stacked-link" routerLink="/privacy-policy"
+                    >Privacy Policy</a
+                  >
+                  <a class="stacked-link" routerLink="/order-cancellation"
+                    >Cancel &amp; Refund Policy</a
+                  >
+                </div>
                 <a
                   href="https://wa.me/YOUR_PHONE_NUMBER"
                   class="stacked-link bulk-order-mobile-link mobile-only-links"
@@ -236,7 +247,7 @@
                   </span>
                   <span>Bulk Order (Min. 20 Kg.)</span>
                 </a>
-                </div>
+              </div>
             </div>
           </div>
           <div class="col-xl-4 col-lg-6 col-md-8 col-sm-7">
@@ -285,7 +296,9 @@
             </div>
           </div>
 
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mobile-social-col">
+          <div
+            class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mobile-social-col"
+          >
             <div class="mobile-footer-social-wrapper">
               <div class="tpfooter__widget-social-row">
                 <div class="tpfooter__widget-social">
@@ -335,7 +348,7 @@
               </div>
             </div>
           </div>
-          </div>
+        </div>
       </div>
     </div>
     <div class="tpfooter___bottom pt-40 pb-40">
