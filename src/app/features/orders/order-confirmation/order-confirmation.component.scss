@@ -279,7 +279,7 @@
       gap: 10px;
     }
     .text-center {
-      margin-top: 45px;
+      margin-top: 20px;
     }
 
     .order-items .item-row {
@@ -296,5 +296,34 @@
         margin-top: 10px;
       }
     }
+  }
+}
+/* ======================================================
+   FIX BUTTON GAP + RESPONSIVENESS FOR CART/ORDER PAGE
+======================================================*/
+
+.action-buttons {
+  display: flex;
+  gap: 15px;            /* 💥 MAIN FIX: Spacing between buttons */
+  flex-wrap: wrap;      /* Allows proper wrapping on smaller screens */
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.action-buttons .btn {
+  min-width: 180px;     /* Keeps consistent button width */
+  text-align: center;
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+  .action-buttons {
+    flex-direction: column;  /* Stack vertically on mobile */
+    gap: 12px;               /* Small gap */
+    width: 100%;
+  }
+
+  .action-buttons .btn {
+    width: 100%;             /* Full width buttons */
   }
 }

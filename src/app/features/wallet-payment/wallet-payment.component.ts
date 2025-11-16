@@ -25,7 +25,16 @@ export class WalletPaymentComponent {
 
   constructor(private router: Router) {}
 
-  goBack() {
-    this.router.navigate(['/wallet']);
-  }
+ 
+  goHome() {
+  this.router.navigate(['/home']);
+}
+
+goWallet() {
+  this.router.navigate(['/wallet']);
+}
+
+goBack() {
+  window.history.back();
+}
 }

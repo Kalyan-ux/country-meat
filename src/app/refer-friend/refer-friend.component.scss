@@ -173,3 +173,104 @@
     width: 90%;
   }
 }
+/* ===========================================================
+   DESKTOP HEADER FIX (BREADCRUMBS + TITLE)
+===========================================================*/
+
+@media (min-width: 769px) {
+
+  /* Hide back button on desktop */
+  .refer-header .circle-back-btn {
+    display: none !important;
+  }
+
+  /* Center Title */
+  .refer-header {
+    justify-content: center !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    position: relative;
+  }
+
+  .refer-title {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  /* Breadcrumbs Left */
+  .refer-breadcrumbs {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex !important;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #777;
+  }
+
+  .refer-breadcrumbs .crumb {
+    cursor: pointer;
+    color: #555;
+    transition: 0.2s;
+
+    &:hover {
+      color: #d9232d;
+      text-decoration: underline;
+    }
+  }
+
+  .refer-breadcrumbs .active {
+    color: #d9232d;
+    font-weight: 600;
+  }
+}
+
+/* ===========================================================
+   MOBILE VIEW RESTORE
+===========================================================*/
+
+/* =============================================
+   FIX MOBILE HEADER ALIGNMENT — FINAL WORKING
+=============================================*/
+@media (max-width: 768px) {
+
+  .refer-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    padding: 16px 0 !important;
+    margin-top: 0 !important;  /* remove unwanted gap */
+    text-align: center !important;
+  }
+
+  /* Mobile Back Button Positioned Correctly */
+  .refer-header .circle-back-btn {
+    display: flex !important;
+    position: absolute !important;
+    left: 15px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+  }
+
+  /* Title centered perfectly */
+  .refer-title {
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 16px !important;
+    margin: 0 !important;
+    line-height: normal !important;
+  }
+
+  /* Hide breadcrumbs */
+  .refer-breadcrumbs {
+    display: none !important;
+  }
+}
+

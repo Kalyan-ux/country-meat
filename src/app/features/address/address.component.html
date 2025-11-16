@@ -1,20 +1,22 @@
 <div class="address-wrapper">
 
-  <!-- ⭐ DESKTOP HEADER ROW -->
-  <div class="desktop-header-row desktop-only">
+  <!-- ⭐ DESKTOP HEADER -->
+  <div class="address-header desktop-only">
     <div class="address-breadcrumbs">
-      <a routerLink="/" class="breadcrumb-link">Home</a> /
+      <span class="crumb" (click)="goHome()">Home</span> /
       <span class="active">Addresses</span>
     </div>
 
-    <h2 class="desktop-title">Saved Address</h2>
-
-    <div class="header-spacer"></div>
+    <h2 class="address-title">Saved Address</h2>
   </div>
 
   <!-- ⭐ MOBILE HEADER -->
   <div class="address-header mobile-only">
-    <h2>Saved Address</h2>
+    <button class="circle-back-btn" (click)="goBack()">
+      <i class="fa fa-angle-left"></i>
+    </button>
+
+    <h2 class="address-title">Saved Address</h2>
   </div>
 
   <!-- ⭐ MAIN CARD -->
@@ -30,11 +32,6 @@
         </div>
       </div>
     </div>
-
-    <!-- ⭐ MOBILE Back Button -->
-    <div class="mobile-back-home">
-      <button (click)="backtohome()">Back to Home</button>
-    </div>
-
   </div>
+
 </div>

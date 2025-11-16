@@ -33,7 +33,12 @@ export class AddressComponent {
 
   constructor(private router: Router) {}
 
-  backtohome() {
-    this.router.navigate(['/']);
-  }
+ goHome() {
+  this.router.navigate(['/home']);
+}
+
+goBack() {
+  window.history.back();
+}
+
 }

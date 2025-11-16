@@ -1,11 +1,21 @@
 <div class="rewards-wrapper">
-  <!-- Header -->
-  <div class="rewards-header">
-    <button class="circle-back-btn" (click)="goBack()">
-      <i class="fa fa-angle-left"></i>
-    </button>
-    <h2>Rewards</h2>
+ <div class="rewards-header">
+
+  <!-- Desktop Breadcrumbs -->
+  <div class="rewards-breadcrumbs desktop-only">
+    <span class="crumb" (click)="goHome()">Home</span> /
+    <span class="active">Rewards</span>
   </div>
+
+  <!-- Center Title -->
+  <h2 class="rewards-title">Rewards</h2>
+
+  <!-- Mobile Back Button -->
+  <button class="circle-back-btn mobile-only" (click)="goBack()">
+    <i class="fa fa-angle-left"></i>
+  </button>
+
+</div>
 
   <!-- Progress Section -->
   <div class="rewards-progress">

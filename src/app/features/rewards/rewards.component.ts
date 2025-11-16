@@ -27,9 +27,16 @@ export class RewardsComponent implements OnInit {
     }
   }
 
-  goBack() {
-    this.router.navigate(['/']);
-  }
+
+
+goHome() {
+  this.router.navigate(['/home']);
+}
+
+goBack() {
+  window.history.back();
+}
+
 
   goToTerms() {
     this.router.navigate(['/terms-and-conditions']);

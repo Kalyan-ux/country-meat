@@ -27,10 +27,14 @@ export class ReferFriendComponent implements OnInit {
     }
   }
 
-  goBack() {
-    this.router.navigate(['/']);
-  }
 
+goHome() {
+  this.router.navigate(['/home']);
+}
+
+goBack() {
+  window.history.back();
+}
   shareReferral() {
     const referralLink = `https://countrymeat.com/signup?ref=${this.referralCode}`;
     const message = `Hey! ${this.userName} invites you to get fresh farm meat from Country Meat 🥩. Use my referral code ${this.referralCode} to sign up! ${referralLink}`;

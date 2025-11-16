@@ -283,10 +283,10 @@
 @media (max-width: 768px) {
   .wallet-header {
     padding-top: 25px !important;
-    margin-top: 5.5rem !important;  /* Restores original mobile spacing */
+    margin-top: 0rem !important;  /* Restores original mobile spacing */
     background: transparent !important;
     box-shadow: none !important;
-    justify-content: center !important;
+    justify-content: cen
   }
 
   .wallet-title {
@@ -323,6 +323,12 @@
   /* Hide breadcrumbs in mobile */
   .wallet-breadcrumbs {
     display: none !important;
+  }
+  .add-money-sheet {
+    padding: 20px 25px 80px !important;
+    max-height: 80vh !important;
+    overflow-y: auto !important;
+    z-index: 120 !important;
   }
 }
 

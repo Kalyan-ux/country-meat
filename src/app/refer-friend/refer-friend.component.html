@@ -1,11 +1,23 @@
 <div class="refer-wrapper">
   <!-- Header -->
-  <div class="refer-header">
-    <button class="circle-back-btn" (click)="goBack()">
-      <i class="fa fa-angle-left"></i>
-    </button>
-    <h2>Refer a Friend</h2>
+ <div class="refer-header">
+
+  <!-- Breadcrumbs (Desktop Only) -->
+  <div class="refer-breadcrumbs desktop-only">
+    <span class="crumb" (click)="goHome()">Home</span> /
+    <span class="active">Refer</span>
   </div>
+
+  <!-- Center Title -->
+  <h2 class="refer-title">Refer a Friend</h2>
+
+  <!-- Back Button (Mobile Only) -->
+  <button class="circle-back-btn mobile-only" (click)="goBack()">
+    <i class="fa fa-angle-left"></i>
+  </button>
+
+</div>
+
 
   <!-- Main Content -->
   <div class="refer-card">

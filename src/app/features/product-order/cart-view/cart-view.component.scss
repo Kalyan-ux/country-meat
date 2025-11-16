@@ -1102,3 +1102,231 @@
   /* This block is a cleanup to remove old, conflicting styles that were not part of the modern design block */
 }
 // END OF OLD STYLE CLEANUP
+/* ==========================================================
+   📱 MOBILE RESPONSIVE — FOR YOUR EXACT CART ITEM HTML
+==========================================================*/
+
+@media (max-width: 768px) {
+
+  /* CART ITEM GRID */
+  .cart-item {
+    display: grid !important;
+    grid-template-columns: 90px 1fr !important;
+    grid-template-rows: auto auto !important;
+    gap: 0.75rem 1rem !important;
+    padding: 1rem 0 !important;
+    border-bottom: 1px solid #eee !important;
+    margin: 0 !important;
+
+    &:hover {
+      background: none !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+
+  /* IMAGE */
+  .item-image {
+    grid-column: 1 / 2 !important;
+    grid-row: 1 / 2 !important;
+  }
+
+  .product-image {
+    width: 90px !important;
+    height: 90px !important;
+    object-fit: cover !important;
+    border-radius: 10px !important;
+  }
+
+  .item-badge {
+    top: -6px !important;
+    right: -6px !important;
+    font-size: 10px !important;
+    padding: 2px 6px !important;
+  }
+
+  /* DETAILS */
+  .item-details {
+    grid-column: 2 / 3 !important;
+    grid-row: 1 / 2 !important;
+    padding-right: 10px !important;
+  }
+
+  .item-name {
+    font-size: 1rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  .item-description {
+    display: none !important;
+  }
+
+  .item-attributes {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+
+  .attribute {
+    padding: 3px 8px !important;
+    font-size: 11px !important;
+    border-radius: 5px !important;
+  }
+
+  /* CONTROLS SECTION */
+  .item-controls {
+    grid-column: 1 / 3 !important;
+    grid-row: 2 / 3 !important;
+
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+
+    border-top: 1px dashed #dfe3e8 !important;
+    margin-top: 6px !important;
+    padding-top: 10px !important;
+  }
+
+  /* QUANTITY BOX */
+  .quantity-control {
+    text-align: left !important;
+  }
+
+  .quantity-label {
+    display: none !important;
+  }
+
+  .quantity-input-group {
+    height: 36px !important;
+    border-radius: 6px !important;
+  }
+
+  .quantity-btn {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .quantity-input {
+    width: 45px !important;
+    height: 32px !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* PRICE SECTION */
+  .item-pricing {
+    text-align: right !important;
+  }
+
+  .price-breakdown {
+    display: none !important;
+  }
+
+  .total-price {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    color: #111 !important;
+  }
+
+  /* ACTION BUTTONS */
+  .item-actions {
+    display: flex !important;
+    gap: 8px !important;
+  }
+
+  .save-later {
+    display: none !important;
+  }
+
+  .action-btn {
+    width: 34px !important;
+    height: 34px !important;
+  }
+  /* 🛠 FIX BREADCRUMB ALIGNMENT ON MOBILE */
+@media (max-width: 768px) {
+
+  .breadcrumb-nav {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0.5rem 0 !important;
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .breadcrumb-item.active {
+    font-weight: 600 !important;
+    color: #1e293b !important; /* Dark text */
+  }
+
+  .breadcrumb-item a {
+    display: flex;
+    align-items: center;
+    color: #d44033 !important;
+  }
+
+  .breadcrumb-item i {
+    font-size: 14px;
+    margin-right: 4px;
+  }
+}
+}
+
+/* ==========================================================
+   📱 EXTRA SMALL MOBILE (<= 480px)
+==========================================================*/
+
+@media (max-width: 480px) {
+  .cart-item {
+    grid-template-columns: 75px 1fr !important;
+  }
+
+  .product-image {
+    width: 75px !important;
+    height: 75px !important;
+  }
+
+  .item-controls {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+
+  .item-actions {
+    align-self: flex-end !important;
+  }
+}
+.item-actions .save-later {
+  color: #d44033;
+  border-color: #d44033;
+
+  &:hover {
+    background: #fee2e2;
+    border-color: #dc2626;
+    color: #dc2626;
+  }
+}
+@media (max-width: 768px) {
+  .item-actions .save-later {
+    display: inline-flex !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .item-actions {
+    align-self: flex-end !important;
+  }
+}

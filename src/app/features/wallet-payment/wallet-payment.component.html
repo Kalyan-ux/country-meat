@@ -1,11 +1,22 @@
 <div class="wallet-payment-wrapper">
-  <!-- Header -->
-  <div class="wallet-payment-header">
-    <button class="circle-back-btn" (click)="goBack()">
-      <i class="fa fa-angle-left"></i>
-    </button>
-    <h2>Choose Payment Option</h2>
+ <div class="wallet-payment-header">
+
+  <!-- Breadcrumbs (Desktop Only) -->
+  <div class="payment-breadcrumbs desktop-only">
+    <span class="crumb" (click)="goHome()">Home</span> /
+    <span class="crumb" (click)="goWallet()">Wallet</span> /
+    <span class="active">Payment</span>
   </div>
+
+  <!-- Center Title -->
+  <h2 class="payment-title">Choose Payment Option</h2>
+
+  <!-- Back Button (Mobile Only) -->
+  <button class="circle-back-btn mobile-only" (click)="goBack()">
+    <i class="fa fa-angle-left"></i>
+  </button>
+
+</div>
 
   <!-- Payment Options Card -->
   <div class="payment-card">
