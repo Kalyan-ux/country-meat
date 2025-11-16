@@ -18,6 +18,7 @@
   margin-bottom: 0.1rem; 
   color:#2c3e50;       
   text-align: left;    
+  font-family: 'Lato', sans-serif; 
 }
 /* Style for the Section Subtitle */
 .trending-products-section .section-subtitle { 
@@ -28,7 +29,7 @@
     text-align: left;    
 }
 
-// *This container enables the manual horizontal scrolling*
+// **This container enables the manual horizontal scrolling**
 .horizontal-scroll-container {
   display: flex;
   overflow-x: auto !important; // CRUCIAL: Added !important to force scrolling
@@ -258,20 +259,23 @@
     /* Set to 100% width and remove side padding to allow horizontal-scroll-container to use full width */
     max-width: none; 
     width: 100%;
-    text-align: left;
+    text-align: center; /* Center the text block for mobile */
     padding: 24px 0; /* Removed left/right padding */
   }
 
   .trending-products-section .section-title-left {
-      font-size: 1.8rem; 
-      text-align: left;
-      margin-left: 16px; /* Re-apply padding to title/subtitle */
+      font-size: 2rem; /* Match Shop by Category mobile title size */
+      //font-weight: 600; /* FINAL FIX: Using 600 to match visual weight from screenshot */
+      text-align: left; /* Center the title */
+      margin-left: 16px; /* REMOVED: Conflicting 16px margin */
+      color: #34495e; /* FINAL FIX: Slightly lighter shade than #2c3e50 to match visual lightness */
   }
   .trending-products-section .section-subtitle {
-      font-size: 1rem; 
-      text-align: left;
+      font-size: 1.1rem; /* Match Shop by Category mobile subtitle size */
+      text-align: left; /* Center the subtitle */
       margin-bottom: 1rem; 
-      margin-left: 16px; /* Re-apply padding to title/subtitle */
+      margin-left: 16px; /* REMOVED: Conflicting 16px margin */
+      font-weight: 400; /* Ensures regular weight to match category subtitle */
   }
 
   .horizontal-scroll-container {
@@ -304,7 +308,6 @@
 
     .product-features {
         gap: 0.4rem;
-        margin-bottom: 0.75rem; 
         .feature-tag {
             padding: 0.15rem 0.6rem; 
             font-size: 0.7rem;
