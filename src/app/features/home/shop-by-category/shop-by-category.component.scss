@@ -1,3 +1,5 @@
+// shop-by-category.component.scss
+
 // Shop by Category Section
 .shop-category {
   background: white;
@@ -17,40 +19,13 @@
   margin-bottom: -45px;
 }
 
-// ------------------------------------------------
-// --- MODIFIED DESKTOP STYLES (FROM TRENDING) ---
-// ------------------------------------------------
-.section-header-ecommerce .section-titles {
-  
-  /* Shop by Category - Heading */
-  .section-title-left { // Targeting the specific class used in the HTML
-    font-size: 1.8rem; // Desktop title size (from trending)
-    margin-bottom: 0.1rem; // Desktop title margin (from trending)
-    color:#2c3e50;       // Black color (from trending)
-    text-align: left;  
-    font-weight: 500;  // Ensure left alignment (from trending)
-  }
-  
-  /* Discover our premium selection... - Subheading */
-  .section-subtitle-left { // Targeting the specific class used in the HTML
-    font-size: 1.2rem;     // Desktop subtitle size (from trending)
-    font-family: 'Lato', sans-serif; // From trending
-    color: #6c757d;      // Muted color (from trending)
-    margin-bottom: 1.5rem; // Use trending's margin-bottom
-    text-align: left;    // Ensure left alignment (from trending)
-  }
-}
-// ------------------------------------------------
-// ------------------------------------------------
-
-
-// Original .section-header styles (kept for reference or other uses)
 .section-header {
   .section-title {
   font-size: 2.0rem; // Desktop title size
   margin-bottom: 0.1rem; // Desktop title margin
   color:#2c3e50;       // Black color
-      // Bold font weight (700 is standard bold, 900 is very heavy)
+  font-weight: 600; 
+  font-family: 'Lato', sans-serif; 
   text-align: left;
   }
   
@@ -258,13 +233,36 @@
     padding: 1.5rem 0; /* REDUCED PADDING FOR MOBILE (from 3rem 0) */
   }
 
+  /* 🎯 FIX: Targeting the specific classes used in the HTML */
+  .section-header-ecommerce {
+    .section-title-left {
+      // Matches Best Sellers mobile title
+      font-size: 2rem;
+      color: #34495e; 
+    }
+
+    .section-subtitle-left {
+      // Matches Best Sellers mobile subtitle
+      font-size: 1.1rem;
+      font-weight: 400;
+      /* Ensure font-family/color are inherited or defined if needed */
+      font-family: 'Lato', sans-serif;
+      color: #6c757d;
+    }
+  }
+  /* ---------------------------------------------------- */
+
   .section-header {
     .section-title {
       font-size: 2rem;
+      /* Inherits font-weight: 600 and font-family: 'Lato' from desktop */
+      color: #34495e; 
     }
 
     .section-subtitle {
       font-size: 1.1rem;
+      /* Inherits font-family: 'Lato' from desktop */
+      font-weight: 400;
     }
   }
 
@@ -537,9 +535,7 @@
   .section-header-ecommerce .section-titles {
     /* Aligns the text inside the block to the center */
     text-align: center;
-    font-weight: 500;
-    font-size: 1.8rem;
-    color: #2c3e50;
+    font-weight: bold;
   
   }
 }
@@ -556,9 +552,7 @@
   }
   .section-header-ecommerce .section-titles {
     text-align: center;
-    font-weight: 500;
-    font-size: 1.8rem;
-    color: #2c3e50;
+    font-weight: bold;
   }
 
   /* Adjust row margins for gutters */
