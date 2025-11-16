@@ -13,6 +13,30 @@
   margin-bottom: 0;
 }
 
+/* =================================================== */
+/* === ✅ DESKTOP HEADING/SUBHEADING STYLE INHERITANCE === */
+/* =================================================== */
+.section-header-ecommerce {
+  .section-title-left { 
+    // Inherited from trending-products.component.scss desktop .section-title-left
+    font-size: 2.0rem; 
+    margin-bottom: 0.1rem; 
+    color: #2c3e50;       
+    //font-weight: 600; // Added from section-header .section-title
+    font-family: 'Lato', sans-serif; 
+    text-align: left;
+  }
+  .section-subtitle-left {
+    // Inherited from trending-products.component.scss desktop .section-subtitle
+    font-size: 1.2rem;     
+    font-family: 'Lato', sans-serif; 
+    color: #6c757d;      
+    margin-bottom: 1.5rem; 
+    text-align: left; // Ensure left alignment
+  }
+}
+/* =================================================== */
+
 
 .category-carousel{
   margin-top: -28px;
@@ -34,7 +58,7 @@
     font-size: 1.2rem;
     font-family: 'Lato', sans-serif;
     color: #6c757d;
-    margin-bottom: 0rem;
+    margin-bottom: 1.5rem; /* UPDATED: Matched Best Sellers desktop subtitle margin */
   }
 
   .title-underline {
@@ -233,7 +257,7 @@
     padding: 1.5rem 0; /* REDUCED PADDING FOR MOBILE (from 3rem 0) */
   }
 
-  /* 🎯 FIX: Targeting the specific classes used in the HTML */
+  /* 🎯 FIX: Targeting the specific classes used in the HTML for mobile consistency */
   .section-header-ecommerce {
     .section-title-left {
       // Matches Best Sellers mobile title
@@ -245,7 +269,6 @@
       // Matches Best Sellers mobile subtitle
       font-size: 1.1rem;
       font-weight: 400;
-      /* Ensure font-family/color are inherited or defined if needed */
       font-family: 'Lato', sans-serif;
       color: #6c757d;
     }
