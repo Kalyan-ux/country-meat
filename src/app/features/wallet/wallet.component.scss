@@ -1,3 +1,6 @@
+/* ===========================================================
+   MAIN WRAPPER
+===========================================================*/
 .wallet-wrapper {
   background: #fff;
   min-height: 100vh;
@@ -7,7 +10,9 @@
   align-items: center;
 }
 
-/* Header */
+/* ===========================================================
+   HEADER
+===========================================================*/
 .wallet-header {
   width: 100%;
   max-width: 1150px;
@@ -15,14 +20,17 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 16px 0;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 12px 0 !important;
+  background: transparent;
+  box-shadow: none !important;
 
-  h2 {
+  h2.wallet-title {
+    margin: 0;
     font-size: 18px;
     font-weight: 600;
     color: #222;
+    text-align: center;
+    width: 100%;
   }
 
   .circle-back-btn {
@@ -42,7 +50,48 @@
   }
 }
 
-/* Wallet Card */
+/* Breadcrumbs (Desktop Only) */
+.wallet-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  .crumb {
+    cursor: pointer;
+    color: #555;
+    transition: 0.2s;
+
+    &:hover {
+      color: #d9232d;
+      text-decoration: underline;
+    }
+  }
+
+  .active {
+    cursor: default;
+    color: #d9232d;
+    font-weight: 600;
+  }
+}
+
+/* Hide breadcrumbs in mobile */
+.desktop-only {
+  display: none;
+}
+
+/* Hide back button in desktop */
+.mobile-only {
+  display: none;
+}
+
+/* ===========================================================
+   WALLET CARD
+===========================================================*/
 .wallet-card {
   width: 50%;
   border: 1.5px solid #d9232d;
@@ -53,18 +102,17 @@
   justify-content: space-between;
   align-items: center;
 
-  .wallet-balance {
-    p {
-      color: #555;
-      font-size: 14px;
-      margin-bottom: 5px;
-    }
-    h1 {
-      color: #d9232d;
-      font-size: 26px;
-      font-weight: 700;
-      margin: 0;
-    }
+  .wallet-balance p {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  .wallet-balance h1 {
+    color: #d9232d;
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0;
   }
 
   .add-money-btn {
@@ -84,12 +132,13 @@
   }
 }
 
-/* Transactions */
+/* ===========================================================
+   TRANSACTIONS
+===========================================================*/
 .wallet-transactions {
   width: 90%;
   margin-top: 25px;
   text-align: center;
-  
 
   h3 {
     font-size: 15px;
@@ -115,7 +164,9 @@
   }
 }
 
-/* Overlay */
+/* ===========================================================
+   BOTTOM SHEET
+===========================================================*/
 .add-money-overlay {
   position: fixed;
   top: 0;
@@ -126,7 +177,6 @@
   z-index: 98;
 }
 
-/* Bottom Sheet */
 .add-money-sheet {
   position: fixed;
   left: 0;
@@ -155,7 +205,6 @@
     h3 {
       font-size: 18px;
       font-weight: 600;
-      color: #222;
       margin: 0;
     }
 
@@ -165,14 +214,13 @@
       background: none;
       border: none;
       font-size: 22px;
-      color: #444;
       cursor: pointer;
     }
   }
 
   .sheet-subtext {
-    color: #888;
     font-size: 13px;
+    color: #888;
     margin-bottom: 20px;
   }
 
@@ -200,7 +248,6 @@
       color: #d9232d;
       border-radius: 20px;
       padding: 8px 18px;
-      font-size: 14px;
       cursor: pointer;
       transition: 0.3s;
 
@@ -218,7 +265,6 @@
     border: none;
     border-radius: 8px;
     padding: 12px;
-    font-size: 15px;
     width: 100%;
     font-weight: 600;
     cursor: pointer;
@@ -229,103 +275,114 @@
     }
   }
 }
-/* ✅ RESPONSIVE DESIGN */
-@media (max-width: 1024px) {
-  .wallet-card {
-    width: 70%;
-  }
-}
+
+/* ===========================================================
+   RESTORE ORIGINAL MOBILE VIEW EXACTLY LIKE FIRST VERSION
+===========================================================*/
 
 @media (max-width: 768px) {
   .wallet-header {
-    padding-top: 25px; /* Moves header slightly down */
-    margin-top: 5.5rem;
+    padding-top: 25px !important;
+    margin-top: 5.5rem !important;  /* Restores original mobile spacing */
+    background: transparent !important;
+    box-shadow: none !important;
+    justify-content: center !important;
+  }
+
+  .wallet-title {
+    font-size: 16px !important;
+    text-align: center !important;
+    margin-left: 0 !important;
+  }
+
+  .circle-back-btn {
+    display: flex !important;
   }
 
   .wallet-card {
-    width: 90%;
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
-    padding: 20px;
-    margin-top: 10px; /* Pulls card upward a bit */
+    width: 90% !important;
+    margin-top: 10px !important;
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 15px !important;
+    padding: 20px !important;
+  }
 
-    .wallet-balance h1 {
-      font-size: 22px;
-    }
+  .wallet-balance h1 {
+    font-size: 22px !important;
+  }
 
-    .add-money-btn {
-      width: 100%;
-    }
+  .add-money-btn {
+    width: 100% !important;
   }
 
   .wallet-transactions {
-    margin-top: 15px; /* Moves transactions up */
+    margin-top: 15px !important;
   }
 
-  .wallet-header h2 {
-    font-size: 16px;
+  /* Hide breadcrumbs in mobile */
+  .wallet-breadcrumbs {
+    display: none !important;
   }
 }
 
+/* Small mobile fixes */
 @media (max-width: 480px) {
   .wallet-header {
-    padding-top: 30px; /* Slightly more gap from top */
-    padding-bottom: 10px;
-    margin-top: 5.5rem;
+    padding-top: 30px !important;
+    padding-bottom: 10px !important;
+    margin-top: 0rem !important;
+  }
 
-    h2 {
-      font-size: 15px;
-    }
+  .wallet-title {
+    font-size: 15px !important;
+  }
 
-    .circle-back-btn {
-      width: 32px;
-      height: 32px;
-      font-size: 16px;
-    }
+  .circle-back-btn {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 16px !important;
   }
 
   .wallet-card {
-    width: 92%;
-    margin-top: 40px; /* brings card closer to top */
-    padding: 15px;
+    width: 92% !important;
+    margin-top: 40px !important;
+    padding: 15px !important;
   }
 
   .wallet-transactions {
-    width: 95%;
-    margin-top: 10px; /* moves up slightly */
-    font-size: 13px;
+    width: 95% !important;
+    margin-top: 10px !important;
+    font-size: 13px !important;
+  }
 
-    .transaction-item {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 5px;
-      font-size: 13px;
-    }
+  .transaction-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 5px !important;
+    font-size: 13px !important;
   }
 
   .add-money-sheet {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: -100%;
-  background: #fff;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
-  padding: 20px 25px 80px; /* ✅ Added bottom padding to prevent overlap */
-  text-align: center;
-  z-index: 120; /* ✅ Higher than bottom nav */
-  transition: bottom 0.4s ease;
-  max-height: 80vh;
-  overflow-y: auto;
-
-  &.show {
-    bottom: 0;
+    padding: 20px 25px 80px !important;
+    max-height: 80vh !important;
+    overflow-y: auto !important;
+    z-index: 120 !important;
   }
-    .proceed-btn {
-      padding: 10px;
-      font-size: 14px;
-    }
+}
+/* ===========================================================
+   RESTORE BREADCRUMBS IN DESKTOP
+===========================================================*/
+@media (min-width: 769px) {
+  .desktop-only {
+    display: flex !important;
+  }
+
+  .wallet-breadcrumbs {
+    display: flex !important;
+  }
+
+  .circle-back-btn {
+    display: none !important;
   }
 }

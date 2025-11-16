@@ -22,6 +22,10 @@ export class WalletComponent {
   goBack() {
     this.router.navigate(['/']);
   }
+  goHome() {
+  this.router.navigate(['/']);
+}
+
 
   openAddMoney() {
     this.isAddMoneyOpen = true;

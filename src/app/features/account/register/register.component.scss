@@ -126,8 +126,11 @@
     font-weight: 600;
     line-height: 1;
     margin-bottom: 0;
+    margin-top: 15px;
     padding: 18px 50px;
     text-align: center;
+    display: flex;
+    justify-content: center;
     touch-action: manipulation;
     transition: all .3s ease 0s;
     vertical-align: middle;

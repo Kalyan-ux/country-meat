@@ -6,12 +6,13 @@
   flex-direction: column;
   align-items: center;
   padding-bottom: 20px;
+   
 }
 
 /* Header */
+
 .wallet-payment-header {
   width: 100%;
-  max-width: 1150px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,6 +20,8 @@
   padding: 16px 0;
   background: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+
 
   h2 {
     font-size: 18px;

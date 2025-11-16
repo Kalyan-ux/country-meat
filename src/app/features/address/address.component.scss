@@ -1,3 +1,6 @@
+/* ---------------------------------------
+   GLOBAL WRAPPER
+---------------------------------------- */
 .address-wrapper {
   background: #f7f7f7;
   min-height: 100vh;
@@ -5,189 +8,163 @@
   flex-direction: column;
   align-items: center;
   font-family: "Poppins", sans-serif;
-  padding: 0 12px 30px;
+  padding-bottom: 30px;
 }
 
-/* Header Section */
+/* ---------------------------------------
+   MOBILE HEADER (STICKY)
+---------------------------------------- */
 .address-header {
   width: 100%;
-  max-width: 1150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
   padding: 16px 0;
-  background: #ffffff;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08); /* ✅ Added visible bottom shadow */
+  background: #fff;
   border-bottom: 1px solid #eee;
-  z-index: 2;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+    display: flex;
+  align-items: center;
+  justify-content: center; /* 🔥 Ensures perfect centering */
+}
 
-  h2 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #222;
-    margin: 0;
-  }
+.address-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
 
-  .circle-back-btn {
-    position: absolute;
-    left: 15px;
-    background: #fff;
-    border: 1.5px solid #ccc;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
+/* Hide desktop version on mobile */
+.mobile-only { display: flex; }
+.desktop-only { display: none; }
+
+/* ---------------------------------------
+   DESKTOP HEADER ROW
+---------------------------------------- */
+.desktop-header-row {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .mobile-only { display: none; }
+  .desktop-only { display: flex; }
+
+  .desktop-header-row {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto 10px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    color: #333;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    justify-content: space-between;
+  }
 
-    &:hover {
-      background: #f2f2f2;
-      border-color: #999;
-    }
+  .address-breadcrumbs {
+    font-size: 14px;
+    color: #777;
+  }
+
+  .breadcrumb-link {
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .breadcrumb-link:hover {
+    color: #d9232d;
+  }
+
+  .address-breadcrumbs .active {
+    color: #d9232d;
+    font-weight: 600;
+  }
+
+  /* Center Title */
+  .desktop-title {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    flex-grow: 1;
+  }
+
+  .header-spacer {
+    width: 120px;
   }
 }
 
-/* Card Container */
+/* ---------------------------------------
+   MAIN CARD
+---------------------------------------- */
 .address-card-container {
+  width: 100%;
   background: #fff;
   border-radius: 18px;
   padding: 20px;
-  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
-  width: 100%;
   max-width: 420px;
   min-height: 520px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-top: 25px; /* ✅ Force space below header */
-  z-index: 1;
+  margin-top: 20px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.12);
 }
 
-/* Address List */
+/* LIST */
 .address-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  overflow-y: auto;
   max-height: 380px;
-  padding-right: 5px;
+  overflow-y: auto;
+}
 
-  &::-webkit-scrollbar {
-    width: 4px;
+/* ---------------------------------------
+   TABLET & LAPTOP (600px–992px)
+---------------------------------------- */
+@media (min-width: 600px) and (max-width: 991px) {
+  .address-card-container {
+    max-width: 500px;
+    padding: 25px;
+    margin-top: 30px;
   }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: #d9d9d9;
-    border-radius: 10px;
-  }
+  .address-header h2 {
+    font-size: 20px;
 
-  .address-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    background: #fafafa;
-    border-radius: 10px;
-    padding: 12px 15px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease-in-out;
-
-    &:hover {
-      transform: scale(1.01);
-    }
-
-    .address-icon {
-      font-size: 20px;
-      color: #555;
-      min-width: 25px;
-      text-align: center;
-    }
-
-    .address-content {
-      h3 {
-        margin: 0 0 5px;
-        font-size: 14px;
-        font-weight: 700;
-      }
-
-      p {
-        margin: 0;
-        font-size: 13px;
-        color: #555;
-        line-height: 1.4;
-      }
-    }
   }
 }
 
-/* Add Address Button */
-.add-address-section {
-  margin-top: 15px;
-  text-align: center;
-
-  .add-address-btn {
-    width: 100%;
-    border: 2px solid #d9232d;
-    background: transparent;
-    color: #d9232d;
-    font-size: 15px;
-    font-weight: 600;
-    border-radius: 8px;
-    padding: 12px;
-    transition: 0.3s ease;
-
-    &:hover {
-      background: #d9232d;
-      color: #fff;
-    }
-  }
-}
-
-/* ✅ Responsive Tweaks */
-@media (max-width: 768px) {
-  .address-wrapper {
-    background: #f4f4f4; /* ✅ More visible contrast between header & card */
-    padding: 0 10px 25px;
-  }
-
-  .address-header {
-    padding: 12px 0;
-    max-width: 100%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 0 0 20px 20px; /* ✅ Rounded bottom for clean separation */
-  }
-
-  .circle-back-btn {
-    width: 34px;
-    height: 34px;
-    font-size: 16px;
+/* ---------------------------------------
+   LARGE DESKTOP (1200px+)
+---------------------------------------- */
+@media (min-width: 1200px) {
+  .desktop-title {
+    font-size: 26px;
   }
 
   .address-card-container {
-    max-width: 100%;
-    padding: 18px;
-    margin-top: 100px; /* ✅ Keep consistent visual gap */
-    min-height: 480px;
-  }
-
-  .address-item {
-    padding: 10px 12px;
+    max-width: 550px;
+    padding: 35px;
   }
 }
-@media (max-width: 480px) {
-  .address-header {
-    padding-top: 30px; /* Slightly more gap from top */
-    padding-bottom: 20px;
-    margin-top: 5.5rem;
+
+/* ---------------------------------------
+   MOBILE BACK-TO-HOME BUTTON
+---------------------------------------- */
+.mobile-back-home {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-back-home {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
   }
-   .address-card-container {
-    max-width: 100%;
-    padding: 15px;
-    margin-top: 35px; /* ✅ Keep consistent visual gap */
-    min-height: 480px;
+
+  .mobile-back-home button {
+    background: #d9232d;
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    width: 40%;
+    font-size: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
 }

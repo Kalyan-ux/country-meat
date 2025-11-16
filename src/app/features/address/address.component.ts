@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-address',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],  // ✅ ADD RouterModule
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.scss'],
 })
@@ -33,12 +33,7 @@ export class AddressComponent {
 
   constructor(private router: Router) {}
 
-  goBack() {
-    this.router.navigate(['/']); // Adjust navigation as needed
-  }
-
-  addNewAddress() {
-    alert('Add new address clicked!');
-    // You can navigate to a form or open a modal later
+  backtohome() {
+    this.router.navigate(['/']);
   }
 }

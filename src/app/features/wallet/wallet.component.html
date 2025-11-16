@@ -1,11 +1,25 @@
 <div class="wallet-wrapper">
-  <!-- Header -->
+
+  <!-- HEADER -->
   <div class="wallet-header">
-    <button class="circle-back-btn" (click)="goBack()">
+
+    <!-- Mobile Back Button -->
+    <button class="circle-back-btn mobile-only" (click)="goBack()">
       <i class="fa fa-angle-left"></i>
     </button>
-    <h2>Country Meat Wallet</h2>
-  </div>
+
+    <!-- Desktop Breadcrumbs -->
+   <div class="wallet-breadcrumbs desktop-only">
+  <span class="crumb" (click)="goHome()">Home</span> /
+  <span class="crumb active">Wallet</span>
+</div>
+
+
+    <!-- Center Title -->
+    <h2 class="wallet-title">Country Meat Wallet</h2>
+
+  </div> <!-- END wallet-header -->
+
 
   <!-- Wallet Card -->
   <div class="wallet-card">
@@ -16,10 +30,10 @@
     <button class="add-money-btn" (click)="openAddMoney()">Add Money +</button>
   </div>
 
-  <!-- Transaction Section -->
+  <!-- Transactions -->
   <div class="wallet-transactions">
     <h3>Last 5 Transactions</h3>
-    
+
     <div *ngFor="let t of transactions" class="transaction-item">
       <span>{{ t.date }}</span>
       <span [class.credit]="t.type === 'credit'" [class.debit]="t.type === 'debit'">
@@ -28,9 +42,10 @@
     </div>
   </div>
 
-  <!-- Add Money Bottom Sheet -->
+  <!-- Add Money Overlay -->
   <div class="add-money-overlay" *ngIf="isAddMoneyOpen" (click)="closeAddMoney()"></div>
 
+  <!-- Add Money Bottom Sheet -->
   <div class="add-money-sheet" [class.show]="isAddMoneyOpen">
     <div class="sheet-header">
       <h3>Add Money</h3>
@@ -45,13 +60,13 @@
 
     <div class="amount-options">
       <button *ngFor="let amount of amounts"
-        (click)="selectAmount(amount)"
-        [class.active]="selectedAmount === amount">
+              (click)="selectAmount(amount)"
+              [class.active]="selectedAmount === amount">
         ₹{{ amount }}
       </button>
     </div>
 
-   <button class="proceed-btn" (click)="proceedToPayment()">Proceed to Add</button>
-
+    <button class="proceed-btn" (click)="proceedToPayment()">Proceed to Add</button>
   </div>
-</div>
+
+</div> <!-- END wallet-wrapper -->

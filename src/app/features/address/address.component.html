@@ -1,13 +1,23 @@
 <div class="address-wrapper">
-  <!-- Header -->
-  <div class="address-header">
-    <button class="circle-back-btn" (click)="goBack()">
-      <i class="fa fa-angle-left"></i>
-    </button>
+
+  <!-- ⭐ DESKTOP HEADER ROW -->
+  <div class="desktop-header-row desktop-only">
+    <div class="address-breadcrumbs">
+      <a routerLink="/" class="breadcrumb-link">Home</a> /
+      <span class="active">Addresses</span>
+    </div>
+
+    <h2 class="desktop-title">Saved Address</h2>
+
+    <div class="header-spacer"></div>
+  </div>
+
+  <!-- ⭐ MOBILE HEADER -->
+  <div class="address-header mobile-only">
     <h2>Saved Address</h2>
   </div>
 
-  <!-- Main Card -->
+  <!-- ⭐ MAIN CARD -->
   <div class="address-card-container">
     <div class="address-list">
       <div class="address-item" *ngFor="let address of addresses">
@@ -21,10 +31,10 @@
       </div>
     </div>
 
-    <div class="add-address-section">
-      <button class="add-address-btn" (click)="addNewAddress()">
-        Add new address
-      </button>
+    <!-- ⭐ MOBILE Back Button -->
+    <div class="mobile-back-home">
+      <button (click)="backtohome()">Back to Home</button>
     </div>
+
   </div>
 </div>
