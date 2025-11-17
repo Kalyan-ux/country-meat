@@ -25,6 +25,7 @@
     //font-weight: 600; // Added from section-header .section-title
     font-family: 'Lato', sans-serif; 
     text-align: left;
+    margin-left: 1px; 
   }
   .section-subtitle-left {
     // Inherited from trending-products.component.scss desktop .section-subtitle
@@ -33,6 +34,7 @@
     color: #6c757d;      
     margin-bottom: 1.5rem; 
     text-align: left; // Ensure left alignment
+    margin-left: 1px;
   }
 }
 /* =================================================== */
@@ -256,13 +258,25 @@
   .shop-category {
     padding: 1.5rem 0; /* REDUCED PADDING FOR MOBILE (from 3rem 0) */
   }
-
-  /* 🎯 FIX: Targeting the specific classes used in the HTML for mobile consistency */
+  
+  // FIX: Remove default container padding for the heading section on mobile,
+  // then apply custom padding to the header block itself.
+  .shop-category > .container {
+    padding-left: 15px; // Revert/Ensure default Bootstrap padding is kept
+    padding-right: 15px; // Revert/Ensure default Bootstrap padding is kept
+  }
+  
+  // UPDATED: Removed padding override and ensured left alignment and margin consistency
   .section-header-ecommerce {
+    padding: 0; // Removed custom 16px padding
+    
     .section-title-left {
       // Matches Best Sellers mobile title
       font-size: 2rem;
       color: #34495e; 
+      padding: 0; 
+      text-align: left; 
+      margin-bottom: 0.1rem; /* Consistent margin-bottom */
     }
 
     .section-subtitle-left {
@@ -271,6 +285,9 @@
       font-weight: 400;
       font-family: 'Lato', sans-serif;
       color: #6c757d;
+      padding: 0; 
+      text-align: left; 
+      margin-bottom: 1rem; /* Consistent margin-bottom with Best Sellers mobile */
     }
   }
   /* ---------------------------------------------------- */
@@ -290,6 +307,7 @@
   }
 
   .category-card {
+    margin-bottom: 2rem; /* Ensure margin is kept */
     .category-image {
       height: 200px;
 
@@ -551,14 +569,14 @@
 @media (max-width: 768px) {
   .section-header-ecommerce .d-flex {
     /* Changes the alignment to center the title block */
-    justify-content: center !important;
-  ;
+    /* REMOVED: justify-content: center !important; */
+  
   }
 
   .section-header-ecommerce .section-titles {
     /* Aligns the text inside the block to the center */
-    text-align: center;
-    font-weight: bold;
+    /* REMOVED: text-align: center; */
+    /* REMOVED: font-weight: bold; */
   
   }
 }
@@ -571,11 +589,11 @@
 
   /* Center the section title */
   .section-header-ecommerce .d-flex {
-    justify-content: center !important;
+    /* REMOVED: justify-content: center !important; */
   }
   .section-header-ecommerce .section-titles {
-    text-align: center;
-    font-weight: bold;
+    /* REMOVED: text-align: center; */
+    /* REMOVED: font-weight: bold; */
   }
 
   /* Adjust row margins for gutters */
@@ -625,10 +643,10 @@
     }
   }
 
-  /* Container padding */
+  /* Container padding - REVERTED */
   .shop-category .container {
-      padding-left: 5px;
-      padding-right: 5px;
+      padding-left: 15px; // Default Bootstrap container padding
+      padding-right: 15px; // Default Bootstrap container padding
   }
 }
 
@@ -665,7 +683,7 @@
   }
 
   .shop-category .container {
-      padding-left: 3px;
-      padding-right: 3px;
+      padding-left: 3px; // Ensuring this remains if needed for small screens
+      padding-right: 3px; // Ensuring this remains if needed for small screens
   }
 }
