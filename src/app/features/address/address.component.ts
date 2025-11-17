@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-address',
   standalone: true,
-  imports: [CommonModule, RouterModule],  // ✅ ADD RouterModule
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.scss'],
 })
 export class AddressComponent {
+  
+  // ⭐ EXISTING + NEW ADDRESSES
   addresses = [
     {
       label: 'Home',
@@ -31,14 +34,51 @@ export class AddressComponent {
     },
   ];
 
+  // ⭐ POPUP FORM CONTROL
+  showForm = false;
+
+  // ⭐ NEW ADDRESS MODEL
+  newAddress = {
+    label: '',
+    details: '',
+    icon: 'fa fa-map-marker',
+  };
+
   constructor(private router: Router) {}
 
- goHome() {
-  this.router.navigate(['/home']);
-}
+  // ⭐ OPEN FORM
+  openAddAddressForm() {
+    this.showForm = true;
+  }
 
-goBack() {
-  window.history.back();
-}
+  // ⭐ CLOSE FORM
+  closeAddAddressForm() {
+    this.showForm = false;
+    this.newAddress = {
+      label: '',
+      details: '',
+      icon: 'fa fa-map-marker',
+    };
+  }
 
+  // ⭐ ADD ADDRESS FUNCTION
+  addAddress() {
+    if (!this.newAddress.label || !this.newAddress.details) {
+      alert('Please enter all fields');
+      return;
+    }
+
+    this.addresses.push({ ...this.newAddress });
+
+    this.closeAddAddressForm();
+  }
+
+  // ⭐ NAVIGATION
+  goHome() {
+    this.router.navigate(['/home']);
+  }
+
+  goBack() {
+    window.history.back();
+  }
 }

@@ -8,6 +8,8 @@
     </div>
 
     <h2 class="address-title">Saved Address</h2>
+
+  
   </div>
 
   <!-- ⭐ MOBILE HEADER -->
@@ -17,9 +19,11 @@
     </button>
 
     <h2 class="address-title">Saved Address</h2>
+
+    
   </div>
 
-  <!-- ⭐ MAIN CARD -->
+  <!-- ⭐ ADDRESS LIST -->
   <div class="address-card-container">
     <div class="address-list">
       <div class="address-item" *ngFor="let address of addresses">
@@ -30,6 +34,34 @@
           <h3>{{ address.label }}</h3>
           <p>{{ address.details }}</p>
         </div>
+      </div>
+    </div>
+      <button class="add-address-btn" (click)="openAddAddressForm()">
+     Add New Address
+    </button>
+  </div>
+
+  <!-- ⭐ ADD ADDRESS POPUP FORM -->
+  <div class="address-form-overlay" *ngIf="showForm">
+    <div class="address-form">
+      <h3>Add New Address</h3>
+
+      <label>Label (Home / Work / Other):</label>
+      <input type="text" [(ngModel)]="newAddress.label" placeholder="Home, Work, etc." />
+
+      <label>Full Address:</label>
+      <textarea [(ngModel)]="newAddress.details" placeholder="Enter full address"></textarea>
+
+      <label>Select Icon:</label>
+      <select [(ngModel)]="newAddress.icon">
+        <option value="fa fa-home">Home</option>
+        <option value="fa fa-briefcase">Work</option>
+        <option value="fa fa-map-marker">Other</option>
+      </select>
+
+      <div class="form-actions">
+        <button class="save-btn" (click)="addAddress()">Save Address</button>
+        <button class="cancel-btn" (click)="closeAddAddressForm()">Cancel</button>
       </div>
     </div>
   </div>
