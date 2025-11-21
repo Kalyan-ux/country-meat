@@ -52,14 +52,15 @@
 
 /* Breadcrumbs (Desktop Only) */
 .wallet-breadcrumbs {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 14px;
   position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex !important;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #777;
 
   .crumb {
     cursor: pointer;

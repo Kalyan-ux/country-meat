@@ -9,18 +9,57 @@
       </div>
     </div>
 
-    <!-- LOCATION -->
-    <div class="navbar-location">
-      <i class="fa fa-map-marker location-icon"></i>
-      <div class="location-details">
-        <span class="location-city">
-          Bangalore <i class="fa fa-chevron-down"></i>
-        </span>
-        <span class="location-address">
-          Bengaluru,Karnataka
-        </span>
-      </div>
-    </div>
+   <!-- LOCATION SECTION -->
+<div class="navbar-location" (click)="toggleDropdown($event)">
+  <i class="fa fa-map-marker location-icon"></i>
+
+  <div class="location-details">
+    <span class="location-city">
+      Bangalore <i class="fa fa-chevron-down"></i>
+    </span>
+    <span class="location-address">Bengaluru, Karnataka</span>
+  </div>
+</div>
+
+<!-- FULL SCREEN OVERLAY -->
+<div 
+  class="location-overlay" 
+  *ngIf="dropdownOpen"
+  (click)="closeDropdown()"
+>
+</div>
+
+<!-- DROPDOWN MODAL -->
+<div 
+  class="location-modal" 
+  *ngIf="dropdownOpen"
+  (click)="stopClose($event)"
+>
+ <!-- Search & Current Location Combined -->
+<div class="location-search-bar">
+
+  <!-- Left side: Search icon + input -->
+  <div class="search-left">
+    <i class="fa fa-search"></i>
+    <input type="text" placeholder="Search for your location" />
+  </div>
+
+  <!-- Right side: Use current location -->
+  <button class="use-location-btn" (click)="useCurrentLocation()">
+    <i class="fa fa-location-arrow"></i>
+    Use current location
+  </button>
+
+</div>
+
+
+  <!-- Saved Address -->
+  <button class="saved-address-btn" (click)="goToSavedAddress()">
+    <i class="fa fa-address-book"></i>
+    Saved Address
+  </button>
+</div>
+
 
     <!-- SEARCH BAR -->
     <div class="navbar-search">
@@ -192,6 +231,10 @@
   </div>
 
   <ul class="sidebar-menu">
+    <li (click)="router.navigate(['/about']); toggleSidebar()">
+  <i class="fa fa-info-circle"></i> About
+</li>
+
     <li (click)="router.navigate(['/rewards']); toggleSidebar()">
   <i class="fa fa-trophy"></i> Rewards
   <!-- <small class="wallet-info">Complete milestone and win exciting rewards </small> -->
@@ -230,15 +273,29 @@
   <div class="mobile-top">
     
     <!-- LEFT: Delivery To -->
-    <div class="mobile-left">
-    <i class="fa fa-map-marker location-icon"></i>
+   <!-- MOBILE NAV LEFT: Delivery To -->
+<div class="mobile-left mobile-only" (click)="toggleLeftDropdown($event)">
+  <i class="fa fa-map-marker location-icon"></i>
 
+  <div class="mobile-text">
+    <span class="delivery-title">Delivery to</span>
+    <p class="delivery-address">{{ selectedAddress }}</p>
+  </div>
 
-      <div class="mobile-text">
-        <span class="delivery-title">Delivery to</span>
-        <p class="delivery-address">Flat 18,Vijaynagar</p>
-      </div>
-    </div>
+  <!-- MOBILE DROPDOWN -->
+  <div class="address-dropdown" *ngIf="leftDropdownOpen">
+    <button class="dropdown-option" (click)="useCurrentLocationLeft($event)">
+      <i class="fa fa-location-arrow"></i>
+      Use current location
+    </button>
+
+    <button class="dropdown-option" (click)="goToSavedAddressLeft($event)">
+      <i class="fa fa-map"></i>
+      Saved address
+    </button>
+  </div>
+</div>
+
 
     <!-- CENTER: Logo -->
     <div class="mobile-center">
@@ -272,10 +329,17 @@
     <span>Home</span>
   </a>
 
-  <a routerLink="/about" class="bottom-nav-link">
-    <i class="fa fa-info-circle"></i>
-    <span>About</span>
-  </a>
+<a class="bottom-nav-link" (click)="toggleCategoriesDropdown($event)">
+  <img
+    src="assets/icon/categories.png"
+    alt="Categories Icon"
+    class="bottom-user-icon"
+  />
+  <span>Categories</span>
+</a>
+
+
+
 
   <!-- <a class="bottom-nav-link" (click)="toggleMobileSearch()">
     <i class="fa fa-search"></i>

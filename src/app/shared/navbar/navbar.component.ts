@@ -124,5 +124,68 @@ export class NavbarComponent implements OnInit {
     alert('Referral link copied to clipboard!');
   }
 }
+dropdownOpen = false;
+
+toggleDropdown(event: Event) {
+  event.stopPropagation(); // Prevent auto-close
+  this.dropdownOpen = !this.dropdownOpen;
+}
+
+closeDropdown() {
+  this.dropdownOpen = false;
+}
+
+stopClose(event: Event) {
+  event.stopPropagation(); // Keep modal open on inner click
+}
+
+useCurrentLocation() {
+  console.log("Getting current location...");
+  this.dropdownOpen = false;
+}
+
+goToSavedAddress() {
+  this.router.navigate(['/address']);
+  this.dropdownOpen = false;
+  { {
+  document.addEventListener('click', () => {
+    this.dropdownOpen = false;
+  });
+}
+
+
+  }
+
+  
+}
+leftDropdownOpen = false;
+selectedAddress = "Select address";
+
+
+
+toggleLeftDropdown(event: Event) {
+  if (window.innerWidth > 768) return;  // 📌 Block dropdown on desktop
+
+  event.stopPropagation();
+  this.leftDropdownOpen = !this.leftDropdownOpen;
+}
+
+/* Use Current Location */
+useCurrentLocationLeft(event: Event) {
+  event.stopPropagation();
+  this.selectedAddress = "current location";
+  this.leftDropdownOpen = false;
+}
+
+/* Go to Saved Address Page */
+goToSavedAddressLeft(event: Event) {
+  event.stopPropagation();
+  this.leftDropdownOpen = false;
+
+  this.router.navigate(['/address']);
+}
+
+/* Close dropdown when clicking outside */
 
 }
+ 

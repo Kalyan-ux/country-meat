@@ -19,6 +19,31 @@
       color: #6c757d;
     }
   }
+  /* 📱 FIX MOBILE BREADCRUMB ALIGNMENT */
+@media (max-width: 768px) {
+  .breadcrumb {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .breadcrumb-item {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 0.85rem !important;
+  }
+
+  .breadcrumb-item a {
+    display: flex !important;
+    align-items: center !important;
+  }
+}
+
 }
 
 // --- NEW IMAGE GALLERY STYLES ---

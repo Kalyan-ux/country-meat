@@ -50,4 +50,9 @@ export const routes: Routes = [
   {path: 'refer-friend', component: ReferFriendComponent},
   
   { path: '**', redirectTo: '' },
+  { path: 'shop-by-category', loadComponent: () =>
+    import('./features/home/shop-by-category/shop-by-category.component')
+      .then(m => m.ShopByCategoryComponent)
+}
+
 ];
