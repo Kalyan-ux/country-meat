@@ -7,6 +7,36 @@
 .breadcrumb-item.active {
   color: #6c757d;
 }
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;     /* ❗ Prevent line break */
+  white-space: nowrap;   /* ❗ Force one-line */
+  overflow-x: auto;      /* Allow scroll if too long */
+  scrollbar-width: none; /* Hide scrollbar (Firefox) */
+}
+
+.breadcrumb::-webkit-scrollbar {
+  display: none;         /* Hide scrollbar (Chrome/Safari) */
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.breadcrumb-item a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: "/";
+  padding: 0 6px;
+}
+
 
 // --- NEW PRODUCT CARD STYLES ---
 .product-card {
@@ -317,3 +347,4 @@
     display: block !important;
   }
 }
+

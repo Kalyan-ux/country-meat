@@ -68,6 +68,17 @@ export class NavbarComponent implements OnInit {
     this.router.navigate([path]);
     this.isSidebarOpen = false;
   }
+  showCategoriesSheet = false;
+
+openCategoriesBottomSheet(event?: Event) {
+  if (event) event.stopPropagation();
+  this.showCategoriesSheet = true;
+}
+
+closeCategoriesBottomSheet() {
+  this.showCategoriesSheet = false;
+}
+
 
   // ✅ Opens confirmation popup instead of direct logout
   logout(): void {

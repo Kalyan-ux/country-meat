@@ -1715,3 +1715,85 @@
   border-radius: 8px;
   object-fit: cover;
 }
+/* ==============================
+   MOBILE CATEGORY BOTTOM SHEET
+================================*/
+.category-bottom-sheet-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+
+.category-bottom-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 18px 18px 0 0;
+  padding: 15px 20px;
+  z-index: 1000;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.sheet-header h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.sheet-header .close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+}
+
+.sheet-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  
+}
+
+.sheet-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+
+}
+
+.sheet-item img {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.sheet-item span {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.sheet-item.coming-soon {
+  opacity: 0.8;
+}
+.coming-soon-text {
+  color: #e6b30e;            /* Gold color */
+  font-weight: 600;
+  font-size: 0.9rem;
+}

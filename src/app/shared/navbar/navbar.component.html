@@ -329,7 +329,8 @@
     <span>Home</span>
   </a>
 
-<a class="bottom-nav-link" (click)="toggleCategoriesDropdown($event)">
+<a class="bottom-nav-link" (click)="openCategoriesBottomSheet($event)">
+
   <img
     src="assets/icon/categories.png"
     alt="Categories Icon"
@@ -337,9 +338,47 @@
   />
   <span>Categories</span>
 </a>
+<!-- ⭐ MOBILE CATEGORY BOTTOM SHEET -->
+<div class="category-bottom-sheet-overlay" *ngIf="showCategoriesSheet" (click)="closeCategoriesBottomSheet()"></div>
 
+<div class="category-bottom-sheet" *ngIf="showCategoriesSheet">
+  <div class="sheet-header">
+    <h3>Categories</h3>
+    <button class="close-btn" (click)="closeCategoriesBottomSheet()">
+      <i class="fa fa-times"></i>
+    </button>
+  </div>
 
+  <div class="sheet-content">
 
+    <a routerLink="/products/chicken" class="sheet-item" (click)="closeCategoriesBottomSheet()">
+      <img src="assets/images/products/ck/country-king-0.png" />
+      <span>Country Chicken</span>
+    </a>
+
+    <a routerLink="/products/eggs" class="sheet-item" (click)="closeCategoriesBottomSheet()">
+      <img src="assets/images/products/eggs/egg-1.png" />
+      <span>Country Eggs</span>
+    </a>
+
+    <div class="sheet-item coming-soon">
+      <img src="assets/images/categories/mutton.jpg" />
+     <span>
+  Mutton <span class="coming-soon-text">(Coming soon)</span>
+</span>
+
+    </div>
+
+    <div class="sheet-item coming-soon">
+      <img src="assets/images/categories/sea-food.jpg" />
+      <span>
+  Sea Food <span class="coming-soon-text">(Coming soon)</span>
+</span>
+
+    </div>
+
+  </div>
+</div>
 
   <!-- <a class="bottom-nav-link" (click)="toggleMobileSearch()">
     <i class="fa fa-search"></i>
