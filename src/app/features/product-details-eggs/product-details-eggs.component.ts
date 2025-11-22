@@ -39,6 +39,7 @@ export class ProductDetailsComponentEggs implements OnInit, AfterViewInit {
   sharedHealthBenefits = [
     'Contains vital nutrients – Vitamins A, B5, B12 and E, including phosphorus and iodine, helps to improve good cholesterol levels and aids weight management',
   ];
+  // This is a line added to explain about VCS
 
   products = [
     {
@@ -55,53 +56,56 @@ export class ProductDetailsComponentEggs implements OnInit, AfterViewInit {
         'Packed with Vitamins & minerals',
       ],
       price: 180,
-      originalPrice: 180, 
+      originalPrice: 180,
       packOptions: [
         { label: 'Pack of 6', price: 180, packSize: 6, originalPrice: 180 },
         { label: 'Pack of 12', price: 360, packSize: 12, originalPrice: 360 },
-      ], 
-      image: 'assets/images/products/eggs/egg-1.png', 
+      ],
+      image: 'assets/images/products/eggs/egg-1.png',
     },
     {
       id: 2,
-      name: 'Free Range Country Chicken Eggs', 
-      subtitle: 'Rare variety of high-protein eggs that come cleaned',
-      description:'These Country Eggs are laid by breeds like sonali raised in open free-range farms. Pure, wholesome, and rich in nutrition, just the way nature intended.',
+      name: 'Free Range Country Chicken Eggs',
+      subtitle: 'Original Country Chicken Eggs',
+      description:
+        'These Country Eggs are laid by rare original native Country Hens (Country Queen) — naturally hatched and lovingly raised in open free-range farms. Pure, wholesome, and rich in authentic nutrition, just the way nature intended. Unlike other breeds, these heritage hens lay only a limited number of eggs each year, making every egg truly special, nutrient-rich, and authentic..',
       features: [
-        'Protein Rich', 
-        'Nutritious', 
-        'Chemical-free', 
-        'Omega-3', 
-        'Free-Range'
+        'Protein Rich',
+        'Nutritious',
+        'Chemical-free',
+        'Omega-3',
+        'Free-Range',
       ],
-      price: 119, 
-      originalPrice: 119, 
+      price: 180,
+      originalPrice: 200,
       packOptions: [
         { label: 'Pack of 6', price: 119, packSize: 6, originalPrice: 119 },
         { label: 'Pack of 12', price: 239, packSize: 12, originalPrice: 239 },
         { label: 'Pack of 30', price: 594, packSize: 30, originalPrice: 594 },
       ],
-      image: 'assets/images/products/eggs/egg-2.png', 
+      image: 'assets/images/products/eggs/egg-2.png',
     },
     {
       id: 3,
       name: 'Cage Free Country Chicken Eggs',
-      subtitle: 'These Country Eggs are laid by breeds like sonali & Aseel raised out of battery cages. Known for their balanced nutrition and authentic taste.',
-      description:'These Country Eggs are laid by breeds like sonali & Aseel raised out of battery cages. Known for their balanced nutrition and authentic taste, they’re a wholesome choice for the whole family.',
+      subtitle:
+        'These Country Eggs are laid by breeds like sonali & Aseel raised out of battery cages. Known for their balanced nutrition and authentic taste.',
+      description:
+        'These Country Eggs are laid by breeds like sonali & Aseel raised out of battery cages. Known for their balanced nutrition and authentic taste, they’re a wholesome choice for the whole family.',
       features: [
-        'Protein Rich', 
-        'Nutritious', 
-        'Chemical-free', 
-        'Better fat profile'
+        'Protein Rich',
+        'Nutritious',
+        'Chemical-free',
+        'Better fat profile',
       ],
-      price: 99, 
-      originalPrice: 99, 
+      price: 99,
+      originalPrice: 99,
       packOptions: [
         { label: 'Pack of 6', price: 99, packSize: 6, originalPrice: 99 },
         { label: 'Pack of 12', price: 195, packSize: 12, originalPrice: 195 },
         { label: 'Pack of 30', price: 489, packSize: 30, originalPrice: 489 },
       ],
-      image: 'assets/images/products/eggs/egg-3.png', 
+      image: 'assets/images/products/eggs/egg-3.png',
     },
   ];
 
@@ -118,7 +122,7 @@ export class ProductDetailsComponentEggs implements OnInit, AfterViewInit {
       if (foundProduct) {
         // Initialize with first pack option details
         const initialPack = foundProduct.packOptions[0];
-        
+
         this.product = {
           ...foundProduct,
           price: initialPack.price, // Set initial price
@@ -126,24 +130,24 @@ export class ProductDetailsComponentEggs implements OnInit, AfterViewInit {
           packSize: initialPack.packSize.toString(), // Set initial packSize for info badge
           healthBenefits: this.sharedHealthBenefits,
         };
-        
+
         this.selectedPackPrice = initialPack.price; // Set initial selected price
-        
+
         this.relatedProducts = this.products.filter(
           (p) => p.id !== this.productId
         );
       } else {
         this.product = null;
       }
-      
+
       // Ensure arrow visibility is updated after relatedProducts are loaded
       if (this.relatedProducts.length > 0) {
-          // A slight delay is needed to ensure the DOM elements are rendered
-          setTimeout(() => {
-            if (this.relatedProductsContainer) {
-                this.updateArrowVisibility();
-            }
-          }, 0);
+        // A slight delay is needed to ensure the DOM elements are rendered
+        setTimeout(() => {
+          if (this.relatedProductsContainer) {
+            this.updateArrowVisibility();
+          }
+        }, 0);
       }
     });
   }
@@ -173,7 +177,7 @@ export class ProductDetailsComponentEggs implements OnInit, AfterViewInit {
     const container = this.relatedProductsContainer.nativeElement;
     const scrollLeft = container.scrollLeft;
     const maxScrollLeft = container.scrollWidth - container.clientWidth;
-    
+
     // Check if scroll is necessary
     if (container.scrollWidth <= container.clientWidth) {
       this.showLeftArrow = false;
@@ -206,7 +210,8 @@ export class ProductDetailsComponentEggs implements OnInit, AfterViewInit {
   }
 
   getDiscount(originalPrice: number, currentPrice: number): number {
-    if (!originalPrice || !currentPrice || originalPrice <= currentPrice) return 0;
+    if (!originalPrice || !currentPrice || originalPrice <= currentPrice)
+      return 0;
     return Math.round(((originalPrice - currentPrice) / originalPrice) * 100);
   }
 
@@ -223,12 +228,12 @@ export class ProductDetailsComponentEggs implements OnInit, AfterViewInit {
       this.productQuantity--;
     }
   }
-  
+
   // ADDED: Handler for pack change event
   onPackChange(event: Event): void {
     const selectedPrice = Number((event.target as HTMLSelectElement).value);
     this.selectedPackPrice = selectedPrice;
-    
+
     // Find the selected pack option to update product details
     const selectedPack = this.product.packOptions.find(
       (pack: any) => pack.price === selectedPrice
