@@ -173,13 +173,14 @@ leftDropdownOpen = false;
 selectedAddress = "Select address";
 
 
-
 toggleLeftDropdown(event: Event) {
-  if (window.innerWidth > 768) return;  // 📌 Block dropdown on desktop
-
+  if (window.innerWidth > 991) return;   // Allow mobile + tablet
   event.stopPropagation();
   this.leftDropdownOpen = !this.leftDropdownOpen;
 }
+  
+
+
 
 /* Use Current Location */
 useCurrentLocationLeft(event: Event) {
